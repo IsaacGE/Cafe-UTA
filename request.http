@@ -1,0 +1,100 @@
+//----------------> Users request
+GET http://localhost:3000/users/getById?id=dd62e5dabc9c8fb3edb4928a1
+###
+
+GET http://localhost:3000/users/getAll
+###
+
+POST http://localhost:3000/users/create
+content-type: application/json
+
+{
+    "name": "Andrea Guzman",
+    "email": "andrea@gmail.com",
+    "pass": "andrea123",
+    "imageUrl": "",
+    "role": ""
+}
+######
+
+PUT http://localhost:3000/users/update?id=62e6d85a0c7dedbb387309af
+content-type: application/json
+
+{
+    "name": "Isaac Gallegos Updated",
+    "email": "jesusisaac@gmail.com",
+    "pass": "Isaac111",
+    "imageUrl": "",
+    "role": "client"
+}
+#####
+
+
+
+
+// --------> Product Request
+GET http://localhost:3000/products/getAll
+###
+
+GET http://localhost:3000/products/getById?id=62e5dabc9c8fb3edb4928a1
+###
+
+POST http://localhost:3000/products/create
+Content-Type: application/json
+
+{
+    "name": "Product for delete",
+    "price": 1959.99,
+    "imageUrl": "",
+    "stock": 100,
+    "category": "62e6efa86a239d28a811382c"
+}
+###
+
+DELETE http://localhost:3000/products/delete?id=62e6f4a2aee1298f5a34fe8a
+###
+
+
+
+
+//-------------------------> Category request
+GET http://localhost:3000/category/getAll
+###
+
+GET http://localhost:3000/category/getById?id=62e6efa86a239d28a811382c
+###
+
+POST http://localhost:3000/category/create
+Content-Type: application/json
+
+{
+    "name": "Category for delete"
+}
+####
+
+PUT http://localhost:3000/category/update?id=62e6efa86a239d28a811382c
+Content-Type: application/json
+
+{
+    "name": "Computers and accessories"
+}
+###
+
+DELETE http://localhost:3000/category/delete?id=62e6f1a9f36f7a31c85142a0
+####
+
+
+
+
+
+
+
+
+//--------------------> Auth request
+POST http://localhost:3000/auth/signIn
+Content-Type: application/json
+
+{
+    "email": "jesusisaac@gmail.com",
+    "pass": "Isaac111"
+}

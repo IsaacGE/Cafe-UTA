@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Sign up</title>
+    <%- include('./partials/head') %> 
+  </head>
+  <body>
+    <%- include('./partials/nav-bar') %>
+    
+    <div class="render-content">
+      <div class="container">
+        <div class="form-signinup-content">
+          <h2>Sign up</h2>
+          <form action="auth/signup" method="post" id="signUpForm">
+            <label for="userName" class="form-label">Enter your name:</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text"><i class="bi bi-person-circle"></i></span>
+              <input type="text" id="userName" name="name" class="form-control" placeholder="Complete name" aria-label="Name">
+            </div>
+            <label for="email" class="form-label">Enter your email:</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+              <input type="email" id="email" name="email" class="form-control" placeholder="Email" aria-label="Email">
+            </div>
+            <label for="password" class="form-label">Create a password:</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
+              <input type="password" id="password" name="pass" class="form-control" placeholder="Password" aria-label="Password">
+              <button type="button" class="btn" id="showHidePassword"><i id="iconPassword" class="bi bi-eye-slash-fill"></i></button>
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <button type="submit" class="btn btn-dark" id="createAccountBtn">&nbsp;<i class="bi bi-person-plus-fill"></i> Create account</button>
+            </div>
+            <p class="action-for-nav">Already have an account?&nbsp;<a href="#"><i class="bi bi-box-arrow-in-right"></i> sign in</a></p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <%- include('./partials/scripts') %> 
+  </body>
+</html>

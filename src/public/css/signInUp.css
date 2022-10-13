@@ -1,0 +1,63 @@
+.form-signinup-content {
+    text-align: center;
+    width: 500px;
+    margin: auto;
+    box-shadow: 0px 5px 8px 1px #00000033;
+    border-radius: 5px;
+    padding-bottom: 10px;
+}
+
+.form-signinup-content h2 {
+    font-weight: 900;
+    background-color: #272727;
+    color: #ebebeb;
+    border-radius: 5px 5px 0 0;
+    padding: 10px;
+}
+
+.form-signinup-content form {
+    margin: 20px;
+}
+
+.form-signinup-content form label {
+    float: left;
+    margin-bottom: 0;
+    font-weight: 500;
+}
+
+.form-signinup-content form .input-group span {
+    background-color: #464646;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.form-signinup-content form a {
+    color: #383838;
+    transition: all .2s;
+}
+
+.form-signinup-content form a:hover {
+    font-weight: 500;
+}
+
+.form-signinup-content form .forgot-password {
+    margin-top: 10px;
+    font-weight: 300;
+    margin-bottom: 0;
+}
+
+.form-signinup-content form .action-for-nav {
+    margin-top: 10px;
+    font-weight: 300;
+    font-size: 11pt;
+}
+
+#showHidePassword {
+    border: solid 1px #c9c9c9;
+    font-size: 18px;
+    color: #7c7c7c;
+}
+
+#showHidePassword:hover {
+    color: #181818;
+}

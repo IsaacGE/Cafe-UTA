@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Web Store | Products</title>
+    <%- include('./partials/head') %> 
+  </head>
+  <body>
+    <%- include('./partials/nav-bar') %>
+    
+    <div class="render-content">
+      <div class="container">
+        <div class="search-content">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Find a product..." aria-label="Find a product..." aria-describedby="button-addon2">
+            <button class="btn btn-dark" type="button" id="button-addon2"><i class="bi bi-search"></i></button>
+          </div>
+        </div>
+        <div class="products-list-content">
+          <div class="row">
+            <div class="col mb-3 d-flex align-items-stretch">
+              <div class="card">
+                <img src="assets/images/icon-big.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <h4>$ <label>2000</label></h4>
+                  <small class="card-text">This is a longer card with supporting text below as a</small>
+                  <p class="stock">Stock:&nbsp;<strong>35</strong></p>
+                </div>
+                <div class="card-footer">
+                  <button class="btn"><i class="bi bi-box-seam-fill"></i>&nbsp;Related</button>
+                  <button class="btn btn-dark"><i class="bi bi-cart4"></i>&nbsp;Add</button>
+                </div>
+              </div>
+            </div>
+            <div class="col mb-3 d-flex align-items-stretch">
+              <div class="card">
+                <img src="assets/images/icon-big.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a short card.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col mb-3 d-flex align-items-stretch">
+              <div class="card">
+                <img src="assets/images/icon-big.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col mb-3 d-flex align-items-stretch">
+              <div class="card">
+                <img src="assets/images/icon-big.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col mb-3 d-flex align-items-stretch">
+              <div class="card">
+                <img src="assets/images/icon-big.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col mb-3 d-flex align-items-stretch">
+              <div class="card">
+                <img src="assets/images/icon-big.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include('./partials/scripts') %> 
+  </body>
+</html>

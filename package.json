@@ -1,0 +1,28 @@
+{
+  "name": "webstore",
+  "version": "1.0.0",
+  "description": "Web app to manage articles and products",
+  "main": "server.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Isaac Gallegos",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-session": "^2.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "json": "^11.0.0",
+    "mongoose": "^6.5.0",
+    "morgan": "^1.10.0",
+    "underscore": "^1.13.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}

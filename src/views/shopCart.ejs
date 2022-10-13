@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Web Store | shpping cart</title>
+  <%- include('./partials/head') %>
+</head>
+
+<body>
+  <%- include('./partials/nav-bar') %>
+
+    <div class="render-content">
+      <div class="container">
+        <div class="content-shop-cart">
+          <h2>Your purchase is almost ready</h2>
+          <p>Now you will see the list of the products you are about to buy. To continue with the purchase, click on the
+            button(complete) to finalize the purchase or button(cancel) to remove the list of products from your cart.
+          </p>
+          <div class="row">
+            <div class="col">
+              <div class="card h-100">
+                <img src="assets/images/icon-big.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-title">Samsung galaxy S10</p>
+                  <small class="card-text">$1200</small>
+                </div>
+                <button class="btn btn-outline-danger" title="Remove from the cart"><i class="bi bi-trash3-fill"></i></button>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100">
+                <img src="assets/images/icon-big.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-title">Motherboard</p>
+                  <small class="card-text">$999</small>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100">
+                <img src="assets/images/icon-big.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-title">Airpods</p>
+                  <small class="card-text">$599</small>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100">
+                <img src="assets/images/icon-big.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-title">Mouse Logitech</p>
+                  <small class="card-text">$600</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="info-shop-cart">
+            <p class="total-cost"><i class="bi bi-cash-stack"></i>&nbsp;Total: $2000</p>
+            <p class="discount"><i class="bi bi-tags-fill"></i>&nbsp;Discount: 0%</p>
+            <small><i class="bi bi-calendar-check"></i>&nbsp;Your order will arrive in <strong>2 days</strong></small>
+          </div>
+          <div class="shop-cart-footer">
+            <button class="btn btn-cancel"><i class="bi bi-x-lg"></i>&nbsp;Cancel</button>
+            <button class="btn btn-primary"><i class="bi bi-check-circle"></i>&nbsp;Complete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include('./partials/scripts') %>
+</body>
+
+</html>

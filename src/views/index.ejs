@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Web Store</title>
+    <%- include('./partials/head') %> 
+  </head>
+  <body>
+    <%- include('./partials/nav-bar') %>
+    
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <% carouselItems.forEach(item => { %>
+            <div class="carousel-item <%= item.active ? 'active' : '' %>" data-bs-interval="<%= item.interval %>">
+              <img src="<%= item.imagePath %> " class="d-block w-100" alt="image-slide">
+              <div class="carousel-caption d-none d-md-block">
+                <h5><%= item.contentTitle%></h5>
+                <p><%= item.contentText %></p>
+              </div>
+            </div>
+          <% }); %> 
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <div class="container">
+        <h1 class="text-center">Main title - webpage</h1>
+        <div class="card-section">
+          <h3>Products</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore corporis iure tempore sit officiis fugit iste consequuntur explicabo nisi dicta perferendis est, repellendus doloribus numquam delectus aperiam suscipit culpa? Veritatis?</p>
+        </div>
+        <div class="card-section">
+          <h3>Safe shopping</h3>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium natus libero consequatur pariatur! Possimus in quo expedita quos impedit ex numquam doloremque eos laudantium provident sed, natus, blanditiis enim pariatur.</p>
+        </div>
+        <div class="card-section">
+          <h3>Daily updates</h3>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium natus libero consequatur pariatur! Possimus in quo expedita quos impedit ex numquam doloremque eos laudantium provident sed, natus, blanditiis enim pariatur.</p>
+        </div>
+      </div>
+
+
+      <%- include('./partials/footer') %> 
+    <%- include('./partials/scripts') %> 
+  </body>
+</html>

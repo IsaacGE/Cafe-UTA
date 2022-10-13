@@ -1,0 +1,70 @@
+.render-content .container .content-shop-cart {
+    box-shadow: 0px 5px 8px 1px #00000033;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 5px;
+}
+
+.render-content .container .content-shop-cart .shop-cart-footer {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.render-content .container .content-shop-cart .shop-cart-footer .btn {
+    border: none;
+    font-size: 11pt;
+    transition: all .2s;
+}
+
+.render-content .container .content-shop-cart .shop-cart-footer .btn-cancel {
+    background-color: #00000005;
+    margin-right: 5px;
+}
+
+.render-content .container .content-shop-cart .shop-cart-footer .btn-cancel:hover {
+    color: #ff0000;
+    background-color: #ff00000c;  
+}
+
+.content-shop-cart .row {
+    justify-content: center;
+}
+
+.content-shop-cart .row .col .card {
+    min-width: 125px;
+    max-width: 200px;
+    border: solid 1px #00000013;
+    font-weight: 600;
+    position: relative;
+}
+
+.content-shop-cart .row .col .card:hover {
+    box-shadow: 0px 5px 8px 1px #00000033;
+}
+
+.content-shop-cart .row .col .card img {
+    width: 50%;
+    margin: auto;
+}
+
+.content-shop-cart .row .col .card button {
+    width: 20px;
+    padding-right: 25px;
+    border-radius: 50%;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    font-size: 14px;
+}
+
+.content-shop-cart .info-shop-cart {
+    padding-top: 15px;
+}
+
+.content-shop-cart .info-shop-cart .total-cost {
+    margin-bottom: 0;
+}
+
+.content-shop-cart .info-shop-cart .discount {
+    margin-top: 0;
+}
