@@ -1,13 +1,12 @@
-require('./database/db')
+require('./config/config')
 const express = require('express')
 const session = require('cookie-session')
-const startUp = require('./helpers/startUp.helper')
+//const startUp = require('./helpers/startUp.helper')
 const cors = require('cors')
 const morgan = require('morgan')
 const app = express()
 const path = require('path')
 
-startUp.createAdmin()
 
 app.use(cors())
 app.use(morgan("dev"))

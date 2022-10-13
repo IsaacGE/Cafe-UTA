@@ -1,11 +1,7 @@
 const express = require('express')
 const app = express()
 
-const viewsPath = __dirname.replace('/routes', '/views')
-
-app.set('views', viewsPath)
-
-app.use(require('./views.routes'))
+app.use('/', require('./views.routes'))
 
 app.use('/auth', require('./auth.routes'))
 
