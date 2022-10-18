@@ -1,38 +1,62 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>Sign in</title>
-    <%- include('./partials/head') %> 
-  </head>
-  <body>
-    <%- include('./partials/nav-bar') %>
-    
-    <div class="render-content">
-      <div class="container">
-        <div class="form-signinup-content">
-          <h2>Sign in</h2>
-          <form id="signInForm" action="auth/signin" method="post">
-            <label for="email" class="form-label">Enter your email:</label>
-            <div class="input-group mb-3">
-              <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
-              <input type="email" name="email" id="email" class="form-control" placeholder="Email" aria-label="Email">
-            </div>
-            <label for="password" class="form-label">Enter your password:</label>
-            <div class="input-group mb-3">
-              <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
-              <input type="password" name="pass" id="password" class="form-control" placeholder="Password" aria-label="Password">
-              <button type="button" class="btn" id="showHidePassword"><i id="iconPassword" class="bi bi-eye-slash-fill"></i></button>
-            </div>
-            <div class="d-grid gap-2 col-6 mx-auto">
-              <button type="submit" class="btn btn-dark" id="signInButton">&nbsp;<i class="bi bi-box-arrow-in-right"></i> Signin</button>
-            </div>
-            <p class="forgot-password"><a href="#">Forgot password?</a></p>
-            <p class="action-for-nav">Don't have an account?&nbsp;<a href="#"><i class="bi bi-person-plus-fill"></i> register now</a></p>
-          </form>
-        </div>
-      </div>
-    </div>
 
-    <%- include('./partials/scripts') %> 
-  </body>
+<head>
+    <title>Sign in</title>
+    <%- include('./partials/head') %>
+</head>
+
+<body>
+    <%- include('./partials/nav-bar') %>
+
+        <main>
+            <div class="contenedor__todo">
+                <div class="caja__trasera">
+                    <div class="caja__trasera-login">
+                        <h3>
+                            ¿Ya tienes cuenta?
+                        </h3>
+                        <p>
+                            Inicia sesión para entrar a la página
+                        </p>
+                        <button id="btn__iniciar-sesion">
+                            Iniciar sesión
+                        </button>
+                    </div>
+
+                    <div class="caja__trasera-register">
+                        <h3>
+                            ¿Aún no tienes cuenta?
+                        </h3>
+                        <p>
+                            Registrate para que puedas iniciar sesión
+                        </p>
+                        <button id="btn__registrarse">
+                            Registrarse
+                        </button>
+                    </div>
+                </div>
+                <div class="contenedor__login-register">
+                    <form action="" class="formulario__login">
+                        <h2>Iniciar sesión</h2>
+                        <input type="text" placeholder="Matricula">
+                        <input type="password" placeholder="Contraseña">
+                        <button>Entrar</button>
+                    </form>
+
+                    <form action="" class="formulario__register">
+                        <h2>Registrate</h2>
+                        <input type="text" placeholder="Nombre completo">
+                        <input type="text" placeholder="Username">
+                        <input type="text" placeholder="Matricula">
+                        <input type="password" placeholder="Contraseña">
+                        <button>Registrarse</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <%- include('./partials/scripts') %>
+</body>
+
 </html>
