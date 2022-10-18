@@ -10,5 +10,6 @@ router.get('/shoppingCart', viewsController.shoppingCartView)
 router.get('/signIn', viewsController.signInView)
 router.get('/signUp', viewsController.signUpView)
 router.get('/categories', viewsController.categoryView)
+router.get('/graficas', viewsController.graficasView)
 
 module.exports = router

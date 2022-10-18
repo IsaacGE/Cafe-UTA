@@ -15,9 +15,13 @@ viewsController.productsView = (req, res) => {
 viewsController.categoryView = (req, res) => {
     res.render('categories')
 }
+viewsController.graficasView = (req, res) => {
+    res.render('graficas')
+}
 
 viewsController.signInView = (req, res) => {
     res.render('signIn')
+   
 }
 
 viewsController.signUpView = (req, res) => {

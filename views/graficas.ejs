@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Web Store | Categories</title>
+  <%- include('./partials/head') %>
+</head>
+
+<body>
+  <%- include('./partials/nav-bar') %>
+
+    <div class="render-content" style="text-align: center;">
+      <h1>Graficas</h1>
+    </div>
+    <div class="row">
+
+      <div class="input-group" style="width: 300px;">
+        <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+          <option selected>Eligir mes...</option>
+          <option value="1">Enero</option>
+          <option value="2">Febrero</option>
+          <option value="3">Marzo</option>
+        </select>
+      </div>
+      <div class="input-group" style="width: 300px;">
+        <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+          <option selected>Año...</option>
+          <option value="1">2021</option>
+          <option value="2">2022</option>
+          <option value="3">2023</option>
+        </select>
+        
+      </div>
+      <div class="col-2">
+        <button class="btn btn-outline-primary">Buscar</button>
+      </div>
+      
+    </div>
+    <div class ="stats_box" style="width: 500px; margin-top: 100px; margin-left: 50px;">
+      <canvas id="myChart" height="200"  ></canvas>
+    </div>
+    <%- include('./partials/scripts') %>
+
+      <script>
+        const labels = [
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June','july'
+        ];
+
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'Ventas por mes',
+            data: [65, 59, 80, 81, 56, 55, 40],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(255, 159, 64, 0.2)',
+              'rgba(255, 205, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(201, 203, 207, 0.2)'
+            ],
+            borderColor: [
+              'rgb(255, 99, 132)',
+              'rgb(255, 159, 64)',
+              'rgb(255, 205, 86)',
+              'rgb(75, 192, 192)',
+              'rgb(54, 162, 235)',
+              'rgb(153, 102, 255)',
+              'rgb(201, 203, 207)'
+            ],
+            borderWidth: 1,
+          }]
+        };
+
+        const config = {
+          type: 'bar',
+          data,
+          options: {
+            indexAxis: 'y',
+          }
+        };
+      </script>
+      <script>
+        const myChart = new Chart(
+          document.getElementById('myChart'),
+          config
+        );
+        
+
+
+      </script>
+</body>
+
+</html>

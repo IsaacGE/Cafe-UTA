@@ -1,7 +1,7 @@
-<nav class="navbar fixed-top" style="background-color: #051e36;"> 
+<nav class="navbar fixed-top" style="background-color: #1840f3;"> 
     <div class="container-fluid">
         <a class="navbar-brand" href="/"> <img src="assets/images/icon.png" alt="icon-webstore"
-                width="25">&nbsp;<strong>WebStore</strong></a>
+                width="25">&nbsp;<strong>ScanFOOD</strong></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
             aria-controls="offcanvasDarkNavbar">
             <i class="bi bi-list"></i>
@@ -9,11 +9,11 @@
         <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
             aria-labelledby="offcanvasDarkNavbarLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Webstore menu</h5>
+                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">ScanFOOD menu</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
                     aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body" style="background-color: #8dc2f7;">
+            <div class="offcanvas-body" style="background-color: #a4aaaf;">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
                         <a class="nav-link" href="/"><i class="bi bi-house-fill"></i>&nbsp;Home</a>
@@ -30,15 +30,20 @@
                     <li class="nan-item">
                         <a href="/categories" class="nav-link"><i class="bi bi-list-ul"></i>&nbsp;Categories</a>
                     </li>
-                    <!-- <li class="nan-item row-items">
-                        <a class="nav-link" href="/signIn"><i class="bi bi-box-arrow-in-right"></i>Sign in</a>
-<<<<<<< HEAD
-                            <small>or</small>
-                        <a class="nav-link" href="/signUp"><i class="bi bi-person-plus-fill"></i>Sign up</a>
-                    </li> -->
-=======
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Punto de venta
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                          <li><a class="dropdown-item" href="/graficas">Graficas</a></li>
+                          <li><a class="dropdown-item" href="#">Estados de ventas</a></li>
+                          <li><a class="dropdown-item" href="#">Equilibrio del negocio</a></li>
+                        </ul>
+                      </li>
+                    <li class="nan-item row-items">
+                        <a class="nav-link" id="nose" href="/signIn"><i class="bi bi-box-arrow-in-right"></i>Sign in</a>
+                    </li> 
                     </li>
->>>>>>> 6f2f42c3d90801322de2eddcac97eb49de2ece47
                     <li class="nan-item">
                         <a href="#" class="nav-link"><i class="bi bi-box-arrow-in-left"></i>&nbsp;Exit</a>
                     </li>
