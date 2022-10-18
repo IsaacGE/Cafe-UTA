@@ -1,7 +1,7 @@
 
 
 
-export const productos = [{
+const productos = [{
     id: '1',
     nombre:'Coco-cola',
     precio:25,
@@ -48,5 +48,3 @@ export const productos = [{
 }
 
 ]
-
-module.exports = productos;
