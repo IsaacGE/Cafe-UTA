@@ -103,18 +103,34 @@ input[type="color"]:focus,
     color: rgb(0, 128, 255);
     font-size: 40px;
     text-align: center;
-    border-bottom: 5px solid black;
+    border-bottom: 5px solid #8C715A;
 }
 
-.container .tarjetas{
+.container .seccion-comida{
+    padding: 40px;
+    margin-bottom: 1.5%;
+}
+
+.container .seccion-comida .titulo{
+    text-align: justify;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .seccion-comida .titulo h1{
+    color: black;
+    font-size: 30px;
+}
+
+.container .seccion-comida .tarjetas-comida{
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
 
-.container .tarjetas .card{
-    width: 333px;
-    height: 450px;
+.container .seccion-comida .tarjetas-comida .card{
+    width: 300px;
+    height: 360px;
     margin-bottom: 10px;
     overflow: hidden;
     position: relative;
@@ -122,8 +138,130 @@ input[type="color"]:focus,
     box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.212);
 }
 
-.container .tarjetas .card img{
+.container .seccion-comida .tarjetas-comida .card img{
     width: 100%;
+    height: 45%;
+}
+
+.container .seccion-comida .tarjetas-comida .card .cuerpo{
+    text-align: center;
+    color: black;
+    padding: 10px;
+}
+
+.container .seccion-comida .tarjetas-comida .card .cuerpo h1{
+    font-size: 30px;
+}
+
+.container .seccion-comida .tarjetas-comida .card .cuerpo p{
+    text-align: justify;
+    font-size: 15px;
+    letter-spacing: 0px;
+}
+
+.container .seccion-bebidas{
+    padding: 40px;
+    margin-bottom: 1.5%;
+}
+
+.container .seccion-bebidas .titulo{
+    text-align: justify;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .seccion-bebidas .titulo h1{
+    color: black;
+    font-size: 30px;
+}
+
+.container .seccion-bebidas .tarjetas-bebidas{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.container .seccion-bebidas .tarjetas-bebidas .card{
+    width: 300px;
+    height: 360px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.212);
+}
+
+.container .seccion-bebidas .tarjetas-bebidas .card img{
+    width: 100%;
+    height: 45%;
+}
+
+.container .seccion-bebidas .tarjetas-bebidas .card .cuerpo{
+    text-align: center;
+    color: black;
+    padding: 10px;
+}
+
+.container .seccion-bebidas .tarjetas-bebidas .card .cuerpo h1{
+    font-size: 30px;
+}
+
+.container .seccion-bebidas .tarjetas-bebidas .card .cuerpo p{
+    text-align: justify;
+    font-size: 15px;
+    letter-spacing: 0px;
+}
+
+.container .seccion-postre{
+    padding: 40px;
+}
+
+.container .seccion-postre .titulo{
+    text-align: justify;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .seccion-postre .titulo h1{
+    color: black;
+    font-size: 30px;
+}
+
+.container .seccion-postre .tarjetas-postre{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.container .seccion-postre .tarjetas-postre .card{
+    width: 300px;
+    height: 360px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.212);
+}
+
+.container .seccion-postre .tarjetas-postre .card img{
+    width: 100%;
+    height: 45%;
+}
+
+.container .seccion-postre .tarjetas-postre .card .cuerpo{
+    text-align: center;
+    color: black;
+    padding: 10px;
+}
+
+.container .seccion-postre .tarjetas-postre .card .cuerpo h1{
+    font-size: 30px;
+}
+
+.container .seccion-postre .tarjetas-postre .card .cuerpo p{
+    text-align: justify;
+    font-size: 15px;
+    letter-spacing: 0px;
 }
 
 footer {
