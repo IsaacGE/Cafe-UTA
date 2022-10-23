@@ -14,7 +14,6 @@ $('#showHidePassword').on('click', () => {
 
 //Script para la pagina(vista login)
 //Ejecutando funciones
-const pro = document.querySelector('#nose');
 document.getElementById("btn__iniciar-sesion").addEventListener("click", iniciarSesion);
 document.getElementById("btn__registrarse").addEventListener("click", register);
 window.addEventListener("resize", anchoPage);
