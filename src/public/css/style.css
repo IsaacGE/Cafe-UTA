@@ -16,7 +16,7 @@ body .render-content {
     margin-top: 70px;
 }
 .offcanvas-header {
-    background-color: #3c59a1;
+    background-color: #222222;
 }
 
 nav .container-fluid .navbar-toggler {
@@ -42,8 +42,12 @@ nav .container-fluid .offcanvas .offcanvas-body ul .row-items small {
     margin-right: 20px;
 }
 
+nav .container-fluid .offcanvas .offcanvas-body ul li a {
+    color: #fff;
+}
+
 nav .container-fluid .offcanvas .offcanvas-body ul li a:hover {
-    color: rgb(0, 0, 0);
+    color: #ffb778;
 }
 
 nav .container-fluid .offcanvas .offcanvas-body ul li a i {
@@ -218,7 +222,7 @@ footer .contact .socials .social {
 }
 
 footer .contact .socials .social:hover {
-    color: #fff;
+    color: #ffb778;
 }
 
 footer .contact .socials .social i {
