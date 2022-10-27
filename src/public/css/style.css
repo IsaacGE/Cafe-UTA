@@ -106,6 +106,67 @@ input[type="color"]:focus,
     border-bottom: 5px solid #8C715A;
 }
 
+.container .seccion-paquete{
+    padding: 40px;
+    margin-bottom: 1.5%;
+}
+
+.container .seccion-paquete .titulo{
+    text-align: justify;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .seccion-paquete .titulo h1{
+    color: black;
+    font-size: 30px;
+}
+
+.container .seccion-paquete .tarjetas-paquete{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.container .seccion-paquete .tarjetas-paquete .card{
+    width: 300px;
+    height: 360px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.212);
+}
+
+.container .seccion-paquete .tarjetas-paquete .card img{
+    width: 100%;
+    height: 55%;
+}
+
+.container .seccion-paquete .tarjetas-paquete .card .cuerpo{
+    text-align: center;
+    color: black;
+    padding: 10px;
+}
+
+.container .seccion-paquete .tarjetas-paquete .card .cuerpo h1{
+    font-size: 30px;
+}
+
+.container .seccion-paquete .tarjetas-paquete .card .cuerpo p{
+    text-align: justify;
+    font-size: 15px;
+    letter-spacing: 0px;
+}
+
+.container .seccion-paquete .tarjetas-paquete .card .cuerpo .valores{
+    text-align: right;
+}
+
+.container .seccion-paquete .tarjetas-paquete .card .cuerpo .valores h1{
+    font-size: 20px;
+}
+
 .container .seccion-comida{
     padding: 40px;
     margin-bottom: 1.5%;
@@ -140,7 +201,7 @@ input[type="color"]:focus,
 
 .container .seccion-comida .tarjetas-comida .card img{
     width: 100%;
-    height: 45%;
+    height: 55%;
 }
 
 .container .seccion-comida .tarjetas-comida .card .cuerpo{
@@ -201,7 +262,7 @@ input[type="color"]:focus,
 
 .container .seccion-bebidas .tarjetas-bebidas .card img{
     width: 100%;
-    height: 45%;
+    height: 55%;
 }
 
 .container .seccion-bebidas .tarjetas-bebidas .card .cuerpo{
@@ -253,7 +314,7 @@ input[type="color"]:focus,
 
 .container .seccion-postre .tarjetas-postre .card img{
     width: 100%;
-    height: 45%;
+    height: 55%;
 }
 
 .container .seccion-postre .tarjetas-postre .card .cuerpo{
