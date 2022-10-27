@@ -1,0 +1,3 @@
+$('#btnCloseSession').on('click', () => {
+  
+})

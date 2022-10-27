@@ -1,32 +1,29 @@
-<nav class="navbar fixed-top" style="background-color: #1840f3;"> 
+<nav class="navbar fixed-top" style="background-color: #222222;"> 
     <div class="container-fluid">
         <a class="navbar-brand" href="/"> <img src="assets/images/icon.png" alt="icon-webstore"
-                width="25">&nbsp;<strong>ScanFOOD</strong></a>
+                width="65" height="65" style="border-radius: 50%;">&nbsp;<strong style="color: #fff;">ScanFood</strong></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
-            aria-controls="offcanvasDarkNavbar">
+            aria-controls="offcanvasDarkNavbar" style="color: white;">
             <i class="bi bi-list"></i>
         </button>
         <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
             aria-labelledby="offcanvasDarkNavbarLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">ScanFOOD menu</h5>
+                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
                     aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body" style="background-color: #a4aaaf;">
+            <div class="offcanvas-body" style="background-color: #505050;">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item">
                         <a class="nav-link" href="/"><i class="bi bi-house-fill"></i>&nbsp;Menú principal</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/shoppingCart"><i class="bi bi-cart4"></i>&nbsp;Compras</a>
+                        <a class="nav-link" href="/shoppingCart"><i class="bi bi-cart4"></i>&nbsp;Mis compras</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="/products"><i class="bi bi-basket"></i>&nbsp;Productos</a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="/users"><i class="bi bi-people-fill"></i>&nbsp;Users</a>
-                    </li> -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Punto de venta
@@ -42,10 +39,29 @@
                     </li> 
                     </li>
                     <li class="nan-item">
-                        <a href="#" class="nav-link"><i class="bi bi-box-arrow-in-left"></i>&nbsp;Salir</a>
+                        <a href="javascript:;" id="btnCloseSession" class="nav-link" data-bs-toggle="modal" data-bs-target="#smallAlert"><i class="bi bi-box-arrow-in-left"></i>&nbsp;Salir</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 </nav>
+
+
+<div class="modal fade" id="smallAlert" tabindex="-1" aria-labelledby="smallAlertLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">¿Cerrar sesión?</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Estas a punto de salir de la aplicación
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i>&nbsp;Permanecer</button>
+          <button type="button" class="btn btn-primary"><i class="bi bi-box-arrow-right"></i>&nbsp;Salir</button>
+        </div>
+      </div>
+    </div>
+  </div>
