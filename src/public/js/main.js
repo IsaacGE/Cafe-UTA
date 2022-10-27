@@ -12,7 +12,9 @@ $('#showHidePassword').on('click', () => {
     }
 })
 
-//Script para la pagina(vista login)
+$(document).ready(() => {
+    if (isViewLogin) {
+        //Script para la pagina(vista login)
 //Ejecutando funciones
 document.getElementById("btn__iniciar-sesion").addEventListener("click", iniciarSesion);
 document.getElementById("btn__registrarse").addEventListener("click", register);
@@ -78,3 +80,5 @@ anchoPage();
         }
 }
 //End of script 
+    }
+})

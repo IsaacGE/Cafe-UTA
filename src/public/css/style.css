@@ -142,7 +142,7 @@ input[type="color"]:focus,
     margin-top: 10px;
     padding: 25px 5px 25px 5px;
     border-radius: 5px;
-    box-shadow: .5px .5px 10px .5px #8c715a28;
+    box-shadow: .5px .5px 10px .5px #8c715a0d;
 }
 
 .container .sections-days .tarjetas .card{
