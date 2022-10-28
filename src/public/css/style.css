@@ -15,6 +15,7 @@ body {
 body .render-content {
     margin-top: 70px;
 }
+
 .offcanvas-header {
     background-color: #222222;
 }
@@ -30,6 +31,10 @@ nav .container-fluid .navbar-toggler {
 nav .container-fluid .navbar-toggler:hover {
     color: #fff;
     transform: scale(1.1);
+}
+
+nav .container-fluid .offcanvas .offcanvas-body {
+    background-color: #222222 !important;
 }
 
 nav .container-fluid .offcanvas .offcanvas-body ul .row-items {
@@ -101,17 +106,17 @@ input[type="url"]:focus,
 input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
-.uneditable-input:focus {   
-  border-color: #27272710;
-  box-shadow: 0 1px 1px #00000013 inset, 0 0 8px #22222299;
-  outline: 0 none;
+.uneditable-input:focus {
+    border-color: #27272710;
+    box-shadow: 0 1px 1px #00000013 inset, 0 0 8px #22222299;
+    outline: 0 none;
 }
 
 .container {
     margin: 5% auto;
 }
 
-.container .texto{
+.container .texto {
     color: #595959;
     font-size: 35px;
     text-align: center;
@@ -119,18 +124,18 @@ input[type="color"]:focus,
     border-bottom: 5px solid #8C715A;
 }
 
-.container .seccion-comida .titulo{
+.container .seccion-comida .titulo {
     text-align: justify;
     align-items: center;
     justify-content: center;
 }
 
-.container .sections-days h1{
+.container .sections-days h1 {
     color: #3a3a3a;
     font-size: 30px;
 }
 
-.container .sections-days .tarjetas{
+.container .sections-days .tarjetas {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
@@ -144,7 +149,7 @@ input[type="color"]:focus,
     box-shadow: .5px .5px 10px .5px #8c715a0d;
 }
 
-.container .sections-days .tarjetas .card{
+.container .sections-days .tarjetas .card {
     width: 300px;
     height: 360px;
     margin-bottom: 10px;
@@ -160,34 +165,34 @@ input[type="color"]:focus,
     cursor: pointer;
 }
 
-.container .sections-days .tarjetas .card img{
+.container .sections-days .tarjetas .card img {
     width: 100%;
     height: 55%;
 }
 
-.container .sections-days .tarjetas .card .cuerpo{
+.container .sections-days .tarjetas .card .cuerpo {
     text-align: center;
     color: #424242;
     padding: 10px;
     font-weight: 300;
 }
 
-.container .sections-days .tarjetas .card .cuerpo h1{
+.container .sections-days .tarjetas .card .cuerpo h1 {
     font-size: 24px;
     color: #626262;
 }
 
-.container .sections-days .tarjetas .card .cuerpo p{
+.container .sections-days .tarjetas .card .cuerpo p {
     text-align: justify;
     font-size: 15px;
     letter-spacing: 0px;
 }
 
-.container .sections-days .tarjetas .card .cuerpo .valores{
+.container .sections-days .tarjetas .card .cuerpo .valores {
     text-align: right;
 }
 
-.container .sections-days .tarjetas .card .cuerpo .valores h1{
+.container .sections-days .tarjetas .card .cuerpo .valores h1 {
     font-size: 20px;
 }
 
@@ -239,10 +244,12 @@ footer p {
 }
 
 @media screen and (max-width: 900px) {
+
     #carouselExampleInterval,
     #carouselExampleInterval .carousel-inner .carousel-item {
         height: 400px;
     }
+
     #carouselExampleInterval .carousel-inner .carousel-item .carousel-caption {
         top: 70px;
         height: 100px;
@@ -258,4 +265,4 @@ footer p {
     #carouselExampleInterval .carousel-inner .carousel-item {
         height: 250px;
     }
-} 
+}
