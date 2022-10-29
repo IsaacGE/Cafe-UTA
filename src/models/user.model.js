@@ -14,6 +14,10 @@ const userSchema = new Schema(
             type: String, 
             required: [true, "Email is required"] 
         },
+        matricula: {
+            type: String,
+            required: [true, "Matricula is required"]
+        },
         password: { 
             type: String, 
             required: [true, "Password is required"] 

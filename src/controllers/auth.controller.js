@@ -7,6 +7,7 @@ authController.signUp = async (req, res, next) => {
     const newUser = new User({
         completeName: req.body.name,
         email: req.body.email,
+        matricula: req.body.matricula,
         imageUrl: req.body.imageUrl,
         password: await encrypt.encryptPassword(req.body.pass),
         role: req.body.role
@@ -15,43 +16,43 @@ authController.signUp = async (req, res, next) => {
         const savedUser = await newUser.save()
         res.status(200).json({
             ok: true,
-            msg: `!Hello ${newUser.completeName}¡ Your account has been created successfully`,
+            msg: `!Hola ${newUser.completeName}¡ Se ha creado tu cuenta con éxito`,
             savedUser
         })
     } catch (error) {
-        res.status(500).json({ msg: error })
+        res.status(500).json({ msg: `Error Auth.Controller SignUp module: ${error.message}` })
     }
 }
 
 authController.signIn = async (req, res, next) => {
-    const { email, pass } = req.body
+    const { emailOrId, pass } = req.body
     try {
-        const userFound = await User.findOne({email: email})
+        const userFound = await User.findOne({$or:[{email: emailOrId}, {matricula: emailOrId}]})
         if(!userFound) {
-            return res.status(400).json({
+            return res.status(404).json({
                 ok: false,
-                msg: "User Not Found" 
+                msg: "No se ha encontrado el usuario" 
             })
         }
         if (!userFound.active) {
-            return res.status(400).json({
+            return res.status(404).json({
                 ok: false,
-                msg: "The user is currently disabled" 
+                msg: "El usuario se encuentra temporalmente deshabilitado" 
             })
         }
         if (await encrypt.comparePassword(pass, userFound.password)) {
             return res.status(200).json({
                 ok: true,
-                msg: "Sign in correct",
+                msg: `!Hola ${userFound.completeName}!`,
                 userFound 
             })
         }
         return res.status(400).json({
             ok: false,
-            msg: "Incorrect password, try again" 
+            msg: "La contraseña es incorrecta" 
         })
     } catch (error) {
-        return res.status(500).json({ msg: error })
+        return res.status(500).json({ ok: false, msg: `Error Auth.Controller SignIn module: ${error.message}` })
     }
 }
 

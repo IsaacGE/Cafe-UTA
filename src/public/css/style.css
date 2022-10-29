@@ -21,15 +21,16 @@ body .render-content {
 }
 
 nav .container-fluid .navbar-toggler {
-    border: none;
-    overflow: hidden;
+    color: #fff;
+    border: none !important;
+    outline: none !important;
     font-size: 35px;
     margin: 0;
     transition: all .2s ease-in-out;
 }
 
 nav .container-fluid .navbar-toggler:hover {
-    color: #fff;
+    color: #ffb778 !important;
     transform: scale(1.1);
 }
 
@@ -194,6 +195,22 @@ input[type="color"]:focus,
 
 .container .sections-days .tarjetas .card .cuerpo .valores h1 {
     font-size: 20px;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #2b2b2b;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #49494991;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(58, 58, 58);
 }
 
 footer {

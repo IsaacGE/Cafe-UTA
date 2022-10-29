@@ -8,7 +8,23 @@ verifyRegisterUser.isEmailAvailable = async (req, res, next) => {
         if (user) {
             return res.status(400).json({
                 ok: false,
-                msg: `The email ${req.body.email} is not available, try another`
+                msg: `El correo ${req.body.email} no esta disponible`
+            })
+        }
+        next()
+    } catch (error) {
+        res.status(500).json({ msg: error })
+    }
+};
+
+
+verifyRegisterUser.isMatriculaAvailable = async (req, res, next) => {
+    try {
+        const user = await User.findOne({ matricula: req.body.matricula })
+        if (user) {
+            return res.status(400).json({
+                ok: false,
+                msg: `La matricula ${req.body.matricula} no esta disponible`
             })
         }
         next()
@@ -26,7 +42,7 @@ verifyRegisterUser.isRoleValid = async (req, res, next) => {
             return res.status(400).json({
                 ok: false,
                 role: req.body.role,
-                msg: `The role ${req.body.role} is invalid, check it`
+                msg: `El rol ${req.body.role} no es válido`
             }) 
         }
         next()
