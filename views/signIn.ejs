@@ -36,15 +36,14 @@
                         <h2><i class="bi bi-box-arrow-in-right"></i>&nbsp;Iniciar sesión</h2>
                         <div class="mb-3">
                             <label for="idOrEmail" class="form-label">Matrícula o correo electrónico:</label>
-                            <input type="text" id="idOrEmail" name="idOrEmail" placeholder="Matricula o correo">
+                            <input type="text" id="idOrEmail" name="idOrEmail" placeholder="Matricula o correo" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="idOrEmail" class="form-label"
-                                style="margin-bottom: 0;font-size: 12px; color: #2d2d2d;">Contraseña:</label>
-                            <input type="password" id="password" name="password" placeholder="Contraseña"
-                                style="margin-top: 0;">
+                        <div class="mb-3 show-hide-password-father input-password-signin">
+                            <label for="idOrEmail" class="form-label">Contraseña:</label>
+                            <input type="password" id="password" name="password" placeholder="Contraseña" style="margin-top: 0;" required>
+                            <button type="button" class="show-hide-password"><i class="bi bi-eye-slash-fill"></i></button>
                         </div>
-                        <button type="button" id="btnSignIn">Entrar</button>
+                        <button type="button" id="btnSignIn" disabled>Entrar</button>
                     </form>
 
                     <form id="formSignUp" class="formulario__register">
@@ -61,9 +60,10 @@
                             <label for="matricula" class="form-label">Matricula:</label>
                             <input id="matricula" name="matricula" type="text" placeholder="Matricula">
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 show-hide-password-father input-password-signup">
                             <label for="newPassword" class="form-label">Contraseña:</label>
                             <input id="newPassword" name="newPassword" type="password" placeholder="Contraseña">
+                            <button type="button" class="show-hide-password"><i class="bi bi-eye-slash-fill"></i></button>
                         </div>
                         <button type="button" id="btnSignUp" disabled>Registrarse</button>
                     </form>

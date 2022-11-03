@@ -1,17 +1,62 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <%- include('./partials/head') %> 
+
+<head>
+  <%- include('./partials/head') %>
     <link rel="stylesheet" href="assets/css/productsList.css">
-  </head>
-  <body>
-    <%- include('./partials/nav-bar') %>
-    
+</head>
+
+<body>
+  <%- include('./partials/nav-bar') %>
+
     <div class="render-content">
       <div class="container">
+        <div class="panel panel-inverse">
+          <div class="panel-heading">
+            <h4 class="panel-title">Listado de productos cargados</h4>
+          </div>
+          <div class="panel-body">
+            <button class="btn btn-info"><i class="bi bi-plus-square-fill"></i></button>
+            <table class="dataTable hover table table-striped table-bordered" id="tableProductsManage">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Imagen</th>
+                  <th>Stock</th>
+                  <th>Precio p/ud</th>
+                  <th>Categoría</th>
+                  <th>Estatus</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                  <td>@mdo</td>
+                  <td>@mdo</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                  <td>@mdo</td>
+                  <td>@mdo</td>
+                  <td>@mdo</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         <div class="search-content">
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Find a product..." aria-label="Find a product..." aria-describedby="button-addon2">
+            <input type="text" class="form-control" placeholder="Find a product..." aria-label="Find a product..."
+              aria-describedby="button-addon2">
             <button class="btn btn-dark" type="button" id="button-addon2"><i class="bi bi-search"></i></button>
           </div>
         </div>
@@ -19,7 +64,9 @@
           <div class="row">
             <div class="col mb-3 d-flex align-items-stretch">
               <div class="card">
-                <img src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750647510092L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" class="card-img-top" alt="...">
+                <img
+                  src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750647510092L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
+                  class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Carlos V</h5>
                   <h4>$ <label>15</label></h4>
@@ -34,7 +81,9 @@
             </div>
             <div class="col mb-3 d-flex align-items-stretch">
               <div class="card">
-                <img src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750101110545L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" class="card-img-top" alt="...">
+                <img
+                  src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750101110545L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
+                  class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Rocaleta</h5>
                   <h4>$ <label>10</label></h4>
@@ -49,7 +98,9 @@
             </div>
             <div class="col mb-3 d-flex align-items-stretch">
               <div class="card">
-                <img src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750617451222L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" class="card-img-top" alt="...">
+                <img
+                  src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750617451222L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
+                  class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Milkway</h5>
                   <h4>$ <label>15</label></h4>
@@ -64,7 +115,9 @@
             </div>
             <div class="col mb-3 d-flex align-items-stretch">
               <div class="card">
-                <img src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750047801211L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" class="card-img-top" alt="...">
+                <img
+                  src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750047801211L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
+                  class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Doritos flamit hot</h5>
                   <h4>$ <label>18</label></h4>
@@ -75,12 +128,14 @@
                   <button class="btn"><i class="bi bi-box-seam-fill"></i>&nbsp;Ver más</button>
                   <button class="btn btn-dark"><i class="bi bi-cart4"></i>&nbsp;Añadir</button>
                 </div>
-                
+
               </div>
             </div>
             <div class="col mb-3 d-flex align-items-stretch">
               <div class="card">
-                <img src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750047801213L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" class="card-img-top" alt="...">
+                <img
+                  src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750047801213L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
+                  class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Doritos</h5>
                   <h4>$ <label>18</label></h4>
@@ -95,7 +150,9 @@
             </div>
             <div class="col mb-3 d-flex align-items-stretch">
               <div class="card">
-                <img src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105536154L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" class="card-img-top" alt="...">
+                <img
+                  src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105536154L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
+                  class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Coca-cola</h5>
                   <h4>$ <label>20</label></h4>
@@ -106,7 +163,7 @@
                   <button class="btn"><i class="bi bi-box-seam-fill"></i>&nbsp;Articulos relacionados</button>
                   <button class="btn btn-dark"><i class="bi bi-cart4"></i>&nbsp;Añadir</button>
                 </div>
-                
+
               </div>
             </div>
           </div>
@@ -115,6 +172,7 @@
     </div>
 
     <%- include('./partials/footer') %>
-    <script src="assets/js/productos.js"></script> 
-  </body>
+      <script src="assets/js/scriptsProducts.js"></script>
+</body>
+
 </html>

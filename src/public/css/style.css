@@ -283,3 +283,23 @@ footer p {
         height: 250px;
     }
 }
+
+form .show-hide-password-father {
+    position: relative;
+}
+
+form .mb-3 .show-hide-password {
+    position: absolute;
+    border: none;
+    background: none;
+    color: #6a6a6a;
+    top: 15px;
+    right: 5px;
+    font-size: 20px;
+    padding: 5px;
+}
+
+form .mb-3 .show-hide-password:hover {
+    color: #222222;
+    transition: all .5s ease-in-out;
+}

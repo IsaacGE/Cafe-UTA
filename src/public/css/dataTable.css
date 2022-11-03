@@ -1,0 +1,95 @@
+.dataTables_wrapper .dataTables_length {
+  font-weight: 300;
+  font-size: 11pt;
+  margin-bottom: 6px;
+}
+
+.dataTables_wrapper .dataTables_length select {
+  border: none;
+  border-bottom: solid 1px #b9b9b9;
+  color: #797979;
+  font-weight: 500;
+  outline: none;
+  margin-bottom: 6px;
+}
+
+.dataTables_filter {
+  font-weight: 300;
+  font-size: 11pt;
+  margin-bottom: 6px;
+}
+
+.dataTables_filter label input {
+  border: solid 1px #e0e0e0 !important;
+  padding: 5px !important;
+}
+
+.dataTables_filter label input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: solid 1px #8f8f8f !important;
+}
+
+.dataTable {
+  border: none !important;
+}
+
+.dataTable > tbody > tr > th,
+.dataTable > tfoot > tr > td,
+.dataTable > tbody > tr > td,
+.dataTable > tfoot > tr > th,
+.dataTable > thead > tr > td,
+.dataTable > thead > tr > th {
+    border: none;
+}
+
+.dataTable > thead > tr > th {
+  color: #d0e8ff;
+  text-align: center;
+  font-weight: 500;
+  background-color: #5f5f5f;
+  padding: 5px;
+}
+
+.dataTable tbody tr td {
+  color: #383838;
+  text-align: center;
+  font-weight: 300;
+  padding: 5px;
+  align-items: center;
+  font-size: 11pt;
+}
+
+.dataTables_info,
+.dataTables_paginate  {
+  font-weight: 300;
+  font-size: 11pt;
+}
+
+.dataTables_paginate .paginate_button.previous:hover,
+.dataTables_paginate .paginate_button.next:hover {
+  color: #82c2ff !important;
+  font-weight: 600;
+  background: none;
+  border: none;
+  outline: none !important;
+} 
+
+.dataTables_paginate .paginate_button {
+  padding: 3px;
+  border: none !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 3px;
+  border: none !important;
+}
+
+
+.dataTables_paginate span a.paginate_button.current {
+  background-color: #82c2ff !important;
+  padding: 3px;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}

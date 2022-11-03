@@ -48,3 +48,8 @@ const productos = [{
 }
 
 ]
+
+
+$(document).ready(() => {
+    $('#tableProductsManage').DataTable()
+})

@@ -2,9 +2,7 @@
 $('#btnSignIn').on('click', () => {
   $('#containerAuthForms').hide()
   $('#loaderSpinner').show()
-  var password = $('#password').val()
-  var idOrEmail = $('#idOrEmail').val()
-  var data = { emailOrId: idOrEmail, pass: password }
+  var data = { emailOrId: $('#idOrEmail').val(), pass: $('#password').val() }
   $.ajax({
     method: "post",
     url: `${localUri}/auth/signin`,
@@ -14,9 +12,8 @@ $('#btnSignIn').on('click', () => {
       showToastAlert(response.msg, 'success')
     })
     .fail(response => {
-      if (response.status == 500) {
-        showCustomSmallAlert(response.responseJSON.msg, 'Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
-      } else showToastAlert(response.responseJSON.msg, 'error')
+      if (response.status == 500) showCustomSmallAlert(response.responseJSON.msg, 'Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
+      else showToastAlert(response.responseJSON.msg, 'error')
     })
   $('#loaderSpinner').hide()
   $('#containerAuthForms').show()
@@ -51,21 +48,13 @@ $('#btnSignUp').on('click', () => {
 //--------//
 
 
-//Validate if input is emial
-function isEmail(text) {
-  if (text.length > 6 && text.includes('@')) return true
-  return false
-}
-
-
-
-
 
 $(document).ready(() => {
   $('.change-form-box').click(() => {
     $('input').val('')
+    $('.valid-msg').remove()
   })
-  //Script para la pagina(vista login)
+
   //Ejecutando funciones
   document.getElementById("btn__iniciar-sesion").addEventListener("click", iniciarSesion);
   document.getElementById("btn__registrarse").addEventListener("click", register);
@@ -131,3 +120,62 @@ $(document).ready(() => {
     }
   }
 })
+
+
+// VALIDATION SIGNIN FORM //
+$('#password, #idOrEmail').on('change keyup paste', () => {
+  $('.valid-msg').length ? disableEnableBtn('btnSignIn', true) : disableEnableBtn('btnSignIn', false)
+  $('.valid-msg').remove()
+  if ($('#idOrEmail').val().length < 6) {
+    $(`<small class="valid-msg idOrEmail-msg">Ingresa al menos ${6 - $('#idOrEmail').val().length} caracteres</small>`).insertAfter($('#idOrEmail'));
+    return;
+  } else {
+    $('.idOrEmail-msg').remove()
+  }
+  if ($('#password').val().length < 8) {
+    $(`<small class="valid-msg password-msg">Ingresa al menos ${8 - $('#password').val().length} caracteres</small>`).insertAfter($('#password'));
+    return;
+  } else {
+    $('.password-msg').remove();
+  }
+})
+
+
+// VALIDATION SIGNUP FORM //
+$('#newPassword, #name, #email, #matricula').on('change keyup paste', () => {
+  $('.valid-msg').length ? disableEnableBtn('btnSignUp', true) : disableEnableBtn('btnSignUp', false)
+  $('.valid-msg').remove()
+  if ($('#name').val().length < 10) {
+    $(`<small class="valid-msg name-msg">Ingresa al menos ${10 - $('#name').val().length} caracteres</small>`).insertAfter($('#name'));
+    return;
+  } else {
+    $('.name-msg').remove()
+  }
+  if ($('#email').val().length < 6) {
+    $(`<small class="valid-msg email-msg">Ingresa al menos ${6 - $('#email').val().length} caracteres</small>`).insertAfter($('#email'));
+    return;
+  } else if (!isValidEmail($('#email').val())) {
+    $(`<small class="valid-msg email-msg">Ingresa un correo electrónico válido</small>`).insertAfter($('#email'));
+    return;
+  } else {
+    $('.email-msg').remove()
+  }
+  if ($('#matricula').val().length < 6) {
+    $(`<small class="valid-msg matricula-msg">Ingresa al menos ${6 - $('#matricula').val().length} caracteres</small>`).insertAfter($('#matricula'));
+    return;
+  } else {
+    $('.matricula-msg').remove()
+  }
+  if ($('#newPassword').val().length < 8) {
+    $(`<small class="valid-msg newPassword-msg">Ingresa al menos ${8 - $('#newPassword').val().length} caracteres, para una contrasña segura</small>`).insertAfter($('#newPassword'));
+    return;
+  } else {
+    $('.newPassword-msg').remove();
+  }
+})
+
+
+
+function disableEnableBtn(element, action) {
+  $(`#${element}`).attr('disabled', action)
+}
