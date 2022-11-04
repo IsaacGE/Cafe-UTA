@@ -62,23 +62,33 @@
         </div>
         <div class="products-list-content">
           <div class="row">
-            <% productsList.forEach(product => { %>
-              <div class="col mb-3 d-flex align-items-stretch">
-                <div class="card">
-                  <img src="<%= product.imageUrl %> " class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title"><%= product.name %></h5>
-                    <h4>$ <label><%= product.price %> </label></h4>
-                    <!-- <small class="card-text">This is a longer card with supporting text below as a</small> -->
-                    <p class="stock">Cantidad:&nbsp;<strong><%= product.stock %></strong></p>
-                  </div>
-                  <div class="card-footer">
-                    <button class="btn"><i class="bi bi-box-seam-fill"></i>&nbsp;Ver más</button>
-                    <button class="btn btn-dark"><i class="bi bi-cart4"></i>&nbsp;Añadir</button>
+            <% if(productsList && productsList.length> 0) { %>
+              <% productsList.forEach(product=> { %>
+                <div class="col mb-2 d-flex align-items-stretch">
+                  <div class="card">
+                    <img src="<%= product.imageUrl %> " class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        <%= product.name %>
+                      </h5>
+                      <h4>$ <label>
+                          <%= product.price %>
+                        </label></h4>
+                      <!-- <small class="card-text">This is a longer card with supporting text below as a</small> -->
+                      <p class="stock">Cantidad:&nbsp;<strong>
+                          <%= product.stock %>
+                        </strong></p>
+                    </div>
+                    <div class="card-footer">
+                      <button class="btn"><i class="bi bi-box-seam-fill"></i>&nbsp;Ver más</button>
+                      <button class="btn btn-dark"><i class="bi bi-cart4"></i>&nbsp;Añadir</button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            <% }) %> 
+                <% }) %>
+            <% } else { %>
+              <h3>No hay productos en el cátalogo</h3>
+              <% } %> 
           </div>
         </div>
       </div>
