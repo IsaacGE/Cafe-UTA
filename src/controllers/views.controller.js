@@ -1,5 +1,6 @@
 const carousel = require('../public/js/content/carousel')
 
+
 const viewsController = {}
 
 viewsController.homeView = (req, res) => {
@@ -9,6 +10,7 @@ viewsController.homeView = (req, res) => {
 }
 
 viewsController.productsView = (req, res) => {
+    
     res.render('products')
 }
 
