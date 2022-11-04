@@ -10,17 +10,11 @@ viewsController.homeView = (req, res) => {
     })
 }
 
-<<<<<<< HEAD
-viewsController.productsView = (req, res) => {
-    
-    res.render('products')
-=======
 viewsController.productsView = async (req, res) => {
     var products = await product.getAll(null, null, null, true)
     res.render('products', {
         productsList: products
     })
->>>>>>> f50c0d9e3979707046628d814b65acb171768a25
 }
 
 viewsController.categoryView = (req, res) => {
