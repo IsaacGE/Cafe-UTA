@@ -3,9 +3,9 @@ const verifyID = {}
 verifyID.ckeckID = async (req, res, next) => {
     try {
         if (req.query.id.length != 24) {
-            return res.json({ 
+            return res.status(404).json({ 
                 ok: false,
-                msg: 'The ID (user, category, product) you are trying to get is invalid, check it'
+                msg: 'The ID (user, category, product, sale) you are trying to get is invalid, check it'
             })
         } 
         next()

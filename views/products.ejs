@@ -62,110 +62,23 @@
         </div>
         <div class="products-list-content">
           <div class="row">
-            <div class="col mb-3 d-flex align-items-stretch">
-              <div class="card">
-                <img
-                  src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750647510092L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
-                  class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Carlos V</h5>
-                  <h4>$ <label>15</label></h4>
-                  <!-- <small class="card-text">This is a longer card with supporting text below as a</small> -->
-                  <p class="stock">Contidad:&nbsp;<strong>35</strong></p>
-                </div>
-                <div class="card-footer">
-                  <button class="btn"><i class="bi bi-box-seam-fill"></i>&nbsp;Ver más</button>
-                  <button class="btn btn-dark"><i class="bi bi-cart4"></i>&nbsp;Añadir</button>
-                </div>
-              </div>
-            </div>
-            <div class="col mb-3 d-flex align-items-stretch">
-              <div class="card">
-                <img
-                  src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750101110545L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
-                  class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Rocaleta</h5>
-                  <h4>$ <label>10</label></h4>
-                  <!-- <small class="card-text">This is a longer card with supporting text below as a</small> -->
-                  <p class="stock">Cantidad:&nbsp;<strong>20</strong></p>
-                </div>
-                <div class="card-footer">
-                  <button class="btn"><i class="bi bi-box-seam-fill"></i>&nbsp;Ver más</button>
-                  <button class="btn btn-dark"><i class="bi bi-cart4"></i>&nbsp;Añadir</button>
+            <% productsList.forEach(product => { %>
+              <div class="col mb-3 d-flex align-items-stretch">
+                <div class="card">
+                  <img src="<%= product.imageUrl %> " class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= product.name %></h5>
+                    <h4>$ <label><%= product.price %> </label></h4>
+                    <!-- <small class="card-text">This is a longer card with supporting text below as a</small> -->
+                    <p class="stock">Cantidad:&nbsp;<strong><%= product.stock %></strong></p>
+                  </div>
+                  <div class="card-footer">
+                    <button class="btn"><i class="bi bi-box-seam-fill"></i>&nbsp;Ver más</button>
+                    <button class="btn btn-dark"><i class="bi bi-cart4"></i>&nbsp;Añadir</button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col mb-3 d-flex align-items-stretch">
-              <div class="card">
-                <img
-                  src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750617451222L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
-                  class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Milkway</h5>
-                  <h4>$ <label>15</label></h4>
-                  <!-- <small class="card-text">This is a longer card with supporting text below as a</small> -->
-                  <p class="stock">Cantidad:&nbsp;<strong>30</strong></p>
-                </div>
-                <div class="card-footer">
-                  <button class="btn"><i class="bi bi-box-seam-fill"></i>&nbsp;Ver más</button>
-                  <button class="btn btn-dark"><i class="bi bi-cart4"></i>&nbsp;Añadir</button>
-                </div>
-              </div>
-            </div>
-            <div class="col mb-3 d-flex align-items-stretch">
-              <div class="card">
-                <img
-                  src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750047801211L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
-                  class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Doritos flamit hot</h5>
-                  <h4>$ <label>18</label></h4>
-                  <!-- <small class="card-text">This is a longer card with supporting text below as a</small> -->
-                  <p class="stock">Cantidad:&nbsp;<strong>15</strong></p>
-                </div>
-                <div class="card-footer">
-                  <button class="btn"><i class="bi bi-box-seam-fill"></i>&nbsp;Ver más</button>
-                  <button class="btn btn-dark"><i class="bi bi-cart4"></i>&nbsp;Añadir</button>
-                </div>
-
-              </div>
-            </div>
-            <div class="col mb-3 d-flex align-items-stretch">
-              <div class="card">
-                <img
-                  src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750047801213L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
-                  class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Doritos</h5>
-                  <h4>$ <label>18</label></h4>
-                  <!-- <small class="card-text">This is a longer card with supporting text below as a</small> -->
-                  <p class="stock">Cantidad:&nbsp;<strong>15</strong></p>
-                </div>
-                <div class="card-footer">
-                  <button class="btn"><i class="bi bi-box-seam-fill"></i>&nbsp;Ver más</button>
-                  <button class="btn btn-dark"><i class="bi bi-cart4"></i>&nbsp;Añadir</button>
-                </div>
-              </div>
-            </div>
-            <div class="col mb-3 d-flex align-items-stretch">
-              <div class="card">
-                <img
-                  src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105536154L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
-                  class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Coca-cola</h5>
-                  <h4>$ <label>20</label></h4>
-                  <!-- <small class="card-text">This is a longer card with supporting text below as a</small> -->
-                  <p class="stock">Cantidad:&nbsp;<strong>10</strong></p>
-                </div>
-                <div class="card-footer">
-                  <button class="btn"><i class="bi bi-box-seam-fill"></i>&nbsp;Articulos relacionados</button>
-                  <button class="btn btn-dark"><i class="bi bi-cart4"></i>&nbsp;Añadir</button>
-                </div>
-
-              </div>
-            </div>
+            <% }) %> 
           </div>
         </div>
       </div>
