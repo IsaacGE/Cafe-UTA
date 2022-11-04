@@ -2,10 +2,11 @@ const Product = require('../models/product.model')
 
 const productController = {}
 
-productController.getAll = async (req, res, next) => {
+productController.getAll = async (req, res, next, isCtrlr = false) => {
     try {
         const result = await Product.find()
-        return res.json({ok: true, result})
+        if (!isCtrlr) return res.json({ok: true, result})
+        return result
     } catch (error) {
         res.status(500).json({ ok: false, msg: error })
     }
