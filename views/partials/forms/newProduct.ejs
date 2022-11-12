@@ -1,0 +1,32 @@
+<div class="new-product-form form-modal">
+  <form id="newProductForm">
+    <div class="row">
+      <div class="col md-5">
+        <label for="name" class="form-label">Nombre de producto:</label>
+        <input type="text" maxlength="100" class="form-control" id="name" placeholder="Nombre de producto">
+      </div>
+      <div class="col md-2">
+        <label for="price" class="form-label">Precio:</label>
+        <input type="number" class="form-control" id="price" placeholder="Precio">
+      </div>
+      <div class="col md-5">
+        <label for="stock" class="form-label">Cantidad disponible:</label>
+        <input type="number" class="form-control" id="stock" placeholder="Cantidad disponible">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col md-9">
+        <label for="description" class="form-label">Descripción:</label>
+        <textarea type="text" maxlength="200" class="form-control" id="description" placeholder="Descripción"></textarea>
+      </div>
+      <div class="col md-3">
+        <label for="description" class="form-label">Categoría:</label>
+        <select class="form-select" aria-label="Selecciona la categoría">
+          <% categoriesList.forEach(category => { %>
+            <option value="<%= category.id %>"><%= category.name %></option>
+          <% }) %> 
+        </select>
+      </div>
+    </div>
+  </form>
+</div>

@@ -11,12 +11,12 @@
 
     <div class="render-content">
       <div class="container">
-        <div class="panel panel-inverse">
+        <div class="panel">
           <div class="panel-heading">
-            <h4 class="panel-title">Listado de productos cargados</h4>
+            <button class="btn btn-panel" id="btnAddNewProduct" data-bs-toggle="modal" data-bs-target="#largeModal" title="Agregar nuevo producto"><i class="bi bi-plus-square-fill"></i></button>
+            <span class="panel-title d-inline-block"><i class="bi bi-list-ul"></i>&nbsp;Listado de productos cargados</span>
           </div>
           <div class="panel-body">
-            <button class="btn btn-info"><i class="bi bi-plus-square-fill"></i></button>
             <table class="dataTable hover table table-striped table-bordered" id="tableProductsManage">
               <thead>
                 <tr>
@@ -30,24 +30,25 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                </tr>
+                <% productsList.forEach(product => { %>
+                  <tr>
+                    <td> <%= product.name %> </td>
+                    <td> <img src="<%= product.imageUrl %>" width="35" alt="..."> </td>
+                    <td> <%= product.stock %> </td>
+                    <td> <%= product.price %> </td>
+                    <td> <%= product.category %> </td>
+                    <td>
+                      <% if (product.active) { %>
+                        <button class="btn button-options-table"><i class="bi bi-check-circle-fill"></i></button>
+                        <span class="visually-hidden">1</span>
+                        <% } else { %>
+                          <button class="btn button-options-table"><i class="bi bi-x-circle-fill"></i></button>
+                          <span class="visually-hidden">0</span>
+                        <% } %>  
+                    </td>
+                    <td> <button class="btn button-options-table"><i class="bi bi-trash-fill"></i></button> <button class="btn button-options-table"><i class="bi bi-pencil-square"></i></button> </td>
+                  </tr>
+                <% }) %> 
               </tbody>
             </table>
           </div>
@@ -89,10 +90,6 @@
             <% } else { %>
               <h3>No hay productos en el cátalogo</h3>
               <% } %> 
-            <div class='contenedorCard'>
-
-              
-            </div>
           </div>
         </div>
       </div>

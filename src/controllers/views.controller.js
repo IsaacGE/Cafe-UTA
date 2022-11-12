@@ -1,5 +1,6 @@
 const carousel = require('../public/js/content/carousel')
 const product = require('../controllers/product.controller')
+const category = require('../controllers/category.controller')
 
 
 const viewsController = {}
@@ -17,7 +18,7 @@ viewsController.productsView = async (req, res) => {
     })
 }
 
-viewsController.categoryView = (req, res) => {
+viewsController.categoryView = async (req, res) => {
     res.render('categories')
 }
 viewsController.graficasView = (req, res) => {
@@ -39,6 +40,15 @@ viewsController.usersView = (req, res) => {
 
 viewsController.shoppingCartView = (req, res) => {
     res.render('shopCart')
+}
+
+
+// RENDER FORMS VIEWS //
+viewsController.newProductFormView = async (req, res) => {
+    var categories = await category.getAll(null, null, null, true)
+    res.render('partials/forms/newProduct', {
+        categoriesList: categories
+    })
 }
 
 module.exports = viewsController

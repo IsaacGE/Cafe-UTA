@@ -3,7 +3,7 @@ const encrypt = require('../helpers/bcrypt.helper')
 
 const userController = {}
 
-userController.getAll = async (req, res, next) => {
+userController.getAll = async (req, res, next, isCtrlr = false) => {
     try {
         const users = await User.find()
         return res.status(200).json({
@@ -16,7 +16,7 @@ userController.getAll = async (req, res, next) => {
     }
 }
 
-userController.getById = async (req, res, next) => {
+userController.getById = async (req, res, next, isCtrlr = false) => {
     try {
         const user = await User.findById(req.query.id)
         res.json({ok: true, user })
@@ -25,7 +25,7 @@ userController.getById = async (req, res, next) => {
     }
 }
 
-userController.create = async (req, res, next) => {
+userController.create = async (req, res, next, isCtrlr = false) => {
     const newUser = new User({
         completeName: req.body.name,
         email: req.body.email,
@@ -45,7 +45,7 @@ userController.create = async (req, res, next) => {
     }
 }
 
-userController.update = async (req, res, next) => {
+userController.update = async (req, res, next, isCtrlr = false) => {
     try {
         const oldUser = await User.findById(req.query.id)
         const newUser = new User({
@@ -60,13 +60,13 @@ userController.update = async (req, res, next) => {
         }
         
         await User.findByIdAndUpdate(req.query.id, { $set: newUser }, { new: true })
-        res.json({ ok: true, msg: `The user ${oldUser.completeName} has been updated successfully` })
+        res.status(200).json({ ok: true, msg: `The user ${oldUser.completeName} has been updated successfully` })
     } catch (error) {
         res.status(500).json({ ok: false, msg: error })
     }
 }
 
-userController.updateStatus = async (req, res, next) => {
+userController.updateStatus = async (req, res, next, isCtrlr = false) => {
     try {
         const user = await User.findByIdAndUpdate(req.query.id, { $set: { active: req.query.active } }, { new: true });
         if (!user) {
@@ -84,7 +84,7 @@ userController.updateStatus = async (req, res, next) => {
     }
 }
 
-userController.delete = async (req, res, next) => {
+userController.delete = async (req, res, next, isCtrlr = false) => {
     try {
         const userRemoved = await User.findByIdAndDelete(req.query.id)
         return res.json({

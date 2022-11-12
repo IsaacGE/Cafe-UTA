@@ -16,6 +16,16 @@ function showCustomSmallAlert(message, title, btnIconLeft, btnTextLeft, btnIconR
   $('#smallAlert').modal('show')
 }
 
+
+//Add title and buttons to large alert
+
+function addButtonsAndTitleToAlert(title, btnIconLeft, btnTextLeft, btnIconRight = '', btnTextRight = '', idAction) {
+  var footer = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-${btnIconLeft}"></i>&nbsp;${btnTextLeft}</button>`
+  footer += btnIconRight.length > 0 ? `<button type="button" id="${idAction}" class="btn btn-primary"><i class="bi bi-${btnIconRight}"></i>&nbsp;${btnTextRight}</button>` : ''
+  $('#largeModal .modal-title').html(title)
+  $('#largeModal .modal-footer').html(footer)
+}
+
 //SWAL FOR ALERTS
 function showToastAlert(message, icon) {
   const Toast = Swal.mixin({

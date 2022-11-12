@@ -11,6 +11,26 @@
   border-top-right-radius: 5px;
 }
 
+.modal .modal-dialog .modal-content .modal-body .row {
+  align-items: center;
+}
+
+.modal .modal-dialog .modal-content .modal-body .row .col {
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .row .col label {
+  margin-bottom: 0;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.modal .modal-dialog .modal-content .modal-body .row .col input {
+  margin-top: 0;
+}
+
+
 .modal .modal-dialog .modal-content .modal-footer {
   border: none;
   padding: 5px 15px 5px 15px;

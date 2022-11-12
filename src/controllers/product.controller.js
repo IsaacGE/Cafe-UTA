@@ -1,27 +1,29 @@
 const Product = require('../models/product.model')
+const Category = require('../models/category.model')
 
 const productController = {}
 
 productController.getAll = async (req, res, next, isCtrlr = false) => {
     try {
-        const result = await Product.find()
-        if (!isCtrlr) return res.json({ok: true, result})
+        const result = await Product.find().populate({ path: 'idCategory', model: 'Categories' })
+        console.log(result)
+        if (!isCtrlr) return res.status(200).json({ ok: true, result })
         return result
     } catch (error) {
-        res.status(500).json({ ok: false, msg: error })
+        return isCtrlr ? error : res.status(500).json({ ok: false, msg: error })
     }
 }
 
-productController.getById = async (req, res, next) => {
+productController.getById = async (req, res, next, isCtrlr = false) => {
     try {
         const result = await Product.findById(req.params.id)
-        res.json({ok: true, result});
+        res.status(200).json({ ok: true, result });
     } catch (error) {
         res.status(500).json({ ok: false, msg: error })
     }
 }
 
-productController.create = async (req, res, next) => {
+productController.create = async (req, res, next, isCtrlr = false) => {
     const newProduct = new Product({
         name: req.body.name,
         price: req.body.price,
@@ -31,7 +33,7 @@ productController.create = async (req, res, next) => {
     })
     try {
         await newProduct.save()
-        return res.json({
+        return res.status(200).json({
             ok: true,
             msg: `The product ${newProduct.name} has been registered successfully`,
             newProduct
@@ -41,7 +43,7 @@ productController.create = async (req, res, next) => {
     }
 }
 
-productController.update = async (req, res, next) => {
+productController.update = async (req, res, next, isCtrlr = false) => {
     const newProduct = new Product({
         _id: req.query.id,
         name: req.body.name,
@@ -53,13 +55,13 @@ productController.update = async (req, res, next) => {
     try {
         const oldProduct = await Product.findById(req.query.id)
         await Product.findByIdAndUpdate(req.params.id, { $set: newProduct }, { new: true })
-        return res.json({ ok: true, msg: `The product ${oldProduct} has been updated successfully` })
+        return res.status(200).json({ ok: true, msg: `The product ${oldProduct} has been updated successfully` })
     } catch (error) {
         res.status(500).json({ ok: false, msg: error })
     }
 }
 
-productController.updateStatus = async (req, res, next) => {
+productController.updateStatus = async (req, res, next, isCtrlr = false) => {
     try {
         const result = await Product.findByIdAndUpdate(req.query.id, { $set: { active: req.query.active } }, { new: true });
         if (!result) {
@@ -77,10 +79,10 @@ productController.updateStatus = async (req, res, next) => {
     }
 }
 
-productController.delete = async (req, res, next) => {
+productController.delete = async (req, res, next, isCtrlr = false) => {
     try {
         const productRemoved = await Product.findByIdAndDelete(req.query.id)
-        return res.json({
+        return res.status(200).json({
             ok: true,
             msg: `The product ${productRemoved.name} has been successfully removed`
         })
