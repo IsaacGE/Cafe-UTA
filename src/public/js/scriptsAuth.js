@@ -1,7 +1,5 @@
 //SignIn method request //
 $('#btnSignIn').on('click', () => {
-  $('#containerAuthForms').hide()
-  $('#loaderSpinner').show()
   var data = { emailOrId: $('#idOrEmail').val(), pass: $('#password').val() }
   $.ajax({
     method: "post",
@@ -12,11 +10,9 @@ $('#btnSignIn').on('click', () => {
       showToastAlert(response.msg, 'success')
     })
     .fail(response => {
-      if (response.status == 500) showCustomSmallAlert(response.responseJSON.msg, 'Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
+      if (response.status == 500) showCustomSmallAlert(response.responseJSON.msg, '<i class="bi bi-bug-fill"></i> Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
       else showToastAlert(response.responseJSON.msg, 'error')
     })
-  $('#loaderSpinner').hide()
-  $('#containerAuthForms').show()
 })
 // ------ //
 
@@ -41,7 +37,7 @@ $('#btnSignUp').on('click', () => {
     })
     .fail((response) => {
       if (response.status == 500) {
-        showCustomSmallAlert(response.responseJSON.msg, 'Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
+        showCustomSmallAlert(response.responseJSON.msg, '<i class="bi bi-bug-fill"></i> Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
       } else showToastAlert(response.responseJSON.msg, 'error')
     })
 })
@@ -173,9 +169,3 @@ $('#newPassword, #name, #email, #matricula').on('change keyup paste', () => {
     $('.newPassword-msg').remove();
   }
 })
-
-
-
-function disableEnableBtn(element, action) {
-  $(`#${element}`).attr('disabled', action)
-}

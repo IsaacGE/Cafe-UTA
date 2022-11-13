@@ -1,4 +1,15 @@
 var localUri = `${window.location.origin}`
+var crudAction;
+
+function ShowLoaderSpinner() {
+  $.blockUI({
+    message: '<div id="loaderSpinner"><span class="loader"></span><h4 class="text-center" style="font-weight: 300; color: #fff;text-shadow: 0 1px 1px #00000013 inset, 0 0 8px #22222299;">Tus huevos se estan cocinando...</h4></div>'
+  });
+}
+function HideLoaderSpinner() {
+  $.unblockUI();
+}
+
 
 $('#btnCloseSession').on('click', () => {
   showCustomSmallAlert("Estas a punto de sair de la aplicación", "¿Cerrar sesión?", 'arrow-return-left', 'Permanecer', 'box-arrow-right', 'Salir')
@@ -18,16 +29,15 @@ function showCustomSmallAlert(message, title, btnIconLeft, btnTextLeft, btnIconR
 
 
 //Add title and buttons to large alert
-
-function addButtonsAndTitleToAlert(title, btnIconLeft, btnTextLeft, btnIconRight = '', btnTextRight = '', idAction) {
-  var footer = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-${btnIconLeft}"></i>&nbsp;${btnTextLeft}</button>`
-  footer += btnIconRight.length > 0 ? `<button type="button" id="${idAction}" class="btn btn-primary"><i class="bi bi-${btnIconRight}"></i>&nbsp;${btnTextRight}</button>` : ''
+function addButtonsAndTitleToAlert(title, leftBtnContent, rigthBtnContent) {
   $('#largeModal .modal-title').html(title)
-  $('#largeModal .modal-footer').html(footer)
+  $('#largeModal .modal-footer .btn-secondary').html(leftBtnContent)
+  $('#largeModal .modal-footer .btn-primary').html(rigthBtnContent)
 }
 
 //SWAL FOR ALERTS
-function showToastAlert(message, icon) {
+function showToastAlert(message, icon, reloadPage = false) {
+  ShowLoaderSpinner()
   const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -39,13 +49,38 @@ function showToastAlert(message, icon) {
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
   })
-
   Toast.fire({
     icon: icon,
     title: message
   })
+  if (reloadPage) {
+    setInterval(() => {
+      window.location.reload()
+    }, 1500);
+  } else {
+    HideLoaderSpinner()
+  }
 }
 
+
+// Swal normal size //
+function SwalConfirmation(message, title, icon, textConfirm) {
+  Swal.fire({
+    title: title,
+    text: message,
+    icon: icon,
+    showConfirmButton: true,
+    showCancelButton: true,
+    confirmButtonText: textConfirm,
+    cancelButtonText: 'Cancelar'
+  })
+}
+
+
+// Function for disable buttons //
+function disableEnableBtn(element, action) {
+  $(`#${element}`).attr('disabled', action)
+}
 
 // Validate email //
 function isValidEmail(email) {
@@ -63,27 +98,58 @@ $('.show-hide-password').on('click', function () {
 })
 
 
-$(document).ready(function() {
+$(document).ready(function () {
   $('.dataTable').DataTable({
-      language: {
-          "decimal": "",
-          "emptyTable": "No hay información",
-          "info": "Mostrando _START_ a _END_ de _TOTAL_ registros",
-          "infoEmpty": "Mostrando 0 a 0 de 0 registros",
-          "infoFiltered": "(Filtrado de _MAX_ total de registros)",
-          "infoPostFix": "",
-          "thousands": ",",
-          "lengthMenu": "Mostrar _MENU_ registros",
-          "loadingRecords": "Cargando...",
-          "processing": "Procesando...",
-          "search": "Buscar:",
-          "zeroRecords": "Sin resultados encontrados",
-          "paginate": {
-              "first": "Primero",
-              "last": "Último",
-              "next": "Siguiente",
-              "previous": "Anterior"
-          }
+    language: {
+      "decimal": "",
+      "emptyTable": "No hay información",
+      "info": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+      "infoEmpty": "Mostrando 0 a 0 de 0 registros",
+      "infoFiltered": "(Filtrado de _MAX_ total de registros)",
+      "infoPostFix": "",
+      "thousands": ",",
+      "lengthMenu": "Mostrar _MENU_ registros",
+      "loadingRecords": "Cargando...",
+      "processing": "Procesando...",
+      "search": "Buscar:",
+      "zeroRecords": "Sin resultados encontrados",
+      "paginate": {
+        "first": "Primero",
+        "last": "Último",
+        "next": "Siguiente",
+        "previous": "Anterior"
       }
+    }
+  });
+
+  // Validate if imagees is loaded correct mode or replace //
+  $('img').each(function () {
+    $(this).on('error', () => {
+      $(this).attr('src', 'assets/images/notFound.jpg')
+    })
   });
 });
+
+
+
+// Fill modal form to create or update information //
+function FillModalFormCrud(endpoint, modalTitle, buttonText, paramName = '', paramValue = '') {
+  var queryParam = '';
+  if (paramName.length > 0 && paramValue.length > 0) queryParam = `?${paramName}=${paramValue}`
+  $.ajax({
+    method: "get",
+    url: `${localUri}/${endpoint}${queryParam}`,
+  })
+    .done(response => {
+      $('#largeModal .modal-body').html(response)
+      addButtonsAndTitleToAlert(modalTitle, '<i class="bi bi-x"></i>&nbsp;Cancelar', buttonText)
+    })
+    .fail(response => {
+      if (response.status == 500) showCustomSmallAlert(response.responseJSON.msg, '<i class="bi bi-bug-fill"></i> Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
+      else showToastAlert(response.responseJSON.msg, 'error')
+      $('#loaderSpinner').hide()
+    })
+}
+
+
+$(document).ajaxStart(ShowLoaderSpinner()).ajaxStop(HideLoaderSpinner());

@@ -65,6 +65,36 @@
             <button class="btn btn-primary"><i class="bi bi-check-circle"></i>&nbsp;Realizar compra</button>
           </div>
         </div>
+        <div class="shopping-history">
+          <div class="panel">
+            <div class="panel-heading">
+              <span class="panel-title d-inline-block"><i class="bi bi-clock-history"></i>&nbsp;Tu historial de compras</span>
+            </div>
+            <div class="panel-body table-responsive">
+              <table class="dataTable hover table table-striped table-bordered" id="tableShopHistory">
+                <thead>
+                  <tr>
+                    <th>Cantidad de productos</th>
+                    <th>Total compra</th>
+                    <th>Fecha de compra</th>
+                    <th>Ver detalle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% shoppingHist.forEach(shop => { %>
+                    <tr>
+                      <td><%= shop.productList ? shop.productList.length : 0 %></td>
+                      <td><%= shop.totalSale.toFixed(2) %></td>
+                      <td>$ <%= shop.createdAt.toString() %></td>
+                      <td> 
+                        <button class="btn button-options-table btn-update-product" title="Ver detalle de compra" data-bs-toggle="modal" data-bs-target="#smallAlert"><i class="bi bi-eye-fill"></i></button> 
+                      </td>
+                    </tr>
+                  <% }) %> 
+                </tbody>
+              </table>
+            </div>
+        </div>
       </div>
     </div>
 

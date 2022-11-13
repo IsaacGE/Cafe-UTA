@@ -99,10 +99,16 @@
 .dataTable tbody tr td {
   color: #383838;
   text-align: center;
+  vertical-align: middle;
   font-weight: 300;
-  padding: 5px;
+  padding: 2px;
   align-items: center;
   font-size: 11pt;
+}
+
+.dataTable tbody tr td img {
+  height: 25px;
+  border-radius: 25px;
 }
 
 .dataTables_info,
@@ -129,7 +135,7 @@
 .pagination .paginate_button.next.disabled>a,
 .pagination .paginate_button>a {
   border: solid 1px #dcdcdc;
-  color: #686868;
+  color: #9f9f9f;
   background: none;
 }
 .pagination .paginate_button>a {

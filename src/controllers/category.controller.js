@@ -7,7 +7,7 @@ categoryController.getById = async (req, res, next, isCtrlr = false) => {
         const result = await Category.findById(req.query.id)
         return isCtrlr ? result : res.status(200).json({ok: true, result});
     } catch (error) {
-        res.status(500).json({ ok: false, msg: error })
+        res.status(500).json({ ok: false, msg: `Error Category.Controller GetByID module ${error.message}` })
     }
 }
 
@@ -16,7 +16,7 @@ categoryController.getAll = async (req, res, next, isCtrlr = false) => {
         const result = await Category.find()
         return isCtrlr ? result : res.status(200).json({ok: true, result})
     } catch (error) {
-        res.status(500).json({ ok: false, msg: error })
+        res.status(500).json({ ok: false, msg: `Error Category.Controller GetALL module ${error.message}` })
     }
 }
 
@@ -32,7 +32,7 @@ categoryController.create = async (req, res, next, isCtrlr = false) => {
             newCategory
         })
     } catch (error) {
-        res.status(500).json({ ok: false, msg: error.message })
+        res.status(500).json({ ok: false, msg: `Error Category.Controller Create module ${error.message}` })
     }
 }
 
@@ -47,7 +47,7 @@ categoryController.update = async (req, res, next, isCtrlr = false) => {
 
         return res.status(200).json({ok: true, msg: `The category ${oldCategory.name} has been updated successfully` })
     } catch (error) {
-        res.status(500).json({ ok: false, msg: error })
+        res.status(500).json({ ok: false, msg: `Error Category.Controller Update module ${error.message}` })
     }
 }
 
@@ -65,7 +65,7 @@ categoryController.updateStatus = async (req, res, next, isCtrlr = false) => {
             msg: `The category has been successfully ${req.query.active === 'true' ? 'enabled' : 'disabled'}`
         });
     } catch (error) {
-        res.status(500).json({ ok: false, msg: error })
+        res.status(500).json({ ok: false, msg: `Error Category.Controller UpdateStatus module ${error.message}` })
     }
 }
 
@@ -77,7 +77,7 @@ categoryController.delete = async (req, res, next, isCtrlr = false) => {
             msg: `The category ${categoryRemoved.name} has been successfully removed`
         })
     } catch (error) {
-        res.status(500).json({ ok: false, msg: error })
+        res.status(500).json({ ok: false, msg: `Error Category.Controller Delete module ${error.message}` })
     }
 }
 

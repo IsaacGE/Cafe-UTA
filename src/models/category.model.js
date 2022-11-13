@@ -11,7 +11,6 @@ const caregorySchema = new Schema(
             type: Boolean,
             default: true
         },
-        idProducts: [{ type: Schema.Types.ObjectId, ref: 'products' }]
     },
     {
         versionKey: false,

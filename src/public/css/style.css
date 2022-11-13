@@ -201,18 +201,24 @@ input[type="color"]:focus,
 
 ::-webkit-scrollbar {
     width: 6px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #2b2b2b;
+    background: none;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #49494991;
+    background: #8a8a8a91;
+    border-radius: 15px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(58, 58, 58);
+    background: #474747;
+}
+
+.blockUI.blockMsg.blockPage {
+    border: none !important;
 }
 
 footer {
@@ -307,7 +313,13 @@ form .mb-3 .show-hide-password:hover {
 }
 
 
-
+#loaderSpinner {
+    position: absolute;
+    left: 50%;
+    top: 15%;
+    transform: translate(-50%, 0);
+    z-index: 100;
+}
 
 .loader {
     width: 100px;
