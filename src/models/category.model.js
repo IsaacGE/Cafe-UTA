@@ -3,14 +3,14 @@ const { Schema } = mongoose
 
 const caregorySchema = new Schema(
     {
-        name: { 
-            type: String, 
-            required: [true, "Name is required"] 
+        name: {
+            type: String,
+            required: [true, "Name is required"]
         },
         active: {
             type: Boolean,
             default: true
-        }
+        },
     },
     {
         versionKey: false,
@@ -19,4 +19,4 @@ const caregorySchema = new Schema(
 );
 
 
-module.exports = mongoose.model("Category", caregorySchema);
+module.exports = mongoose.model("Categories", caregorySchema);

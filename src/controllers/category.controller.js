@@ -2,41 +2,41 @@ const Category = require('../models/category.model')
 
 const categoryController = {}
 
-categoryController.getById = async (req, res, next) => {
+categoryController.getById = async (req, res, next, isCtrlr = false) => {
     try {
         const result = await Category.findById(req.query.id)
-        res.json({ok: true, result});
+        return isCtrlr ? result : res.status(200).json({ok: true, result});
     } catch (error) {
-        res.status(500).json({ ok: false, msg: error })
+        res.status(500).json({ ok: false, msg: `Error Category.Controller GetByID module ${error.message}` })
     }
 }
 
-categoryController.getAll = async (req, res, next) => {
+categoryController.getAll = async (req, res, next, isCtrlr = false) => {
     try {
         const result = await Category.find()
-        res.json({ok: true, result});
+        return isCtrlr ? result : res.status(200).json({ok: true, result})
     } catch (error) {
-        res.status(500).json({ ok: false, msg: error })
+        res.status(500).json({ ok: false, msg: `Error Category.Controller GetALL module ${error.message}` })
     }
 }
 
-categoryController.create = async (req, res, next) => {
+categoryController.create = async (req, res, next, isCtrlr = false) => {
     const newCategory = new Category({
         name: req.body.name
     })
     try {
         await newCategory.save()
-        return res.json({
+        return res.status(200).json({
             ok: true,
             msg: `The category ${newCategory.name} has been registered successfully`,
             newCategory
         })
     } catch (error) {
-        res.status(500).json({ ok: false, msg: error })
+        res.status(500).json({ ok: false, msg: `Error Category.Controller Create module ${error.message}` })
     }
 }
 
-categoryController.update = async (req, res, next) => {
+categoryController.update = async (req, res, next, isCtrlr = false) => {
     const newCategory = new Category({
         _id: req.query.id,
         name: req.body.name
@@ -45,13 +45,13 @@ categoryController.update = async (req, res, next) => {
         const oldCategory = await Category.findById(req.query.id)
         await Category.findByIdAndUpdate(req.query.id, { $set: newCategory }, { new: true })
 
-        return res.json({ok: true, msg: `The category ${oldCategory.name} has been updated successfully` })
+        return res.status(200).json({ok: true, msg: `The category ${oldCategory.name} has been updated successfully` })
     } catch (error) {
-        res.status(500).json({ ok: false, msg: error })
+        res.status(500).json({ ok: false, msg: `Error Category.Controller Update module ${error.message}` })
     }
 }
 
-categoryController.updateStatus = async (req, res, next) => {
+categoryController.updateStatus = async (req, res, next, isCtrlr = false) => {
     try {
         const category = await Category.findByIdAndUpdate(req.query.id, { $set: { active: req.query.active } }, { new: true });
         if (!category) {
@@ -65,19 +65,19 @@ categoryController.updateStatus = async (req, res, next) => {
             msg: `The category has been successfully ${req.query.active === 'true' ? 'enabled' : 'disabled'}`
         });
     } catch (error) {
-        res.status(500).json({ ok: false, msg: error })
+        res.status(500).json({ ok: false, msg: `Error Category.Controller UpdateStatus module ${error.message}` })
     }
 }
 
-categoryController.delete = async (req, res, next) => {
+categoryController.delete = async (req, res, next, isCtrlr = false) => {
     try {
         const categoryRemoved = await Category.findByIdAndDelete(req.query.id)
-        return res.json({
+        return res.status(200).json({
             ok: true,
             msg: `The category ${categoryRemoved.name} has been successfully removed`
         })
     } catch (error) {
-        res.status(500).json({ ok: false, msg: error })
+        res.status(500).json({ ok: false, msg: `Error Category.Controller Delete module ${error.message}` })
     }
 }
 

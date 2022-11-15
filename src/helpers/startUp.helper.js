@@ -9,6 +9,7 @@ startUp.createAdmin = async () => {
         if (!user) {
             await User.create({
                 completeName: "Administrator CafeUTA",
+                matricula: '000000',
                 email: "admin.cafeUTA@utags.com",
                 password: await encrypt.encryptPassword("4dM1n-W3b$t0re"),
                 imageUrl: "https://www.pngmart.com/files/21/Admin-Profile-PNG-Clipart.png",

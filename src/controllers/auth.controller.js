@@ -20,7 +20,7 @@ authController.signUp = async (req, res, next) => {
             savedUser
         })
     } catch (error) {
-        res.status(500).json({ msg: `Error Auth.Controller SignUp module: ${error.message}` })
+        res.status(500).json({ ok: false, msg: `Error Auth.Controller SignUp module: ${error.message}` })
     }
 }
 

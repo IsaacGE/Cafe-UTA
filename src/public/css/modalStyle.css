@@ -11,6 +11,32 @@
   border-top-right-radius: 5px;
 }
 
+.modal .modal-dialog .modal-content .modal-body .row {
+  align-items: center;
+}
+
+.modal .modal-dialog .modal-content .modal-body .row .col {
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.modal .modal-dialog .modal-content .modal-body .row .col label {
+  margin-bottom: 0;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.modal .modal-dialog .modal-content .modal-body .row .col input {
+  margin-top: 0;
+}
+
+.modal .modal-dialog .modal-content .modal-body .row .col small {
+  font-size: 11px;
+  color: #a06300;
+  margin-top: 0;
+}
+
+
 .modal .modal-dialog .modal-content .modal-footer {
   border: none;
   padding: 5px 15px 5px 15px;
@@ -38,4 +64,48 @@
 
 .modal .modal-dialog .modal-content .modal-footer .btn-primary:hover {
   background-color: #222222;
+}
+
+
+/*Swal style*/
+.swal2-popup.swal2-modal{
+  padding: 10px !important;
+  max-width: 450px;
+}
+
+.swal2-popup.swal2-modal .swal2-icon {
+  border-color: #cf8000 !important;
+  color: #cf8000 !important;
+  margin-top: 0;
+}
+
+.swal2-popup.swal2-modal .swal2-title,
+.swal2-popup.swal2-modal .swal2-html-container {
+  color: #525252 !important;
+}
+
+.swal2-popup.swal2-modal .swal2-actions {
+  align-items: flex-start !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+.swal2-popup.swal2-modal .swal2-actions button {
+  font-size: 11pt;
+  padding: 5px 10px 5px 10px;
+}
+.swal2-popup.swal2-modal .swal2-actions button.swal2-confirm {
+  background-color: #cf8000 !important;
+  border: solid 1px #cf8000 !important;
+  outline: none !important;
+  float: right;
+}
+.swal2-popup.swal2-modal .swal2-actions button.swal2-cancel {
+  background: none !important;
+  color: #545454 !important;
+  border: solid 1px #e0e0e0;
+  float: right;
+}
+.swal2-popup.swal2-modal .swal2-actions button.swal2-cancel:hover {
+  background-color: #e4e4e4 !important;
 }

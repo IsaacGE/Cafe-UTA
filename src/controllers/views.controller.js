@@ -1,5 +1,7 @@
 const carousel = require('../public/js/content/carousel')
-const product = require('../controllers/product.controller')
+const product = require('./product.controller')
+const category = require('./category.controller')
+const Sale = require('./sale.controller')
 
 
 const viewsController = {}
@@ -17,7 +19,7 @@ viewsController.productsView = async (req, res) => {
     })
 }
 
-viewsController.categoryView = (req, res) => {
+viewsController.categoryView = async (req, res) => {
     res.render('categories')
 }
 viewsController.graficasView = (req, res) => {
@@ -37,8 +39,29 @@ viewsController.usersView = (req, res) => {
     res.render('users')
 }
 
-viewsController.shoppingCartView = (req, res) => {
-    res.render('shopCart')
+viewsController.shoppingCartView = async (req, res) => {
+    var shopp =  await Sale.getAll(null, null, null, true)
+    res.render('shopCart', {
+        shoppingHist: shopp
+    })
+}
+
+
+// RENDER FORMS VIEWS //
+viewsController.newProductFormView = async (req, res) => {
+    var categories = await category.getAll(null, null, null, true)
+    res.render('partials/forms/newProduct', {
+        categoriesList: categories
+    })
+}
+
+viewsController.updateProductForm = async (req, res) => {
+    var categories = await category.getAll(null, null, null, true)
+    var productReq = await product.getById(req, null, null, true)
+    res.render('partials/forms/updateProduct', {
+        categoriesList: categories,
+        productToUpdate: productReq
+    })
 }
 
 module.exports = viewsController

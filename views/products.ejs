@@ -11,12 +11,14 @@
 
     <div class="render-content">
       <div class="container">
-        <div class="panel panel-inverse">
+        <div class="panel">
           <div class="panel-heading">
-            <h4 class="panel-title">Listado de productos cargados</h4>
+            <button class="btn btn-panel" id="btnAddNewProduct" data-bs-toggle="modal" data-bs-target="#largeModal"
+              title="Agregar nuevo producto"><i class="bi bi-plus-square-fill"></i></button>
+            <span class="panel-title d-inline-block"><i class="bi bi-list-ul"></i>&nbsp;Listado de productos
+              cargados</span>
           </div>
-          <div class="panel-body">
-            <button class="btn btn-info"><i class="bi bi-plus-square-fill"></i></button>
+          <div class="panel-body table-responsive">
             <table class="dataTable hover table table-striped table-bordered" id="tableProductsManage">
               <thead>
                 <tr>
@@ -30,24 +32,44 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                </tr>
+                <% productsList.forEach(product=> { %>
+                  <tr>
+                    <td>
+                      <%= product.name %>
+                    </td>
+                    <td><img src="<%= product.imageUrl %>" alt="..."> </td>
+                    <td>
+                      <%= product.stock %>
+                    </td>
+                    <td>$ <%= product.price.toFixed(2) %>
+                    </td>
+                    <td>
+                      <%= product.Category ? product.Category.name : 'Sin categoría' %>
+                    </td>
+                    <td>
+                      <% if (product.active) { %>
+                        <button class="btn button-options-table btn-status-product" data-id-product="<%= product._id %>"
+                          data-name="<%= product.name %>" data-status="<%= product.active %>"
+                          title="Deshabilitar producto"><i class="bi bi-check-circle-fill"></i></button>
+                        <span class="visually-hidden">1</span>
+                        <% } else { %>
+                          <button class="btn button-options-table btn-status-product"
+                            data-id-product="<%= product._id %>" data-name="<%= product.name %>"
+                            data-status="<%= product.active %>" title="Habilitar producto"><i
+                              class="bi bi-x-circle-fill"></i></button>
+                          <span class="visually-hidden">0</span>
+                          <% } %>
+                    </td>
+                    <td>
+                      <button class="btn button-options-table btn-update-product" data-id-product="<%= product._id %>"
+                        title="Actualizar producto" data-bs-toggle="modal" data-bs-target="#largeModal"><i
+                          class="bi bi-pencil-square"></i></button>
+                      <button class="btn button-options-table btn-delete-product" data-id-product="<%= product._id %>"
+                        data-name="<%= product.name %>" title="Eliminar producto"><i
+                          class="bi bi-trash-fill"></i></button>
+                    </td>
+                  </tr>
+                  <% }) %>
               </tbody>
             </table>
           </div>
@@ -64,42 +86,59 @@
           <div class="row">
             <% if(productsList && productsList.length> 0) { %>
               <% productsList.forEach(product=> { %>
-                <div class="col mb-2 d-flex align-items-stretch">
-                  <div class="card">
-                    <img src="<%= product.imageUrl %> " class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">
-                        <%= product.name %>
-                      </h5>
-                      <h4>$ <label>
-                          <%= product.price %>
-                        </label></h4>
-                      <!-- <small class="card-text">This is a longer card with supporting text below as a</small> -->
-                      <p class="stock">Cantidad:&nbsp;<strong>
-                          <%= product.stock %>
-                        </strong></p>
-                    </div>
-                    <div class="card-footer">
-                      <button class="btn"><i class="bi bi-box-seam-fill"></i>&nbsp;Ver más</button>
-                      <button class="btn btn-dark"><i class="bi bi-cart4"></i>&nbsp;Añadir</button>
+                <% if (product.active) { %>
+                  <div class="col mb-2 d-flex align-items-stretch">
+                    <div class="card">
+                      <div class="image-card">
+                        <p class="card-description">
+                          <%= product.description %>
+                        </p>
+                        <img src="<%= product.imageUrl %> " class="card-img-top" alt="...">
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title">
+                          <%= product.name %>
+                        </h5>
+                        <div class="row">
+                          <div class="col-7">
+                            <h4 class="inline-card">$ <%= product.price.toFixed(2) %>
+                            </h4>
+                          </div>
+                          <div class="col-5">
+                            <% if (product.stock> 0) { %>
+                              <p class="stock inline-card"><i class="bi bi-cart-fill"></i>&nbsp;<strong>
+                                  <%= product.stock %>
+                                </strong></p>
+                              <% } else { %>
+                                <p class="stock inline-card text-danger"><i class="bi bi-cart-x-fill"></i>&nbsp;<strong>
+                                    <%= product.stock %>
+                                  </strong></p>
+                                <% } %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <button type="button" class="btn btn-related-products"><i class="bi bi-list-ul"></i>&nbsp;Ver
+                          más</button>
+                        <% if(product.stock> 0) { %>
+                          <button type="button" class="btn btn-dark"><i
+                              class="bi bi-cart-plus-fill"></i>&nbsp;Añadir</button>
+                          <% } %>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <% }) %>
-            <% } else { %>
-              <h3>No hay productos en el cátalogo</h3>
-              <% } %> 
-            <div class='contenedorCard'>
-
-              
-            </div>
+                  <% } %>
+                    <% }) %>
+                      <% } else { %>
+                        <h3>No hay productos en el cátalogo</h3>
+                        <% } %>
           </div>
         </div>
       </div>
     </div>
 
     <%- include('./partials/footer') %>
-      <script src="assets/js/scriptsProducts.js"></script>
+      <script src="assets/js/crudScripts/products.js"></script>
 </body>
 
 </html>

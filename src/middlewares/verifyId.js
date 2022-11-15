@@ -10,7 +10,7 @@ verifyID.ckeckID = async (req, res, next) => {
         } 
         next()
     } catch (error) {
-        res.status(500).json({ msg: error })
+        res.status(500).json({ ok: false, msg: `Error Middleware.VerifyID ${error.message}` })
     }
 }
 

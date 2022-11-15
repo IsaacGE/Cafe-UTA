@@ -3,10 +3,13 @@ const { Schema } = mongoose
 
 const SalesSchema = new Schema(
   {
-    productsList: {
-      type: Array,
-      required: [true, "Pruducts list is required"]
-    },
+    productList: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Product',
+        required: [true, "Pruduct list is required"]
+      }
+    ],
     totalSale: {
       type: Number,
       required: [true, "Total sale is required"]
