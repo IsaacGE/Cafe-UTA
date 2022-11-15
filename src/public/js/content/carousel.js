@@ -3,8 +3,8 @@ const slide = [
         interval: '10000',
         active: true,
         imagePath: 'https://static-sevilla.abc.es/media/gurmesevilla/2012/01/comida-rapida-casera.jpg',
-        contentTitle: 'Available products',
-        contentText: 'The products you need, you can find them here'
+        contentTitle: 'Desayunos y comida completa',
+        contentText: 'Ven y disfruta de la comida que tenemos'
     },
     {
         interval: '20000',
