@@ -7,8 +7,9 @@ const morgan = require('morgan')
 const app = express()
 const path = require('path')
 
-startUp.createAdmin()
 startUp.createCategories()
+startUp.createRoles()
+startUp.createAdmin()
 
 app.use(cors())
 app.use(morgan("dev"))

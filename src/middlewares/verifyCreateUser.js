@@ -1,4 +1,5 @@
 const User = require('../models/user.model')
+const Role = require('../models/role.model')
 
 const verifyRegisterUser = {}
 
@@ -35,17 +36,20 @@ verifyRegisterUser.isMatriculaAvailable = async (req, res, next) => {
 
 verifyRegisterUser.isRoleValid = async (req, res, next) => {
     try {
-        if(req.body.role == '' || req.body.role == undefined) {
-            req.body.role = 'client'
+        var message;
+        if (req.body.role == '' || req.body.role == undefined) {
+            message = `Debe ingresar un rol para el usuario`
+        } else if (req.body.role.length != 24) {
+            message = 'EL rol para el usuario no es válido'
+        } else {
+            const dbRole = await Role.findById(req.body.role)
+            if (dbRole) next()
         }
-        if (req.body.role != 'admin' && req.body.role != 'client' && req.body.role != 'employee') {
-            return res.status(400).json({
-                ok: false,
-                role: req.body.role,
-                msg: `El rol ${req.body.role} no es válido`
-            }) 
-        }
-        next()
+        return res.status(400).json({
+            ok: false,
+            msg: message,
+            role: req.body.role
+        })
     } catch (error) {
         res.status(500).json({ msg: error })
     }

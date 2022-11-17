@@ -1,30 +1,30 @@
-var productId;
+var userId;
 
 $(document).ready(() => {
-    // Show modal create new product //
-    $('#btnAddNewProduct').on('click', () => {
+    // Show modal create new user //
+    $('#btnAddNewUser').on('click', () => {
         crudAction = 'create'
-        FillModalFormCrud('newProductForm', '<i class="bi bi-plus-circle-fill"></i>&nbsp;Agregar un nuevo producto', '<i class="bi bi-plus-circle-fill"></i>&nbsp;Agregar')
+        FillModalFormCrud('createUpdateUserForm', '<i class="bi bi-person-fill-add"></i>&nbsp;Agregar un nuevo usuario', '<i class="bi bi-plus-circle-fill"></i>&nbsp;Agregar')
     })
 
-    // Show modal for update product information //
-    $('.btn-update-product').on('click', function () {
+    // Show modal for update user information //
+    $('.btn-update-user').on('click', function () {
         crudAction = 'update'
-        productId = $(this).attr('data-id-product')
-        FillModalFormCrud('updateProductForm', '<i class="bi bi-pencil-square"></i> Actualizar información de producto', '<i class="bi bi-check-all"></i>&nbsp;Guardar', 'id', productId)
+        userId = $(this).attr('data-id-user')
+        FillModalFormCrud('createUpdateUserForm', '<i class="bi bi-person-lines-fill"></i>&nbsp;Actualizar información de usuario', '<i class="bi bi-check-all"></i>&nbsp;Guardar', 'id', userId)
     })
 
 
     //Show modal confirmation for disable / enable //
-    $('.btn-status-product').on('click', function () {
-        var productName = $(this).attr('data-name')
+    $('.btn-status-user').on('click', function () {
+        var userName = $(this).attr('data-name')
         var status = $(this).attr('data-status')
-        productId = $(this).attr('data-id-product')
-        SwalConfirmation(`El producto ${productName} estará ${status == 'true' ? 'deshabilitado' : 'disponible nuevamente'} para los usuarios`, `¿${status == 'true' ? 'Desactivar' : 'Activar'} producto?`, 'question', status == 'true' ? 'Desactivar' : 'Activar')
+        userId = $(this).attr('data-id-user')
+        SwalConfirmation(`El usuario ${userName} ${status == 'true' ? 'no podrá acceder' : 'podrá acceder nuevamente'} al sistema`, `¿${status == 'true' ? 'Desactivar' : 'Activar'} usuario?`, 'question', status == 'true' ? 'Desactivar' : 'Activar')
         $('.swal2-actions .swal2-confirm').on('click', () => {
             $.ajax({
                 method: "put",
-                url: `${localUri}/products/updateStatus?id=${productId}`,
+                url: `${localUri}/users/updateStatus?id=${userId}`,
                 data: { active: status == 'true' ? false : true }
             })
                 .done(response => {
@@ -38,15 +38,15 @@ $(document).ready(() => {
     })
 
 
-    // Show modal confirmation for delete product //
-    $('.btn-delete-product').on('click', function () {
-        var productName = $(this).attr('data-name')
-        productId = $(this).attr('data-id-product')
-        SwalConfirmation(`El producto ${productName} será eliminado de forma permanente`, `¿Eliminar producto?`, 'question', 'Eliminar')
+    // Show modal confirmation for delete user //
+    $('.btn-delete-user').on('click', function () {
+        var userName = $(this).attr('data-name')
+        userId = $(this).attr('data-id-user')
+        SwalConfirmation(`El usuario ${userName} será eliminado de forma permanente`, `¿Eliminar usuario?`, 'question', 'Eliminar')
         $('.swal2-actions .swal2-confirm').on('click', () => {
             $.ajax({
                 method: "delete",
-                url: `${localUri}/products/delete?id=${productId}`,
+                url: `${localUri}/users/delete?id=${userId}`,
                 data: null
             })
                 .done(response => {
@@ -68,11 +68,11 @@ $('#btnActionModalLarge').on('click', () => {
     if ($('.valid-msg').length) return;
     var data = {
         name: $('#name').val(),
-        price: $('#price').val(),
-        stock: $('#stock').val(),
+        email: $('#email').val(),
+        matricula: $('#matricula').val(),
         imageUrl: $('#imageUrl').val(),
-        description: $('#description').val(),
-        idCategory: $('#category').val()
+        role: $('#role').val(),
+        password: $('#category').val()
     }
     if (crudAction == 'create') {
         $.ajax({

@@ -22,14 +22,14 @@ const userSchema = new Schema(
             type: String, 
             required: [true, "Password is required"] 
         },
-        role: { 
-            type: String,
-            default: "client"
-        },
         active: {
             type: Boolean,
             default: true
-        }
+        },
+        role: { 
+            ref: 'Roles',
+            type: Schema.Types.ObjectId
+        },
     },
     {
         versionKey: false,

@@ -1,15 +1,69 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <%- include('./partials/head') %> 
-  </head>
-  <body>
-    <%- include('./partials/nav-bar') %>
-    
+
+<head>
+  <%- include('./partials/head') %>
+</head>
+
+<body>
+  <%- include('./partials/nav-bar') %>
+
     <div class="render-content">
-      <h1>Users manage</h1>
+      <div class="container">
+        <div class="panel">
+          <div class="panel-heading">
+            <button class="btn btn-panel" id="btnAddNewUser" data-bs-toggle="modal" data-bs-target="#largeModal" title="Agregar nuevo usuario"><i class="bi bi-person-fill-add"></i></button>
+            <span class="panel-title d-inline-block"><i class="bi bi-people-fill"></i>&nbsp;Listado de usuarios registrados</span>
+          </div>
+          <div class="panel-body table-responsive">
+            <table class="dataTable hover table table-striped table-bordered" id="tableUserManage">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Imagen</th>
+                  <th>Correo</th>
+                  <th>Matrícula</th>
+                  <th>Rol</th>
+                  <th>Estatus</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% usersList.forEach(user => { %>
+                  <tr>
+                    <td><%= user.completeName %></td>
+                    <td><img src="<%= user.imageUrl %>" alt="..."> </td>
+                    <td><%= user.email %></td>
+                    <td><%= user.matricula %></td>
+                    <td><%= user.role.name %></td>
+                    <td>
+                      <% if (user.active) { %>
+                        <button class="btn button-options-table btn-status-user" data-id-user="<%= user._id %>" data-name="<%= user.completeName %>" data-status="<%= user.active %>" title="Deshabilitar usuario"><i class="bi bi-person-check-fill"></i></button>
+                          <span class="visually-hidden">1</span>
+                        <% } else { %>
+                          <button class="btn button-options-table btn-status-user" data-id-user="<%= user._id %>" data-name="<%= user.completeName %>" data-status="<%= user.active %>" title="Habilitar usuario"><i class="bi bi-person-x-fill"></i></button>
+                          <span class="visually-hidden">0</span>
+                          <% } %>
+                    </td>
+                    <td>
+                      <button class="btn button-options-table btn-update-user" data-id-user="<%= user._id %>"
+                        title="Actualizar usuario" data-bs-toggle="modal" data-bs-target="#largeModal"><i class="bi bi-pencil-square"></i></button>
+                      <button class="btn button-options-table btn-delete-user" data-id-user="<%= user._id %>"
+                        data-name="<%= user.completeName %>" title="Eliminar usuario"><i
+                          class="bi bi-trash-fill"></i></button>
+                    </td>
+                  </tr>
+                  <% }) %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <%- include('./partials/footer') %>
-  </body>
+    <script src="assets/js/crudScripts/users.js"></script>
+</body>
+
 </html>

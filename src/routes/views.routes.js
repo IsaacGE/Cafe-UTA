@@ -12,6 +12,7 @@ router.get('/signUp', viewsController.signUpView)
 router.get('/categories', viewsController.categoryView)
 router.get('/graficas', viewsController.graficasView)
 router.get('/newProductForm', viewsController.newProductFormView)
-router.get('/updateProductForm', viewsController.updateProductForm)
+router.get('/updateProductForm', viewsController.updateProductFormView)
+router.get('/createUpdateUserForm', viewsController.createUpdateUserFormView)
 
 module.exports = router

@@ -1,16 +1,18 @@
 const User = require('../models/user.model')
 const encrypt = require('../helpers/bcrypt.helper')
+const Role = require('../models/role.model')
 
 const authController = {}
 
 authController.signUp = async (req, res, next) => {
+    const roleClient = await Role.findOne({name: 'Cliente'})
     const newUser = new User({
         completeName: req.body.name,
         email: req.body.email,
         matricula: req.body.matricula,
         imageUrl: req.body.imageUrl,
         password: await encrypt.encryptPassword(req.body.pass),
-        role: req.body.role
+        role: roleClient._id
     })
     try {
         const savedUser = await newUser.save()

@@ -10,7 +10,6 @@ function HideLoaderSpinner() {
   $.unblockUI();
 }
 
-
 $('#btnCloseSession').on('click', () => {
   showCustomSmallAlert("Estas a punto de sair de la aplicación", "¿Cerrar sesión?", 'arrow-return-left', 'Permanecer', 'box-arrow-right', 'Salir')
 })

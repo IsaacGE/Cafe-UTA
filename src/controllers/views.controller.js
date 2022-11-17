@@ -2,7 +2,8 @@ const carousel = require('../public/js/content/carousel')
 const product = require('./product.controller')
 const category = require('./category.controller')
 const Sale = require('./sale.controller')
-
+const User = require('./user.controller')
+const Role = require('../models/role.model')
 
 const viewsController = {}
 
@@ -35,8 +36,11 @@ viewsController.signUpView = (req, res) => {
     res.render('signUp')
 }
 
-viewsController.usersView = (req, res) => {
-    res.render('users')
+viewsController.usersView = async (req, res) => {
+    var users = await User.getAll(null, null, null, true)
+    res.render('users', {
+        usersList: users
+    })
 }
 
 viewsController.shoppingCartView = async (req, res) => {
@@ -55,12 +59,21 @@ viewsController.newProductFormView = async (req, res) => {
     })
 }
 
-viewsController.updateProductForm = async (req, res) => {
+viewsController.updateProductFormView = async (req, res) => {
     var categories = await category.getAll(null, null, null, true)
     var productReq = await product.getById(req, null, null, true)
     res.render('partials/forms/updateProduct', {
         categoriesList: categories,
         productToUpdate: productReq
+    })
+}
+
+viewsController.createUpdateUserFormView = async (req, res) => {
+    var roles = await Role.find()
+    var user = req.query.id ? await User.getById(req, null, null, true) : []
+    res.render('partials/forms/createUpdateUser', {
+        rolesList: roles,
+        user
     })
 }
 
