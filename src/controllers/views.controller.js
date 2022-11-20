@@ -1,5 +1,5 @@
 const carousel = require('../public/js/content/carousel')
-const product = require('./product.controller')
+const Product = require('./product.controller')
 const category = require('./category.controller')
 const Sale = require('./sale.controller')
 const User = require('./user.controller')
@@ -14,7 +14,7 @@ viewsController.homeView = (req, res) => {
 }
 
 viewsController.productsView = async (req, res) => {
-    var products = await product.getAll(null, null, null, true)
+    var products = await Product.getAll(null, null, null, true)
     res.render('products', {
         productsList: products
     })
@@ -52,19 +52,12 @@ viewsController.shoppingCartView = async (req, res) => {
 
 
 // RENDER FORMS VIEWS //
-viewsController.newProductFormView = async (req, res) => {
+viewsController.createUpdateProductFormView = async (req, res) => {
     var categories = await category.getAll(null, null, null, true)
-    res.render('partials/forms/newProduct', {
-        categoriesList: categories
-    })
-}
-
-viewsController.updateProductFormView = async (req, res) => {
-    var categories = await category.getAll(null, null, null, true)
-    var productReq = await product.getById(req, null, null, true)
-    res.render('partials/forms/updateProduct', {
+    var product = req.query.id ? await Product.getById(req, null, null, true) : []
+    res.render('partials/forms/createUpdateProduct', {
         categoriesList: categories,
-        productToUpdate: productReq
+        product
     })
 }
 

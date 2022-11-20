@@ -152,3 +152,7 @@ function FillModalFormCrud(endpoint, modalTitle, buttonText, paramName = '', par
 
 
 $(document).ajaxStart(ShowLoaderSpinner()).ajaxStop(HideLoaderSpinner());
+
+
+
+// Form validation with bootstrap  //

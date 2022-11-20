@@ -36,9 +36,9 @@ userController.create = async (req, res, next, isCtrlr = false) => {
     })
     try {
         await newUser.save()
-        return res.json({
+        return res.status(200).json({
             ok: true,
-            msg: `The user ${newUser.role} ${newUser.completeName} has been registered successfully`,
+            msg: `The user ${newUser.completeName} has been registered successfully`,
             newUser
         });
     } catch (error) {

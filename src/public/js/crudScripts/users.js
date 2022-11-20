@@ -64,7 +64,8 @@ $(document).ready(() => {
 
 // Create new Product method //
 $('#btnActionModalLarge').on('click', () => {
-    validateProductForm()
+    FormValidation()
+    return
     if ($('.valid-msg').length) return;
     var data = {
         name: $('#name').val(),
@@ -72,12 +73,12 @@ $('#btnActionModalLarge').on('click', () => {
         matricula: $('#matricula').val(),
         imageUrl: $('#imageUrl').val(),
         role: $('#role').val(),
-        password: $('#category').val()
+        pass: $('#password').val()
     }
     if (crudAction == 'create') {
         $.ajax({
             method: "post",
-            url: `${localUri}/products/create`,
+            url: `${localUri}/users/create`,
             data: data
         })
             .done(response => {
@@ -90,7 +91,7 @@ $('#btnActionModalLarge').on('click', () => {
     } else if (crudAction == 'update') {
         $.ajax({
             method: "put",
-            url: `${localUri}/products/update?id=${productId}`,
+            url: `${localUri}/users/update?id=${productId}`,
             data: data
         })
             .done(response => {
@@ -104,32 +105,69 @@ $('#btnActionModalLarge').on('click', () => {
     disableEnableBtn('btnActionModalLarge', true)
 })
 
+function FormValidation() {
+    $('form').validate({
+        rules: {
+            name: {
+              required: true,
+              minlength: 3  
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            password: {
+                required: true,
+                minlength: 8
+            },
+            matricula: {
+                required: true,
+                minlength: 6
+            }
+        },
+        messages: {
+            name: 'Ingresa el nombre del usuario',
+            email: 'Ingresa el correo del usuario',
+            password: {
+                required: 'Ingresa una contraseña para el usuario',
+                minlength: 'Ingresa al menos 8 caracteres para la contraseña segura'
+            },
+            matricula: {
+                required: 'Ingresa la matricula del usuario',
+                minlength: 'Ingresa al menos 6 caracteres'
+            }
+
+        }
+    })
+}
 
 
 function validateProductForm() {
     $('.valid-msg').remove()
     if ($('#name').val().length < 3) {
-        $(`<small class="valid-msg name-msg">Debes ingresar un nombre para el producto</small>`).insertAfter($('#name'));
-        return;
+        $(`<small class="valid-msg name-msg">Debes ingresar un nombre para el usuario</small>`).insertAfter($('#name'));
     } else {
         $('.name-msg').remove()
     }
-    if ($('#price').val() == '' || $('#price').val() == 0) {
-        $(`<small class="valid-msg price-msg">Ingresa un precio para el producto</small>`).insertAfter($('#price'));
-        return;
+    if ($('#email').val() == '' || $('#email').val().length < 4) {
+        $(`<small class="valid-msg email-msg">Ingresa el correo electrónico del usuario</small>`).insertAfter($('#email'));
+    } else if (!isValidEmail($('#email').val())) {
+        $(`<small class="valid-msg email-msg">Ingresa un correo electrónico válido</small>`).insertAfter($('#email'));
     } else {
-        $('.price-msg').remove()
+        $('.email-msg').remove()
     }
-    if ($('#stock').val() == '') {
-        $(`<small class="valid-msg stock-msg">Ingresa la cantidad de productos disponibles</small>`).insertAfter($('#stock'));
-        return;
+    if ($('#matricula').val() == '') {
+        $(`<small class="valid-msg matricula-msg">Ingresa la matricula del usuario</small>`).insertAfter($('#matricula'));
+    } else if ($('#matricula').val().length < 6) {
+        $(`<small class="valid-msg matricula-msg">Ingresa una matrícula válida</small>`).insertAfter($('#matricula'));
     } else {
-        $('.stock-msg').remove()
+        $('.matricula-msg').remove()
     }
-    if ($('#imageUrl').val().length < 8) {
-        $(`<small class="valid-msg imageUrl-msg">Ingresa una ruta para la imagen del producto</small>`).insertAfter($('#imageUrl'));
-        return;
+    if ($('#password').val().length < 2) {
+        $(`<small class="valid-msg password-msg">Ingresa la contraseña para el usuario</small>`).insertAfter($('#password'));
+    } else if ($('#password').val().length < 8) {
+        $(`<small class="valid-msg password-msg">Ingresa ${8 - $('#password').val().length} catacteres para una contraseña más segura</small>`).insertAfter($('#password'));
     } else {
-        $('.imageUrl-msg').remove();
+        $('.password-msg').remove();
     }
 }

@@ -4,6 +4,12 @@ const Role = require('../models/role.model')
 
 const authController = {}
 
+/**
+ * Método que permite crear y registrar un nuevo usuario (cliente) en Base de datos
+ * @param  {Models.User} req.body [Recibe un modelo User por body formato JSON con un POST http request]
+ * @return {JSON response}  [Retorna una respuesta http en formato JSON]
+ * @author @Isaac
+ */
 authController.signUp = async (req, res, next) => {
     const roleClient = await Role.findOne({name: 'Cliente'})
     const newUser = new User({
@@ -26,6 +32,12 @@ authController.signUp = async (req, res, next) => {
     }
 }
 
+/**
+ * Método que permite autenticar las credenciales del usuario en Base de datos
+ * @param  {Models.User.email:matricula:password} req.body [Recibe la contraseña y correo o matricula del usuario (POST Request)]
+ * @return {JSON response}  [Retorna una respuesta http en formato JSON]
+ * @author @Isaac
+ */
 authController.signIn = async (req, res, next) => {
     const { emailOrId, pass } = req.body
     try {

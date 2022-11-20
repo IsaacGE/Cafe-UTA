@@ -4,14 +4,14 @@ $(document).ready(() => {
     // Show modal create new product //
     $('#btnAddNewProduct').on('click', () => {
         crudAction = 'create'
-        FillModalFormCrud('newProductForm', '<i class="bi bi-plus-circle-fill"></i>&nbsp;Agregar un nuevo producto', '<i class="bi bi-plus-circle-fill"></i>&nbsp;Agregar')
+        FillModalFormCrud('createUpdateProductForm', '<i class="bi bi-plus-circle-fill"></i>&nbsp;Agregar un nuevo producto', '<i class="bi bi-plus-circle-fill"></i>&nbsp;Agregar')
     })
 
     // Show modal for update product information //
     $('.btn-update-product').on('click', function () {
         crudAction = 'update'
         productId = $(this).attr('data-id-product')
-        FillModalFormCrud('updateProductForm', '<i class="bi bi-pencil-square"></i> Actualizar información de producto', '<i class="bi bi-check-all"></i>&nbsp;Guardar', 'id', productId)
+        FillModalFormCrud('createUpdateProductForm', '<i class="bi bi-pencil-square"></i> Actualizar información de producto', '<i class="bi bi-check-all"></i>&nbsp;Guardar', 'id', productId)
     })
 
 
