@@ -1,0 +1,40 @@
+<div class="update-user-form form-modal">
+  <form id="updateUserForm" class="needs-validation" novalidate>
+    <div class="row">
+      <div class="col col-md-6">
+        <label for="name" class="form-label">Nombre completo:</label>
+        <input type="text" maxlength="100" class="form-control" name="name" id="name" placeholder="Nombre de usuario" value="<%= user.completeName ?? '' %>">
+      </div>
+      <div class="col col-md-6">
+        <label for="email" class="form-label">Correo electrónico:</label>
+        <input type="text" class="form-control" name="email" id="email" placeholder="Correo electrónico" value="<%= user.email ?? '' %>">
+      </div>
+      <div class="col col-md-12">
+        <div class="row">
+          <div class="col md-4">
+            <label for="matricula" class="form-label">Matrícula:</label>
+            <input type="text" maxlength="10" class="form-control" name="matricula" id="matricula" placeholder="Matrícula" value="<%= user.matricula ?? '' %>">
+          </div>
+          <div class="col md-3">
+            <label for="role" class="form-label">Rol:</label>
+            <select class="form-select" aria-label="Selecciona el rol" id="role" name="role">
+              <% rolesList.forEach(role => { %>
+                <option value="<%= role.id ?? '' %>" <%= role.id == user.role ?? '' ? 'selected' : '' %> >
+                  <%= role.name ?? '' %>
+                </option>
+                <% }) %>
+            </select>
+          </div>
+          <div class="col md-5">
+            <label for="password" class="form-label">Contraseña:</label>
+            <input type="password" maxlength="100" class="form-control" name="password" id="password" placeholder="Contraseña" value="<%= user.password ?? '' %>">
+          </div>
+        </div>
+      </div>
+      <div class="col md-12">
+        <label for="imageUrl" class="form-label">Dirección de imagen para el usuario:</label>
+        <input type="text" class="form-control"  id="imageUrl" placeholder="Dirección de imagen" value="<%= user.imageUrl ?? '' %>">
+      </div>
+    </div>
+  </form>
+</div>

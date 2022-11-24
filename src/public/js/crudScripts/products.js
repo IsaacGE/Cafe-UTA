@@ -1,24 +1,22 @@
 var productId;
 
 $(document).ready(() => {
-    $('#tableProductsManage').DataTable()
-
     // Show modal create new product //
     $('#btnAddNewProduct').on('click', () => {
         crudAction = 'create'
-        FillModalFormCrud('newProductForm', '<i class="bi bi-plus-circle-fill"></i>&nbsp;Agregar un nuevo producto', '<i class="bi bi-plus-circle-fill"></i>&nbsp;Agregar')
+        FillModalFormCrud('createUpdateProductForm', '<i class="bi bi-plus-circle-fill"></i>&nbsp;Agregar un nuevo producto', '<i class="bi bi-plus-circle-fill"></i>&nbsp;Agregar')
     })
 
     // Show modal for update product information //
-    $('.btn-update-product').on('click', function () {
+    $('table').on('click', '.btn-update-product', function () {
         crudAction = 'update'
         productId = $(this).attr('data-id-product')
-        FillModalFormCrud('updateProductForm', '<i class="bi bi-pencil-square"></i> Actualizar información de producto', '<i class="bi bi-check-all"></i>&nbsp;Guardar', 'id', productId)
+        FillModalFormCrud('createUpdateProductForm', '<i class="bi bi-pencil-square"></i> Actualizar información de producto', '<i class="bi bi-check-all"></i>&nbsp;Guardar', 'id', productId)
     })
 
 
     //Show modal confirmation for disable / enable //
-    $('.btn-status-product').on('click', function () {
+    $('table').on('click', '.btn-status-product', function () {
         var productName = $(this).attr('data-name')
         var status = $(this).attr('data-status')
         productId = $(this).attr('data-id-product')
@@ -41,7 +39,7 @@ $(document).ready(() => {
 
 
     // Show modal confirmation for delete product //
-    $('.btn-delete-product').on('click', function () {
+    $('table').on('click', '.btn-delete-product', function () {
         var productName = $(this).attr('data-name')
         productId = $(this).attr('data-id-product')
         SwalConfirmation(`El producto ${productName} será eliminado de forma permanente`, `¿Eliminar producto?`, 'question', 'Eliminar')
@@ -107,7 +105,13 @@ $('#btnActionModalLarge').on('click', () => {
 })
 
 
-
+/**
+ * Metodo que valida laos campos del formulario de crear y actualizar informaciond de productos
+ * Se hace la validacion de cada uno de los campos y se agrega un mensaje debajo 
+ * del campo valdado si existe un error para indeicar al usuario lo que hace falta
+ * @param {} 
+ * @returns {}
+ */
 function validateProductForm() {
     $('.valid-msg').remove()
     if ($('#name').val().length < 3) {
@@ -127,11 +131,5 @@ function validateProductForm() {
         return;
     } else {
         $('.stock-msg').remove()
-    }
-    if ($('#imageUrl').val().length < 8) {
-        $(`<small class="valid-msg imageUrl-msg">Ingresa una ruta para la imagen del producto</small>`).insertAfter($('#imageUrl'));
-        return;
-    } else {
-        $('.imageUrl-msg').remove();
     }
 }

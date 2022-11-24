@@ -17,20 +17,6 @@ middlewareUpdateUser.isEmailAvailable = async (req, res, next) => {
     }
 };
 
-middlewareUpdateUser.isRoleValid = async (req, res, next) => {
-    try {
-        if (req.body.role != 'admin' && req.body.role != 'client' && req.body.role != 'employee') {
-            return res.status(400).json({
-                ok: false,
-                msg: `The role ${req.body.role} is invalid, check it`
-            }) 
-        }
-        next()
-    } catch (error) {
-        res.status(500).json({ msg: error })
-    }
-}
-
 
 
 module.exports = middlewareUpdateUser
