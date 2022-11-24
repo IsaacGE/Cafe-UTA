@@ -1,25 +1,19 @@
+
 const mongoose = require("mongoose")
 const { Schema } = mongoose
 
-const SalesSchema = new Schema(
+const historySalesSchema = new Schema(
   {
     productsList: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Products'
-      }
+        {type: String,
+        ref: 'Products'}
     ],
     totalSale: {
       type: Number,
-      required: [true, "Total sale is required"]
     },
     sale:{
       type: Boolean,
       default: false
-    },
-    saleEmployee: {
-      ref: 'User',
-      type: Schema.Types.ObjectId
     },
     buyerUser: {
       ref: 'User',
@@ -33,4 +27,4 @@ const SalesSchema = new Schema(
 );
 
 
-module.exports = mongoose.model("Sales", SalesSchema);
+module.exports = mongoose.model("historySales", historySalesSchema);

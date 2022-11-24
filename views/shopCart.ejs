@@ -17,52 +17,27 @@
             Ahora verás la lista de los productos que estás a punto de comprar. Para continuar con la compra, haga clic en el botón (realizar compra) para finalizar la compra o en el botón (cancelar) para eliminar la lista de productos de su carrito.
           </p>
           <div class="row">
+            <% shoppinglist.forEach( shop => { %>
             <div class="col">
               <div class="card h-100">
-                <img src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105534942L1.jpg" class="card-img-top" alt="...">
+                <img src="<%= shop.imageUrl %>" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <p class="card-title">Coca-cola</p>
-                  <small class="card-text">$20</small>
+                  <p class="card-title"><%= shop.name %></p>
+                  <small class="card-text"><%=  shop.price %></small>
                 </div>
-                <button class="btn btn-outline-danger" title="Remove from the cart"><i class="bi bi-trash3-fill"></i></button>
+                <button class="btn btn-outline-danger deleteProduct" data-idProduct="<%= shop._id %>" data-price="<%= shop.price %>" data-restotal="<%= infoGeneral.totalSale %>" title="Remove from the cart"><i class="bi bi-trash3-fill"></i></button>
               </div>
             </div>
-            <div class="col">
-              <div class="card h-100">
-                <img src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750103130725L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-title">Jumex fresh</p>
-                  <small class="card-text">$15</small>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card h-100">
-                <img src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00000007500179L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-title">Boing Manzana</p>
-                  <small class="card-text">$20</small>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card h-100">
-                <img src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750101113392L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-title">Sabritas</p>
-                  <small class="card-text">$18</small>
-                </div>
-              </div>
-            </div>
+            <% }) %>       
           </div>
           <div class="info-shop-cart">
-            <p class="total-cost"><i class="bi bi-cash-stack"></i>&nbsp;Total: $73</p>
+            <p class="total-cost" data-saleShop="<%= infoGeneral.totalSale %>"><i class="bi bi-cash-stack"></i>&nbsp;total: <%= infoGeneral.totalSale %></p>
             <p class="discount"><i class="bi bi-tags-fill"></i>&nbsp;Descuento: 0%</p>
             <small><i class="bi bi-calendar-check"></i>&nbsp;Tu tienes <strong>24 horas</strong> para realizar tu pago</small>
           </div>
           <div class="shop-cart-footer">
             <button class="btn btn-cancel"><i class="bi bi-x-lg"></i>&nbsp;Cancelar</button>
-            <button class="btn btn-primary"><i class="bi bi-check-circle"></i>&nbsp;Realizar compra</button>
+            <button class="btn btn-primary saleCheck" data-precioT="<%= infoGeneral.totalSale %>" data-products="<%= shoppinglist.map( res => res._id ) %>"><i class="bi bi-check-circle"></i>&nbsp;Realizar compra</button>
           </div>
         </div>
         <div class="shopping-history">
@@ -81,16 +56,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% shoppingHist.forEach(shop => { %>
-                    <tr>
-                      <td><%= shop.productList ? shop.productList.length : 0 %></td>
-                      <td><%= shop.totalSale.toFixed(2) %></td>
-                      <td>$ <%= shop.createdAt.toString() %></td>
-                      <td> 
-                        <button class="btn button-options-table btn-update-product" title="Ver detalle de compra" data-bs-toggle="modal" data-bs-target="#smallAlert"><i class="bi bi-eye-fill"></i></button> 
-                      </td>
-                    </tr>
-                  <% }) %> 
+                  
                 </tbody>
               </table>
             </div>
@@ -101,6 +67,8 @@
   
 
     <%- include('./partials/footer') %>
+
+    <script src="assets/js/crudScripts/sales.js"></script>
 </body>
 
 </html>

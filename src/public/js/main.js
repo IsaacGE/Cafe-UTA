@@ -62,6 +62,21 @@ function showToastAlert(message, icon, reloadPage = false) {
   }
 }
 
+function showAddProductAlert(message,icon) {
+  Swal.fire({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1500,
+    timerProgressBar: true,
+    icon: icon,
+    title: message
+   
+  })
+  
+}
+
+
 
 // Swal normal size //
 function SwalConfirmation(message, title, icon, textConfirm) {

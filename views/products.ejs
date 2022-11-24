@@ -48,7 +48,7 @@
                     </td>
                     <td>
                       <% if (product.active) { %>
-                        <button class="btn button-options-table btn-status-product" data-id-product="<%= product._id %>"
+                        <button class="btn button-options-table  btn-status-product" data-id-product="<%= product._id %>"
                           data-name="<%= product.name %>" data-status="<%= product.active %>"
                           title="Deshabilitar producto"><i class="bi bi-check-circle-fill"></i></button>
                         <span class="visually-hidden">1</span>
@@ -121,7 +121,8 @@
                         <button type="button" class="btn btn-related-products"><i class="bi bi-list-ul"></i>&nbsp;Ver
                           más</button>
                         <% if(product.stock> 0) { %>
-                          <button type="button" class="btn btn-dark"><i
+                          <button type="button" data-idProduct="<%= product._id %>" data-total="<%= totalSale %>" data-price="<%= product.price %> "
+                            class="btn btn-dark addSaleProduct"><i
                               class="bi bi-cart-plus-fill"></i>&nbsp;Añadir</button>
                           <% } %>
                       </div>
@@ -139,6 +140,7 @@
 
     <%- include('./partials/footer') %>
       <script src="assets/js/crudScripts/products.js"></script>
+      <script src="assets/js/crudScripts/sales.js"></script>
 </body>
 
 </html>

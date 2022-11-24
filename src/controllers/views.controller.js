@@ -14,9 +14,15 @@ viewsController.homeView = (req, res) => {
 
 viewsController.productsView = async (req, res) => {
     var products = await product.getAll(null, null, null, true)
+    var [listProductos] =  await Sale.getAll(null, null, null, true)
+    var {totalSale} = listProductos;
     res.render('products', {
+        totalSale,
         productsList: products
     })
+
+
+    
 }
 
 viewsController.categoryView = async (req, res) => {
@@ -39,10 +45,14 @@ viewsController.usersView = (req, res) => {
     res.render('users')
 }
 
-viewsController.shoppingCartView = async (req, res) => {
-    var shopp =  await Sale.getAll(null, null, null, true)
+viewsController. shoppingCartView = async (req, res) => {
+    var [products] =  await Sale.getAll(null, null, null, true)
+    var {productsList} = products;
+   
     res.render('shopCart', {
-        shoppingHist: shopp
+       
+        infoGeneral:products,
+        shoppinglist: productsList
     })
 }
 

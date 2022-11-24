@@ -11,4 +11,8 @@ app.use('/category', require('./category.routes'))
 
 app.use('/products', require('./product.routes'))
 
+app.use('/sales', require('./sales.routes'))
+
+app.use('/historySale', require('./historySale.routes'))
+
 module.exports = app

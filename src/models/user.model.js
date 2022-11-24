@@ -29,7 +29,8 @@ const userSchema = new Schema(
         active: {
             type: Boolean,
             default: true
-        }
+        },
+        
     },
     {
         versionKey: false,
