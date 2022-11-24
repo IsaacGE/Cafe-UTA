@@ -8,7 +8,7 @@ const authController = {}
  * Método que permite crear y registrar un nuevo usuario (cliente) en Base de datos
  * @param  {Models.User} req.body [Recibe un modelo User por body formato JSON con un POST http request]
  * @return {JSON response}  [Retorna una respuesta http en formato JSON]
- * @author @Isaac
+ * @author Isaac
  */
 authController.signUp = async (req, res, next) => {
     const roleClient = await Role.findOne({name: 'Cliente'})
@@ -36,7 +36,7 @@ authController.signUp = async (req, res, next) => {
  * Método que permite autenticar las credenciales del usuario en Base de datos
  * @param  {Models.User.email:matricula:password} req.body [Recibe la contraseña y correo o matricula del usuario (POST Request)]
  * @return {JSON response}  [Retorna una respuesta http en formato JSON]
- * @author @Isaac
+ * @author Isaac
  */
 authController.signIn = async (req, res, next) => {
     const { emailOrId, pass } = req.body
@@ -55,10 +55,14 @@ authController.signIn = async (req, res, next) => {
             })
         }
         if (await encrypt.comparePassword(pass, userFound.password)) {
+            userFound.password = ''
+            var userRole = await Role.findById(userFound.role)
+            userFound.role = userRole
+            req.session.UserSession = userFound
             return res.status(200).json({
                 ok: true,
                 msg: `!Hola ${userFound.completeName}!`,
-                userFound 
+                userFound
             })
         }
         return res.status(400).json({
@@ -68,6 +72,17 @@ authController.signIn = async (req, res, next) => {
     } catch (error) {
         return res.status(500).json({ ok: false, msg: `Error Auth.Controller SignIn module: ${error.message}` })
     }
+}
+
+/**
+ * Metodo para limpiar la session de cookie session
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
+authController.signOut = async (req, res, next) => {
+    req.session = null
+    req.redirect('/')
 }
 
 module.exports = authController

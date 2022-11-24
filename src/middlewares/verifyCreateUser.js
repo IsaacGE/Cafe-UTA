@@ -14,7 +14,7 @@ verifyRegisterUser.isEmailAvailable = async (req, res, next) => {
         }
         next()
     } catch (error) {
-        res.status(500).json({ msg: error })
+        res.status(500).json({ ok: false, msg: `Error Middleware.VerifyCreateUser IsEmailAvailable Method ${error.message}` })
     }
 };
 
@@ -30,7 +30,7 @@ verifyRegisterUser.isMatriculaAvailable = async (req, res, next) => {
         }
         next()
     } catch (error) {
-        res.status(500).json({ msg: error })
+        res.status(500).json({ ok: false, msg: `Error Middleware.VerifyCreateUser IsMatriculaAvailable Method ${error.message}` })
     }
 };
 
@@ -51,7 +51,7 @@ verifyRegisterUser.isRoleValid = async (req, res, next) => {
             role: req.body.role
         })
     } catch (error) {
-        res.status(500).json({ msg: error })
+        res.status(500).json({ ok: false, msg: `Error Middleware.VerifyCreateUser IsRoleValid Method ${error.message}` })
     }
 }
 

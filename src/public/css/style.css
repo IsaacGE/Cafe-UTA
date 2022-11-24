@@ -97,6 +97,7 @@ textarea:focus,
 textarea[type="text"]:focus,
 select[class="form-select"]:focus,
 input[type="text"]:focus,
+input[type="file"]:focus,
 input[type="password"]:focus,
 input[type="datetime"]:focus,
 input[type="datetime-local"]:focus,
@@ -111,9 +112,22 @@ input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
 .uneditable-input:focus {
-    border-color: #27272710;
-    box-shadow: 0 1px 1px #00000013 inset, 0 0 8px #22222299;
+    border-color: #ff8400;
+    box-shadow: 0 1px 1px #ff8c0013 inset, 0 0 5px #ff8c0099;
     outline: 0 none;
+}
+
+.preview-image-content {
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    text-align: center;
+}
+
+.preview-image-content img {
+    border-radius: 5px;
+    height: 100%;
+    margin: auto;
 }
 
 .container {

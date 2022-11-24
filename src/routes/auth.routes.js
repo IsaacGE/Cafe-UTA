@@ -8,6 +8,8 @@ router.post("/signup", [verifySignup.isEmailAvailable, verifySignup.isMatriculaA
 )
   
 router.post("/signin", authController.signIn)
+
+router.post('/signOut', authController.signOut)
   
 
 module.exports = router

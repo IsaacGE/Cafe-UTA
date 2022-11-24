@@ -28,6 +28,7 @@ viewsController.graficasView = (req, res) => {
 }
 
 viewsController.signInView = (req, res) => {
+    console.log(req.session.userSession)
     res.render('signIn')
    
 }

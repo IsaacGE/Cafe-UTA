@@ -7,7 +7,7 @@ saleController.getById = async (req, res, next, isCtrlr = false) => {
         const result = await Sale.findById(req.query.id)
         return isCtrlr ? result : res.status(200).json({ok: true, result});
     } catch (error) {
-        res.status(500).json({ ok: false, msg: error.message })
+        res.status(500).json({ ok: false, msg: `Error Sale.Controller GetByID module ${error.message}` })
     }
 }
 
@@ -16,7 +16,7 @@ saleController.getByUserId = async (req, res, next, isCtrlr = false) => {
       const result = await Sale.find({ buyerUser: req.body.idUser })
       return isCtrlr ? result : res.status(200).json({ok: true, result});
   } catch (error) {
-      res.status(500).json({ ok: false, msg: error })
+      res.status(500).json({ ok: false, msg: `Error Sale.Controller GetByUserId module ${error.message}` })
   }
 }
 
@@ -25,7 +25,7 @@ saleController.getAll = async (req, res, next, isCtrlr = false) => {
         const result = await Sale.find()
         return isCtrlr ? result : res.status(200).json({ok: true, result});
     } catch (error) {
-        res.status(500).json({ ok: false, msg: error })
+        res.status(500).json({ ok: false, msg: `Error Sale.Controller GetAll module ${error.message}` })
     }
 }
 
@@ -44,7 +44,7 @@ saleController.create = async (req, res, next, isCtrlr = false) => {
             newSale
         })
     } catch (error) {
-        res.status(500).json({ ok: false, msg: error })
+        res.status(500).json({ ok: false, msg: `Error Sale.Controller Create module ${error.message}` })
     }
 }
 
