@@ -1,127 +1,142 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <%- include('./partials/head') %> 
 
-  </head>
-  <body>
-    <%- include('./partials/nav-bar') %>
-    
-      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <% carouselItems.forEach(item => { %>
-            <div class="carousel-item <%= item.active ? 'active' : '' %>" data-bs-interval="<%= item.interval %>">
-              <img src="<%= item.imagePath %> " class="d-block w-100" alt="image-slide">
-              <div class="carousel-caption d-none d-md-block">
-                <h5><%= item.contentTitle%></h5>
-                <p><%= item.contentText %></p>
-              </div>
+<head>
+  <%- include('./partials/head') %>
+
+</head>
+
+<body>
+  <%- include('./partials/nav-bar') %>
+
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <% carouselItems.forEach(item=> { %>
+          <div class="carousel-item <%= item.active ? 'active' : '' %>" data-bs-interval="<%= item.interval %>">
+            <img src="<%= item.imagePath %> " class="d-block w-100" alt="image-slide">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>
+                <%= item.contentTitle%>
+              </h5>
+              <p>
+                <%= item.contentText %>
+              </p>
             </div>
-          <% }); %> 
+          </div>
+          <% }); %>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <div class="container">
+      <h1 class="texto"><i class="bi bi-bell-fill"></i>&nbsp;Ofertas del día</h1>
+      <div class="seccion-comida sections-days">
+        <h3 class="sub-title">Desayunos y comidas completas</h3>
+        <div class="tarjetas">
+          <div class="card">
+            <img src="https://i.ytimg.com/vi/LkYorvIVld0/maxresdefault.jpg" alt="">
+            <div class="cuerpo">
+              <h1>Torta</h1>
+              <p>
+                Ricas tortas del ingredientes que tu desees
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="https://cdn7.kiwilimon.com/recetaimagen/14115/7292.jpg" alt="">
+            <div class="cuerpo">
+              <h1>Molletes</h1>
+              <p>Ricos molletes de frijoles o el guisado que tu gustes.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="https://casahotnuts.com/wp-content/uploads/2022/01/pizza-de-pepperoni.jpg" alt="">
+            <div class="cuerpo">
+              <h1>Pizza</h1>
+              <p>Pizza tamaño indiviual del ingrediente que gustes</p>
+            </div>
+          </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </div>
 
-      <div class="container">
-        <h1 class="texto"><i class="bi bi-bell-fill"></i>&nbsp;Ofertas del día</h1>
-        <div class="seccion-comida sections-days">
-            <h3 class="sub-title">Desayunos y comidas completas</h3>
-          <div class="tarjetas">            
-            <div class="card">
-              <img src="https://i.ytimg.com/vi/LkYorvIVld0/maxresdefault.jpg" alt="">
-              <div class="cuerpo">
-                <h1>Torta</h1>
-                <p>
-                  Ricas tortas del ingredientes que tu desees
-                </p>
-              </div>
-            </div>
-  
-            <div class="card">
-              <img src="https://cdn7.kiwilimon.com/recetaimagen/14115/7292.jpg" alt="">
-              <div class="cuerpo">
-                <h1>Molletes</h1>
-                <p>Ricos molletes de frijoles o el guisado que tu gustes.</p>
-              </div>
-            </div>
-  
-            <div class="card">
-              <img src="https://casahotnuts.com/wp-content/uploads/2022/01/pizza-de-pepperoni.jpg" alt="">
-              <div class="cuerpo">
-                <h1>Pizza</h1>
-                <p>Pizza tamaño indiviual del ingrediente que gustes</p>
-              </div>
+      <div class="seccion-bebidas sections-days">
+        <h1 class="sub-title">Bebidas</h1>
+        <div class="tarjetas">
+          <div class="card">
+            <img
+              src="https://www.elfinanciero.com.mx/resizer/m9mopcup_lDXzTbahBfq_gPh1zk=/400x225/filters:format(jpg):quality(70)/cloudfront-us-east-1.images.arcpublishing.com/elfinanciero/GHG7ZS2G5FARXBIGUQJZ7TVUXU.jpg"
+              alt="">
+            <div class="cuerpo">
+              <h1>Coca-cola</h1>
+              <p>Coca-cola en una presentacion de 600ml</p>
             </div>
           </div>
-        </div>
 
-        <div class="seccion-bebidas sections-days">
-            <h1 class="sub-title">Bebidas</h1>
-          <div class="tarjetas">            
-            <div class="card">
-              <img src="https://www.elfinanciero.com.mx/resizer/m9mopcup_lDXzTbahBfq_gPh1zk=/400x225/filters:format(jpg):quality(70)/cloudfront-us-east-1.images.arcpublishing.com/elfinanciero/GHG7ZS2G5FARXBIGUQJZ7TVUXU.jpg" alt="">
-              <div class="cuerpo">
-                <h1>Coca-cola</h1>
-                <p>Coca-cola en una presentacion de 600ml</p>
-              </div>
-            </div>
-  
-            <div class="card">
-              <img src="https://www.lavanguardia.com/files/og_thumbnail/files/fp/uploads/2020/10/05/5f7b260277fed.r_d.1244-497-0.jpeg" alt="">
-              <div class="cuerpo">
-                <h1>Agua enbotellada</h1>
-                <p>Agua en 3 presentaciones: 1lt, 500ml y 1.5lt.</p>
-              </div>
-            </div>
-  
-            <div class="card">
-              <img src="https://cdn.foodandwineespanol.com/2021/05/destacada_aguapolvosaborizante.jpg" alt="">
-              <div class="cuerpo">
-                <h1>Agua del día</h1>
-                <p>Agua del día recien hecha.</p>
-              </div>
+          <div class="card">
+            <img
+              src="https://www.lavanguardia.com/files/og_thumbnail/files/fp/uploads/2020/10/05/5f7b260277fed.r_d.1244-497-0.jpeg"
+              alt="">
+            <div class="cuerpo">
+              <h1>Agua enbotellada</h1>
+              <p>Agua en 3 presentaciones: 1lt, 500ml y 1.5lt.</p>
             </div>
           </div>
-        </div>
 
-        <div class="seccion-postre sections-days">
-            <h1 class="sub-title">Postres o botana</h1>
-          <div class="tarjetas">            
-            <div class="card">
-              <img src="https://nuestragente.mx/wp-content/uploads/2022/05/Paletas-de-Hielo-1024x512.jpg" alt="">
-              <div class="cuerpo">
-                <h1>Paletas de hielo</h1>
-                <p>Refrescante paleta de hielo del sabor que gustes.</p>
-              </div>
-            </div>
-  
-            <div class="card">
-              <img src="https://cdn.shopify.com/s/files/1/0583/9159/3131/products/portada_300c28b8-adfd-4857-a1c4-91493123eafe.png?v=1627586603" alt="">
-              <div class="cuerpo">
-                <h1>Doritos</h1>
-                <p>Botana para que calmes el hambre, cualquiera de las presentaciones.</p>
-              </div>
-            </div>
-  
-            <div class="card">
-              <img src="https://static.solopostres.com/uploads/2016/04/receta767.jpg" alt="">
-              <div class="cuerpo">
-                <h1>Cupcakes</h1>
-                <p>Cupcake de chocolate tamaño mediano.</p>
-              </div>
+          <div class="card">
+            <img src="https://cdn.foodandwineespanol.com/2021/05/destacada_aguapolvosaborizante.jpg" alt="">
+            <div class="cuerpo">
+              <h1>Agua del día</h1>
+              <p>Agua del día recien hecha.</p>
             </div>
           </div>
         </div>
-        
       </div>
 
-      <%- include('./partials/footer') %>
-  </body>
+      <div class="seccion-postre sections-days">
+        <h1 class="sub-title">Postres o botana</h1>
+        <div class="tarjetas">
+          <div class="card">
+            <img src="https://nuestragente.mx/wp-content/uploads/2022/05/Paletas-de-Hielo-1024x512.jpg" alt="">
+            <div class="cuerpo">
+              <h1>Paletas de hielo</h1>
+              <p>Refrescante paleta de hielo del sabor que gustes.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0583/9159/3131/products/portada_300c28b8-adfd-4857-a1c4-91493123eafe.png?v=1627586603"
+              alt="">
+            <div class="cuerpo">
+              <h1>Doritos</h1>
+              <p>Botana para que calmes el hambre, cualquiera de las presentaciones.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="https://static.solopostres.com/uploads/2016/04/receta767.jpg" alt="">
+            <div class="cuerpo">
+              <h1>Cupcakes</h1>
+              <p>Cupcake de chocolate tamaño mediano.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <%- include('./partials/footer') %>
+</body>
+
 </html>

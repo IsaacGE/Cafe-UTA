@@ -11,69 +11,71 @@
 
     <div class="render-content">
       <div class="container">
-        <div class="panel">
-          <div class="panel-heading">
-            <button class="btn btn-panel" id="btnAddNewProduct" data-bs-toggle="modal" data-bs-target="#largeModal"
-              title="Agregar nuevo producto"><i class="bi bi-plus-square-fill"></i></button>
-            <span class="panel-title d-inline-block"><i class="bi bi-list-ul"></i>&nbsp;Listado de productos
-              cargados</span>
-          </div>
-          <div class="panel-body table-responsive">
-            <table class="dataTable hover table table-striped table-bordered" id="tableProductsManage">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Imagen</th>
-                  <th>Stock</th>
-                  <th>Precio p/ud</th>
-                  <th>Categoría</th>
-                  <th>Estatus</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% productsList.forEach(product=> { %>
+        <% if (userSession && (userSession.role == 'Administrador' || userSession.role == 'Empleado')) { %>
+          <div class="panel">
+            <div class="panel-heading">
+              <button class="btn btn-panel" id="btnAddNewProduct" data-bs-toggle="modal" data-bs-target="#largeModal"
+                title="Agregar nuevo producto"><i class="bi bi-plus-square-fill"></i></button>
+              <span class="panel-title d-inline-block"><i class="bi bi-list-ul"></i>&nbsp;Listado de productos
+                cargados</span>
+            </div>
+            <div class="panel-body table-responsive">
+              <table class="dataTable hover table table-striped table-bordered" id="tableProductsManage">
+                <thead>
                   <tr>
-                    <td>
-                      <%= product.name %>
-                    </td>
-                    <td><img src="<%= product.imageUrl %>" alt="..."> </td>
-                    <td>
-                      <%= product.stock %>
-                    </td>
-                    <td>$ <%= product.price.toFixed(2) %>
-                    </td>
-                    <td>
-                      <%= product.Category ? product.Category.name : 'Sin categoría' %>
-                    </td>
-                    <td>
-                      <% if (product.active) { %>
-                        <button class="btn button-options-table btn-status-product" data-id-product="<%= product._id %>"
-                          data-name="<%= product.name %>" data-status="<%= product.active %>"
-                          title="Deshabilitar producto"><i class="bi bi-check-circle-fill"></i></button>
-                        <span class="visually-hidden">1</span>
-                        <% } else { %>
-                          <button class="btn button-options-table btn-status-product"
-                            data-id-product="<%= product._id %>" data-name="<%= product.name %>"
-                            data-status="<%= product.active %>" title="Habilitar producto"><i
-                              class="bi bi-x-circle-fill"></i></button>
-                          <span class="visually-hidden">0</span>
-                          <% } %>
-                    </td>
-                    <td>
-                      <button class="btn button-options-table btn-update-product" data-id-product="<%= product._id %>"
-                        title="Actualizar producto" data-bs-toggle="modal" data-bs-target="#largeModal"><i
-                          class="bi bi-pencil-square"></i></button>
-                      <button class="btn button-options-table btn-delete-product" data-id-product="<%= product._id %>"
-                        data-name="<%= product.name %>" title="Eliminar producto"><i
-                          class="bi bi-trash-fill"></i></button>
-                    </td>
+                    <th>Nombre</th>
+                    <th>Imagen</th>
+                    <th>Stock</th>
+                    <th>Precio p/ud</th>
+                    <th>Categoría</th>
+                    <th>Estatus</th>
+                    <th>Acciones</th>
                   </tr>
-                  <% }) %>
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  <% productsList.forEach(product=> { %>
+                    <tr>
+                      <td>
+                        <%= product.name %>
+                      </td>
+                      <td><img src="<%= product.imageUrl %>" alt="..."> </td>
+                      <td>
+                        <%= product.stock %>
+                      </td>
+                      <td>$ <%= product.price.toFixed(2) %>
+                      </td>
+                      <td>
+                        <%= product.Category ? product.Category.name : 'Sin categoría' %>
+                      </td>
+                      <td>
+                        <% if (product.active) { %>
+                          <button class="btn button-options-table btn-status-product" data-id-product="<%= product._id %>"
+                            data-name="<%= product.name %>" data-status="<%= product.active %>"
+                            title="Deshabilitar producto"><i class="bi bi-check-circle-fill"></i></button>
+                          <span class="visually-hidden">1</span>
+                          <% } else { %>
+                            <button class="btn button-options-table btn-status-product"
+                              data-id-product="<%= product._id %>" data-name="<%= product.name %>"
+                              data-status="<%= product.active %>" title="Habilitar producto"><i
+                                class="bi bi-x-circle-fill"></i></button>
+                            <span class="visually-hidden">0</span>
+                            <% } %>
+                      </td>
+                      <td>
+                        <button class="btn button-options-table btn-update-product" data-id-product="<%= product._id %>"
+                          title="Actualizar producto" data-bs-toggle="modal" data-bs-target="#largeModal"><i
+                            class="bi bi-pencil-square"></i></button>
+                        <button class="btn button-options-table btn-delete-product" data-id-product="<%= product._id %>"
+                          data-name="<%= product.name %>" title="Eliminar producto"><i
+                            class="bi bi-trash-fill"></i></button>
+                      </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
+        <% } %> 
 
         <div class="search-content">
           <div class="input-group mb-3">
@@ -118,11 +120,9 @@
                         </div>
                       </div>
                       <div class="card-footer">
-                        <button type="button" class="btn btn-related-products"><i class="bi bi-list-ul"></i>&nbsp;Ver
-                          más</button>
-                        <% if(product.stock> 0) { %>
-                          <button type="button" class="btn btn-dark"><i
-                              class="bi bi-cart-plus-fill"></i>&nbsp;Añadir</button>
+                        <button type="button" data-idCategory="<%= product.Category._id %>" class="btn btn-related-products"><i class="bi bi-list-ul"></i>&nbsp;Ver más</button>
+                        <% if(product.stock > 0 && (userSession) ) { %>
+                          <button type="button" class="btn btn-dark"><i class="bi bi-cart-plus-fill"></i>&nbsp;Añadir</button>
                           <% } %>
                       </div>
                     </div>

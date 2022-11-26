@@ -1,17 +1,27 @@
 const express = require('express')
 const router = express.Router()
+const sessionValidation = require('../middlewares/sessionValidator')
 
 const viewsController = require('../controllers/views.controller')
 
 router.get('/', viewsController.homeView)
+
 router.get('/products', viewsController.productsView)
-router.get('/users', viewsController.usersView)
-router.get('/shoppingCart', viewsController.shoppingCartView)
-router.get('/signIn', viewsController.signInView)
-router.get('/signUp', viewsController.signUpView)
+
+router.get('/productsByCategory', viewsController.productsByCategoryView)
+
+router.get('/users', [sessionValidation.AdminPermisionValidation], viewsController.usersView)
+
+router.get('/shoppingCart', [sessionValidation.ValidateSession], viewsController.shoppingCartView)
+
+router.get('/signIn', [sessionValidation.ValidateSessionForLogin], viewsController.signInView)
+
 router.get('/categories', viewsController.categoryView)
-router.get('/graficas', viewsController.graficasView)
-router.get('/createUpdateProductForm', viewsController.createUpdateProductFormView)
-router.get('/createUpdateUserForm', viewsController.createUpdateUserFormView)
+
+router.get('/graficas', [sessionValidation.EmployeePermisionValidation], viewsController.graficasView)
+
+router.get('/createUpdateProductForm', [sessionValidation.EmployeePermisionValidation], viewsController.createUpdateProductFormView)
+
+router.get('/createUpdateUserForm', [sessionValidation.AdminPermisionValidation], viewsController.createUpdateUserFormView)
 
 module.exports = router

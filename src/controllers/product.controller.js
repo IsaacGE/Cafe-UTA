@@ -21,6 +21,16 @@ productController.getById = async (req, res, next, isCtrlr = false) => {
     }
 }
 
+productController.getByCategory = async (req, res, next, isCtrlr = false) => {
+    try {
+        const result = await Product.find({ Category: req.query.id }).populate({ path: 'Category', model: 'Categories' })
+        console.log(result)
+        return isCtrlr ? result : res.status(200).json({ ok: true, result });
+    } catch (error) {
+        res.status(500).json({ ok: false, msg: `Error Product.Controller GetByCategory module ${error.message}` })
+    }
+}
+
 productController.create = async (req, res, next, isCtrlr = false) => {
     const newProduct = new Product({
         name: req.body.name,

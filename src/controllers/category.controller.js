@@ -11,7 +11,7 @@ const categoryController = {}
 categoryController.getById = async (req, res, next, isCtrlr = false) => {
     try {
         const result = await Category.findById(req.query.id)
-        return isCtrlr ? result : res.status(200).json({ok: true, result});
+        return isCtrlr ? result : res.status(200).json({ ok: true, result });
     } catch (error) {
         res.status(500).json({ ok: false, msg: `Error Category.Controller GetByID module ${error.message}` })
     }
@@ -26,7 +26,7 @@ categoryController.getById = async (req, res, next, isCtrlr = false) => {
 categoryController.getAll = async (req, res, next, isCtrlr = false) => {
     try {
         const result = await Category.find()
-        return isCtrlr ? result : res.status(200).json({ok: true, result})
+        return isCtrlr ? result : res.status(200).json({ ok: true, result })
     } catch (error) {
         res.status(500).json({ ok: false, msg: `Error Category.Controller GetALL module ${error.message}` })
     }
@@ -69,7 +69,7 @@ categoryController.update = async (req, res, next, isCtrlr = false) => {
         const oldCategory = await Category.findById(req.query.id)
         await Category.findByIdAndUpdate(req.query.id, { $set: newCategory }, { new: true })
 
-        return res.status(200).json({ok: true, msg: `The category ${oldCategory.name} has been updated successfully` })
+        return res.status(200).json({ ok: true, msg: `The category ${oldCategory.name} has been updated successfully` })
     } catch (error) {
         res.status(500).json({ ok: false, msg: `Error Category.Controller Update module ${error.message}` })
     }

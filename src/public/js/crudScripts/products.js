@@ -22,18 +22,7 @@ $(document).ready(() => {
         productId = $(this).attr('data-id-product')
         SwalConfirmation(`El producto ${productName} estará ${status == 'true' ? 'deshabilitado' : 'disponible nuevamente'} para los usuarios`, `¿${status == 'true' ? 'Desactivar' : 'Activar'} producto?`, 'question', status == 'true' ? 'Desactivar' : 'Activar')
         $('.swal2-actions .swal2-confirm').on('click', () => {
-            $.ajax({
-                method: "put",
-                url: `${localUri}/products/updateStatus?id=${productId}`,
-                data: { active: status == 'true' ? false : true }
-            })
-                .done(response => {
-                    showToastAlert(response.msg, 'success', true)
-                })
-                .fail(response => {
-                    if (response.status == 500) showCustomSmallAlert(response.responseJSON.msg, '<i class="bi bi-bug-fill"></i> Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
-                    else showToastAlert(response.responseJSON.msg, 'error')
-                })
+            RunAjaxRequest('put', 'products/updateStatus', 'id', productId, { active: status == 'true' ? false : true })
         })
     })
 
@@ -44,19 +33,14 @@ $(document).ready(() => {
         productId = $(this).attr('data-id-product')
         SwalConfirmation(`El producto ${productName} será eliminado de forma permanente`, `¿Eliminar producto?`, 'question', 'Eliminar')
         $('.swal2-actions .swal2-confirm').on('click', () => {
-            $.ajax({
-                method: "delete",
-                url: `${localUri}/products/delete?id=${productId}`,
-                data: null
-            })
-                .done(response => {
-                    showToastAlert(response.msg, 'success', true)
-                })
-                .fail(response => {
-                    if (response.status == 500) showCustomSmallAlert(response.responseJSON.msg, '<i class="bi bi-bug-fill"></i> Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
-                    else showToastAlert(response.responseJSON.msg, 'error')
-                })
+            RunAjaxRequest('delete', 'products/delete', 'id', productId)
         })
+    })
+
+    // Redirect to products by category //
+    $('.btn-related-products').on('click', function () {
+        var idCategory = $(this).attr('data-idCategory')
+        window.location.href = `${localUri}/productsByCategory?id=${idCategory}`
     })
 })
 
@@ -75,31 +59,9 @@ $('#btnActionModalLarge').on('click', () => {
         idCategory: $('#category').val()
     }
     if (crudAction == 'create') {
-        $.ajax({
-            method: "post",
-            url: `${localUri}/products/create`,
-            data: data
-        })
-            .done(response => {
-                showToastAlert(response.msg, 'success', true)
-            })
-            .fail(response => {
-                if (response.status == 500) showCustomSmallAlert(response.responseJSON.msg, '<i class="bi bi-bug-fill"></i> Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
-                else showToastAlert(response.responseJSON.msg, 'error')
-            })
+        RunAjaxRequest('post', 'products/create', '', '', data)
     } else if (crudAction == 'update') {
-        $.ajax({
-            method: "put",
-            url: `${localUri}/products/update?id=${productId}`,
-            data: data
-        })
-            .done(response => {
-                showToastAlert(response.msg, 'success', true)
-            })
-            .fail(response => {
-                if (response.status == 500) showCustomSmallAlert(response.responseJSON.msg, '<i class="bi bi-bug-fill"></i> Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
-                else showToastAlert(response.responseJSON.msg, 'error')
-            })
+        RunAjaxRequest('put', 'products/update', 'id', productId, data)
     }
     disableEnableBtn('btnActionModalLarge', true)
 })

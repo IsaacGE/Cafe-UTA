@@ -1,6 +1,7 @@
 require('./database/db')
 const express = require('express')
 const session = require('cookie-session')
+const cookieParser = require('cookie-parser')
 const startUp = require('./helpers/startUp.helper')
 const cors = require('cors')
 const morgan = require('morgan')
@@ -13,6 +14,7 @@ startUp.createAdmin()
 
 app.use(cors())
 app.use(morgan("dev"))
+app.use(cookieParser())
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
@@ -26,12 +28,11 @@ app.use(session({
     name: 'session',
     resave: true,
     saveUninitialized: true,
-    expires: new Date(Date.now() + 18000)
+    //expires: new Date(Date.now() + 18000)
 }))
 
 app.use((req, res, next) => {
-    if (!req.user)
-        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.locals.userSession = req.session.userSession;
     next();
 });
 

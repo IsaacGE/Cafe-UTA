@@ -16,7 +16,14 @@ viewsController.homeView = (req, res) => {
 viewsController.productsView = async (req, res) => {
     var products = await Product.getAll(null, null, null, true)
     res.render('products', {
-        productsList: products
+        productsList: products,
+    })
+}
+
+viewsController.productsByCategoryView = async (req, res) => {
+    var products = await Product.getByCategory(req, null, null, true)
+    res.render('productsByCategory', {
+        productsList: products,
     })
 }
 
@@ -28,26 +35,21 @@ viewsController.graficasView = (req, res) => {
 }
 
 viewsController.signInView = (req, res) => {
-    console.log(req.session.userSession)
     res.render('signIn')
-   
-}
 
-viewsController.signUpView = (req, res) => {
-    res.render('signUp')
 }
 
 viewsController.usersView = async (req, res) => {
     var users = await User.getAll(null, null, null, true)
     res.render('users', {
-        usersList: users
+        usersList: users,
     })
 }
 
 viewsController.shoppingCartView = async (req, res) => {
-    var shopp =  await Sale.getAll(null, null, null, true)
+    var shopp = await Sale.getAll(null, null, null, true)
     res.render('shopCart', {
-        shoppingHist: shopp
+        shoppingHist: shopp,
     })
 }
 

@@ -81,7 +81,7 @@ function showToastAlert(message, icon, reloadPage = false) {
   if (reloadPage) {
     setInterval(() => {
       window.location.reload()
-    }, 1500);
+    }, 500);
   } else {
     HideLoaderSpinner()
   }
@@ -201,14 +201,15 @@ function FillModalFormCrud(endpoint, modalTitle, buttonText, paramName = '', par
 
 
 /**
- * Metodo para ejecutar peticiones de Ajax dinamicas (POST, GET, PUT, DELETE)
- * @param {text:String} methodReq   *Tipo de peticion HTTP que se estara ejecutando (POST, GET, PUT, DELETE) 
+ * Metodo para ejecutar peticiones de Ajax dinamicas (POST, PUT, DELETE)
+ * @param {text:String} methodReq   *Tipo de peticion HTTP que se estara ejecutando (POST, PUT, DELETE) 
  * @param {text:String} endpoint    *Endpint al que se estara enviando el request
  * @param {text:String} paramKey    *Nombre de la variable que se estara enviando por parametro en la url (Solo si se requiere)
  * @param {text:String} paramValue  *Valor que se asigna a la variable que se envia por parametro en la url (Solo si se requiere)
- * @param {*:Any} data          *Datos que se envian por body en el request (solo si es necesario) 
+ * @param {*:Any} data              *Datos que se envian por body en el request (solo si es necesario) 
  */
 function RunAjaxRequest(methodReq, endpoint, paramKey = '', paramValue = '', data = {}) {
+  if (methodReq == 'get') return false
   if (endpoint.charAt(0) == '/') endpoint.slice(1)
   var completeEndpint = paramKey != '' || paramKey == null ? `${endpoint}?${paramKey}=${paramValue}` : endpoint
   $.ajax({
@@ -224,6 +225,15 @@ function RunAjaxRequest(methodReq, endpoint, paramKey = '', paramValue = '', dat
         else showToastAlert(response.responseJSON.msg, 'error')
     })
 }
+
+/**
+ * Evento para cerrar la sesion del usuario en express-sssion
+ */
+$('#smallAlert').on('click', '#smallAlertAction', function () {
+  if ($(this).text().replace(/\s/g, '') == 'Salir') {
+    RunAjaxRequest('post', 'auth/signOut')
+  }
+})
 
 $(document).ajaxStart(ShowLoaderSpinner()).ajaxStop(HideLoaderSpinner());
 

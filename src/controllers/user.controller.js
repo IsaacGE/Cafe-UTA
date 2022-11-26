@@ -3,6 +3,15 @@ const encrypt = require('../helpers/bcrypt.helper')
 
 const userController = {}
 
+/**
+ * Metodo para obtener todo el catalogo de usuarios en base de datos, incluyendo sus roles
+ * Este metodo excluye el usuario SuperAdministrador
+ * @param {*} req       
+ * @param {*} res 
+ * @param {*} next 
+ * @param {*} isCtrlr   * Bandera para validar si se esta haciendo peticion desde otro controller o es un request normal
+ * @returns 
+ */
 userController.getAll = async (req, res, next, isCtrlr = false) => {
     try {
         const users = await User.find({ email: { $ne: 'admin.cafeUTA@utags.com' } }).populate({ path: 'role', model: 'Roles' })
@@ -16,6 +25,14 @@ userController.getAll = async (req, res, next, isCtrlr = false) => {
     }
 }
 
+/**
+ * Metodo para obtener un usuario por medio de su ID en Base de datos
+ * @param {*} req       * Recibe por request query el ID del usuario req.query.id 
+ * @param {*} res 
+ * @param {*} next 
+ * @param {*} isCtrlr   * Bandera para validar si se esta haciendo peticion desde otro controller o es un request normal
+ * @returns 
+ */
 userController.getById = async (req, res, next, isCtrlr = false) => {
     try {
         const user = await User.findById(req.query.id)
@@ -25,13 +42,22 @@ userController.getById = async (req, res, next, isCtrlr = false) => {
     }
 }
 
+/**
+ * Metodo para crear un usuario en Base de datos
+ * @param {*} req       * Recibe por request body el objeto del usuario a registrar en BD (req.body)
+ * @param {*} res 
+ * @param {*} next 
+ * @param {*} isCtrlr   * Bandera para validar si se esta haciendo peticion desde otro controller o es un request normal
+ * @returns 
+ */
 userController.create = async (req, res, next, isCtrlr = false) => {
+    const hashPass = encrypt.encryptPassword(req.body.pass)
     const newUser = new User({
         matricula: req.body.matricula,
         completeName: req.body.name,
         email: req.body.email,
         imageUrl: req.body.imageUrl,
-        password: await encrypt.encryptPassword(req.body.pass),
+        password: hashPass,
         role: req.body.role
     })
     try {
@@ -45,6 +71,14 @@ userController.create = async (req, res, next, isCtrlr = false) => {
     }
 }
 
+/**
+ * Metodo para actualizar informacion de usuarios en BD
+ * @param {*} req       * Recibe por request query el ID del usuario req.query.id y los datos a actualizar por request body (req.body)
+ * @param {*} res 
+ * @param {*} next 
+ * @param {*} isCtrlr   * Bandera para validar si se esta haciendo peticion desde otro controller o es un request normal
+ * @returns 
+ */
 userController.update = async (req, res, next, isCtrlr = false) => {
     try {
         const oldUser = await User.findById(req.query.id)
@@ -56,16 +90,24 @@ userController.update = async (req, res, next, isCtrlr = false) => {
             _id: req.query.id
         })
         if (req.body.pass != "") {
-            newUser.password = await encrypt.encryptPassword(req.body.pass)
+            newUser.password = encrypt.encryptPassword(req.body.pass)
         }
 
         await User.findByIdAndUpdate(req.query.id, { $set: newUser }, { new: true })
-        res.status(200).json({ ok: true, msg: `The user ${oldUser.completeName} has been updated successfully` })
+        return res.status(200).json({ ok: true, msg: `The user ${oldUser.completeName} has been updated successfully` })
     } catch (error) {
         res.status(500).json({ ok: false, msg: `Error User.Controller Update module ${error.message}` })
     }
 }
 
+/**
+ * Metodo para actualizar solamente el status de usuarios en BD
+ * @param {*} req       * Recibe por request query el ID del usuario req.query.id y el status a setear por request body (req.body.active)
+ * @param {*} res 
+ * @param {*} next 
+ * @param {*} isCtrlr   * Bandera para validar si se esta haciendo peticion desde otro controller o es un request normal
+ * @returns 
+ */
 userController.updateStatus = async (req, res, next, isCtrlr = false) => {
     try {
         const user = await User.findByIdAndUpdate(req.query.id, { $set: { active: req.body.active } }, { new: true });
@@ -84,6 +126,14 @@ userController.updateStatus = async (req, res, next, isCtrlr = false) => {
     }
 }
 
+/**
+ * Metodo para eliminar usuarios dentro de la base de datos por ID
+ * @param {*} req       * Recibe por request query el ID del usuario a eliminar
+ * @param {*} res 
+ * @param {*} next 
+ * @param {*} isCtrlr   * Bandera para validar si se esta haciendo peticion desde otro controller o es un request normal
+ * @returns 
+ */
 userController.delete = async (req, res, next, isCtrlr = false) => {
     try {
         const userRemoved = await User.findByIdAndDelete(req.query.id)

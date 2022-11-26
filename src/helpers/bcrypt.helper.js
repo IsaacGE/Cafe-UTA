@@ -2,13 +2,12 @@ const bcrypt = require('bcrypt')
 
 const passHash = {}
 
-passHash.encryptPassword = async (password) => {
-    const salt = await bcrypt.genSalt(10)
-    return await bcrypt.hash(password, salt);
+passHash.encryptPassword = (password) => {
+    return bcrypt.hashSync(password, 10);
 }
   
-passHash.comparePassword = async (password, inputPassword) => {
-    return await bcrypt.compare(password, inputPassword)
+passHash.comparePassword = (password, inputPassword) => {
+    return bcrypt.compare(password, inputPassword)
 }
 
 module.exports = passHash

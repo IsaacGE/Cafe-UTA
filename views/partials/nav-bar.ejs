@@ -9,7 +9,11 @@
         <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
             aria-labelledby="offcanvasDarkNavbarLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
+                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu &nbsp;                    
+                    <%if (userSession) { %>
+                       <span style="font-size: 10pt;"><img width="25px" src="<%= userSession.imageUrl %>">&nbsp;<%= userSession.completeName %></span>
+                    <% } %> 
+                </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
                     aria-label="Close"></button>
             </div>
@@ -25,28 +29,26 @@
                         <a class="nav-link" aria-current="page" href="/products"><i
                                 class="bi bi-basket"></i>&nbsp;Productos</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/users"><i class="bi bi-people-fill"></i>&nbsp;Usuarios</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Punto de venta
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="/graficas">Control de ventas</a></li>
-                            <li><a class="dropdown-item" href="#">Estados de ventas</a></li>
-                            <li><a class="dropdown-item" href="#">Equilibrio del negocio</a></li>
-                        </ul>
-                    </li>
-                    <li class="nan-item row-items">
-                        <a class="nav-link" id="nose" href="/signIn"><i class="bi bi-box-arrow-in-right"></i>Inicio de
-                            sesión</a>
-                    </li>
-                    </li>
-                    <li class="nan-item">
-                        <a href="javascript:;" id="btnCloseSession" class="nav-link" data-bs-toggle="modal"
-                            data-bs-target="#smallAlert"><i class="bi bi-box-arrow-in-left"></i>&nbsp;Salir</a>
+                    <% if (userSession && userSession.role == 'Administrador') { %>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/users"><i class="bi bi-people-fill"></i>&nbsp;Usuarios</a>
+                        </li>
+                    <% } %> 
+                    <% if (userSession && (userSession.role == 'Administrador' || userSession.role == 'Empleado')) { %>
+                        <li class="nav-item">
+                                <li><a class="dropdown-item" href="/graficas"><i class="bi bi-cash-coin"></i>&nbsp;Control de ventas</a></li>
+                        </li>
+                    <% } %> 
+                    <% if (!userSession) { %>
+                        <li class="nan-item row-items">
+                            <a class="nav-link" id="nose" href="/signIn"><i class="bi bi-box-arrow-in-right"></i>Inicio de sesión</a>
+                        </li>
+                     <% } else { %>
+                        <li class="nan-item">
+                            <a href="javascript:;" id="btnCloseSession" class="nav-link" data-bs-toggle="modal"
+                                data-bs-target="#smallAlert"><i class="bi bi-box-arrow-in-left"></i>&nbsp;Salir</a>
+                        </li>
+                    <% } %>  
                     </li>
                 </ul>
             </div>
