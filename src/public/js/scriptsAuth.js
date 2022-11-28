@@ -16,19 +16,7 @@ $('#btnSignUp').on('click', () => {
     pass: $('#newPassword').val(),
     role: 'client'
   }
-  $.ajax({
-    method: "post",
-    url: `${localUri}/auth/signup`,
-    data: data
-  })
-    .done((response) => {
-      showToastAlert(response.msg, 'success')
-    })
-    .fail((response) => {
-      if (response.status == 500) {
-        showCustomSmallAlert(response.responseJSON.msg, '<i class="bi bi-bug-fill"></i> Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
-      } else showToastAlert(response.responseJSON.msg, 'error')
-    })
+  RunAjaxRequest('post', 'auth/signup', '', '', data)
 })
 //--------//
 

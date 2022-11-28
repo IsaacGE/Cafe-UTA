@@ -51,7 +51,7 @@ userController.getById = async (req, res, next, isCtrlr = false) => {
  * @returns 
  */
 userController.create = async (req, res, next, isCtrlr = false) => {
-    const hashPass = encrypt.encryptPassword(req.body.pass)
+    const hashPass = await encrypt.encryptPassword(req.body.pass)
     const newUser = new User({
         matricula: req.body.matricula,
         completeName: req.body.name,
@@ -61,7 +61,7 @@ userController.create = async (req, res, next, isCtrlr = false) => {
         role: req.body.role
     })
     try {
-        await newUser.save()
+        await User.create(newUser)
         return res.status(200).json({
             ok: true,
             msg: `The user ${newUser.completeName} has been registered successfully`
@@ -90,7 +90,7 @@ userController.update = async (req, res, next, isCtrlr = false) => {
             _id: req.query.id
         })
         if (req.body.pass != "") {
-            newUser.password = encrypt.encryptPassword(req.body.pass)
+            newUser.password = await encrypt.encryptPassword(req.body.pass)
         }
 
         await User.findByIdAndUpdate(req.query.id, { $set: newUser }, { new: true })

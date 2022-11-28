@@ -43,7 +43,7 @@ verifyRegisterUser.isRoleValid = async (req, res, next) => {
             message = 'EL rol para el usuario no es válido'
         } else {
             const dbRole = await Role.findById(req.body.role)
-            if (dbRole) next()
+            if (dbRole) return next()
         }
         return res.status(400).json({
             ok: false,

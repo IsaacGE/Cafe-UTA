@@ -43,6 +43,7 @@ $(document).ready(() => {
 // Create new Product method //
 $('#btnActionModalLarge').on('click', () => {
     validateUserForm()
+    var response;
     if ($('.valid-msg').length) return;
     var data = {
         name: $('#name').val(),
@@ -53,11 +54,11 @@ $('#btnActionModalLarge').on('click', () => {
         pass: $('#password').val()
     }
     if (crudAction == 'create') {
-        RunAjaxRequest('post', 'users/create', '', '', data)
+        response = RunAjaxRequest('post', 'users/create', '', '', data)
     } else if (crudAction == 'update') {
-        RunAjaxRequest('put', 'users/update', 'id', userId, data)
+        response = RunAjaxRequest('put', 'users/update', 'id', userId, data)
     }
-    disableEnableBtn('btnActionModalLarge', true)
+    disableEnableBtn('btnActionModalLarge', response)
 })
 
 

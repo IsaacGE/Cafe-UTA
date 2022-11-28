@@ -19,7 +19,7 @@ function HideLoaderSpinner() {
 }
 
 $('#btnCloseSession').on('click', () => {
-  showCustomSmallAlert("Estas a punto de sair de la aplicación", "¿Cerrar sesión?", 'arrow-return-left', 'Permanecer', 'box-arrow-right', 'Salir')
+  showCustomSmallAlert("Estas a punto de salir de la aplicación", "¿Cerrar sesión?", 'arrow-return-left', 'Permanecer', 'box-arrow-right', 'Salir')
 })
 
 /**
@@ -207,6 +207,7 @@ function FillModalFormCrud(endpoint, modalTitle, buttonText, paramName = '', par
  * @param {text:String} paramKey    *Nombre de la variable que se estara enviando por parametro en la url (Solo si se requiere)
  * @param {text:String} paramValue  *Valor que se asigna a la variable que se envia por parametro en la url (Solo si se requiere)
  * @param {*:Any} data              *Datos que se envian por body en el request (solo si es necesario) 
+ * @return {:Boolean}               *Regresa true o false, dependiendo del reultado de la peticion
  */
 function RunAjaxRequest(methodReq, endpoint, paramKey = '', paramValue = '', data = {}) {
   if (methodReq == 'get') return false
@@ -219,10 +220,12 @@ function RunAjaxRequest(methodReq, endpoint, paramKey = '', paramValue = '', dat
 })
     .done(response => {
         showToastAlert(response.msg, 'success', true)
+        return true;
     })
     .fail(response => {
         if (response.sFtatus == 500) showCustomSmallAlert(response.responseJSON.msg, '<i class="bi bi-bug-fill"></i> Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
         else showToastAlert(response.responseJSON.msg, 'error')
+        return false;
     })
 }
 
