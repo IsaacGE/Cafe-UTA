@@ -1,6 +1,7 @@
 const User = require('../models/user.model')
 const Category = require('../models/category.model')
 const Role = require('../models/role.model')
+const OrderStatus = require('../models/orderStatus.model')
 const encrypt = require('./bcrypt.helper')
 
 const startUp = {}
@@ -40,9 +41,18 @@ startUp.createCategories = async () => {
 startUp.createRoles = async () => {
     try {
         const rolesOnDb = await Role.find()
-        if (rolesOnDb.length == 0) Role.create(rolesList)
+        if (rolesOnDb.length == 0) await Role.create(rolesList)
     } catch (error) {
-        
+        throw error
+    }
+}
+
+startUp.createOrderStatus = async () => {
+    try {
+        const orderStatusOnDB = await OrderStatus.find()
+        if (orderStatusOnDB.length == 0) await OrderStatus.create(orderStatusList)
+    } catch (error) {
+        throw error
     }
 }
 
@@ -61,6 +71,13 @@ const rolesList = [
     { name: 'Administrador', description: 'Administradores del sistema y gestion de compra venta' },
     { name: 'Cliente', description: 'Clientes del sistema, usuarios compradores de productos' },
     { name: 'Empleado', description: 'Empleados del sistema, con permisos para autorizar ventas de productos' }
+]
+
+const orderStatusList = [
+    { key: 'EE', value: 'En elaboración', description: 'El pedido se encuentra en elaboración.' },
+    { key: 'E', value: 'Entregado', description: 'El pedido se ha entregado al cliente correctamente.' },
+    { key: 'C', value: 'Cancelado', description: 'El pedido ha sido cancelado.' },
+    { key: 'PE', value: 'Por Entregar', description: 'El pedido se encuentra listo para que el cliente pase por el.' }
 ]
 
 module.exports = startUp

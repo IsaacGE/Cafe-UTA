@@ -6,8 +6,7 @@ const SalesSchema = new Schema(
     productList: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Product',
-        required: [true, "Pruduct list is required"]
+        ref: 'Product'
       }
     ],
     totalSale: {
@@ -20,6 +19,10 @@ const SalesSchema = new Schema(
     },
     buyerUser: {
       ref: 'User',
+      type: Schema.Types.ObjectId
+    },
+    saleStatus: {
+      ref: 'OrderStatus',
       type: Schema.Types.ObjectId
     }
   },

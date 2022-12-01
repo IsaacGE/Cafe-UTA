@@ -66,6 +66,16 @@ $('#btnActionModalLarge').on('click', () => {
     disableEnableBtn('btnActionModalLarge', true)
 })
 
+/**
+ * Agregando productos al carrito desde la pagina de productos
+ * y la pagina de categorias de productos
+ */
+$(document).on('click', '.btn-add-to-cart', function () {
+    var idProduct = $(this).attr('data-idProduct')
+    var productPrice = $(this).attr('data-productPrice')
+    RunAjaxRequest('post', 'sales/createOrUpdate', '', '', { productList: idProduct, totalSale: productPrice }, false)
+})
+
 
 /**
  * Metodo que valida laos campos del formulario de crear y actualizar informaciond de productos

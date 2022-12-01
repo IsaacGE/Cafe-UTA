@@ -2,17 +2,20 @@ const express = require("express")
 const router = express.Router()
 const sales = require('../controllers/sale.controller')
 const verifyId = require('../middlewares/verifyId')
+const sessionValidation = require('../middlewares/sessionValidator')
 
-router.get("/getAll", sales.category)
+router.get("/getAll", [sessionValidation.ValidateSession], sales.getAll)
 
-router.post("/create", category.create)
+router.post("/createOrUpdate", [sessionValidation.ValidateSession], sales.createOrUpdate)
 
-router.get("/getById", [verifyId.ckeckID], category.getById)
+router.get("/getById", [sessionValidation.ValidateSession,verifyId.ckeckID], sales.getById)
 
-router.put("/update", [verifyId.ckeckID], category.update)
+router.get("/getByUserId", [sessionValidation.ValidateSession, verifyId.ckeckID], sales.getByUserId)
 
-router.put('/updateStatus', [verifyId.ckeckID], category.updateStatus)
+router.get("/pendingOrder", [sessionValidation.ValidateSession], sales.getPendingOrder)
 
-router.delete("/delete", [verifyId.ckeckID], category.delete)
+router.put("/deleteProduct", [verifyId.ckeckID], sales.deleteProduct)
+
+router.put('/updateStatus', [sessionValidation.ValidateSession, verifyId.ckeckID], sales.updateStatus)
 
 module.exports = router

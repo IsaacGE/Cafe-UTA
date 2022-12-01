@@ -47,9 +47,11 @@ viewsController.usersView = async (req, res) => {
 }
 
 viewsController.shoppingCartView = async (req, res) => {
-    var shopp = await Sale.getAll(null, null, null, true)
+    var shopp = await Sale.getByUserId(req, null, null, true)
+    var pendingOrder = await Sale.getPendingOrder(req, null, null, true)
     res.render('shopCart', {
         shoppingHist: shopp,
+        pendingOrder
     })
 }
 

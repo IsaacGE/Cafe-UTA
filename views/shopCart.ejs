@@ -11,58 +11,39 @@
 
     <div class="render-content">
       <div class="container">
-        <div class="content-shop-cart">
-          <h2 class="main-title"><i class="bi bi-cart4"></i>&nbsp;Tu compra está casi lista</h2>
-          <p class="info-text">A continuación verás la lista de los productos que estás a punto de comprar. Para continuar con la compra, haga clic en el botón (realizar compra) para finalizar la compra o en el botón (cancelar) para eliminar la lista de productos de su carrito.</p>
-          <div class="row">
-            <div class="col">
-              <div class="card h-100">
-                <img src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750105534942L1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-title">Coca-cola</p>
-                  <small class="card-text">$20</small>
+        <% if (pendingOrder) { %>
+          <div class="content-shop-cart">
+            <h2 class="main-title"><i class="bi bi-cart4"></i>&nbsp;Tu compra está casi lista</h2>
+            <p class="info-text">A continuación verás la lista de los productos que estás a punto de comprar. Para continuar con la compra, haga clic en el botón (realizar compra) para finalizar la compra o en el botón (cancelar) para eliminar la lista de productos de su carrito.</p>
+            <div class="row">
+              <% pendingOrder.productList.forEach(product => { %>
+                <div class="col">
+                  <div class="card h-100">
+                    <img src="<%= product.imageUrl %>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-title"><%= product.name %></p>
+                      <small class="card-text"><%= product.price %></small>
+                    </div>
+                    <button class="btn btn-outline-danger btn-delete-product" data-totalNewSale="<%= pendingOrder.totalSale - product.price %>" data-productsLength="<%= pendingOrder.productList.length %>" data-productName="<%= product.name %>" data-productId="<%= product.id %>" title="Eliminar producto del carrito"><i class="bi bi-trash3-fill"></i></button>
+                  </div>
                 </div>
-                <button class="btn btn-outline-danger" title="Remove from the cart"><i class="bi bi-trash3-fill"></i></button>
-              </div>
+              <% }) %> 
             </div>
-            <div class="col">
-              <div class="card h-100">
-                <img src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750103130725L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-title">Jumex fresh</p>
-                  <small class="card-text">$15</small>
-                </div>
-              </div>
+            <div class="info-shop-cart">
+              <p class="total-cost"><i class="bi bi-cash-stack"></i>&nbsp;Total: $ <%= pendingOrder.totalSale.toFixed(2) %></p>
+              <p class="discount"><i class="bi bi-tags-fill"></i>&nbsp;Descuento: 0%</p>
+              <small><i class="bi bi-calendar-check"></i>&nbsp;Se te avisará cuando tu pedido este listo para que pases por el.</small>
             </div>
-            <div class="col">
-              <div class="card h-100">
-                <img src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00000007500179L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-title">Boing Manzana</p>
-                  <small class="card-text">$20</small>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card h-100">
-                <img src="https://res.cloudinary.com/walmart-labs/image/upload/d_default.jpg/w_960,dpr_auto,f_auto,q_auto:best/gr/images/product-images/img_large/00750101113392L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-title">Sabritas</p>
-                  <small class="card-text">$18</small>
-                </div>
-              </div>
+            <div class="shop-cart-footer">
+              <button data-cartId="<%= pendingOrder.id %>" data-newStatus="cancel" class="btn btn-cancel btn-set-new-status"><i class="bi bi-x-lg"></i>&nbsp;Cancelar</button>
+              <button data-totalSale="<%= pendingOrder.totalSale %>" data-cartId="<%= pendingOrder.id %>" data-newStatus="buy" class="btn btn-primary btn-set-new-status"><i class="bi bi-check-circle"></i>&nbsp;Realizar compra</button>
             </div>
           </div>
-          <div class="info-shop-cart">
-            <p class="total-cost"><i class="bi bi-cash-stack"></i>&nbsp;Total: $73</p>
-            <p class="discount"><i class="bi bi-tags-fill"></i>&nbsp;Descuento: 0%</p>
-            <small><i class="bi bi-calendar-check"></i>&nbsp;Tu tienes <strong>24 horas</strong> para realizar tu pago</small>
+        <% } else { %>
+          <div class="not-pending-order">
+            <h2 class="main-title"><i class="bi bi-cart-x"></i>&nbsp;No has agregado productos al carrito</h2>
           </div>
-          <div class="shop-cart-footer">
-            <button class="btn btn-cancel"><i class="bi bi-x-lg"></i>&nbsp;Cancelar</button>
-            <button class="btn btn-primary"><i class="bi bi-check-circle"></i>&nbsp;Realizar compra</button>
-          </div>
-        </div>
+        <% }%> 
         <div class="shopping-history">
           <div class="panel">
             <div class="panel-heading">
@@ -75,6 +56,7 @@
                     <th>Cantidad de productos</th>
                     <th>Total compra</th>
                     <th>Fecha de compra</th>
+                    <th>Estatus</th>
                     <th>Ver detalle</th>
                   </tr>
                 </thead>
@@ -82,8 +64,9 @@
                   <% shoppingHist.forEach(shop => { %>
                     <tr>
                       <td><%= shop.productList ? shop.productList.length : 0 %></td>
-                      <td><%= shop.totalSale.toFixed(2) %></td>
-                      <td>$ <%= shop.createdAt.toString() %></td>
+                      <td>$ <%= shop.totalSale.toFixed(2) %></td>
+                      <td><%= shop.createdAt.toLocaleString() %></td>
+                      <td class="<%= shop.saleStatus.key %>"><i class="bi bi-circle-fill"></i>&nbsp;<%= shop.saleStatus.value %></td>
                       <td> 
                         <button class="btn button-options-table btn-update-product" title="Ver detalle de compra" data-bs-toggle="modal" data-bs-target="#smallAlert"><i class="bi bi-eye-fill"></i></button> 
                       </td>
@@ -99,6 +82,7 @@
   
 
     <%- include('./partials/footer') %>
+    <script type="text/javascript" src="assets/js/crudScripts/shopCart.js"></script>
 </body>
 
 </html>

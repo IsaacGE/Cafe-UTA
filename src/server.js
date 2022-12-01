@@ -11,6 +11,7 @@ const path = require('path')
 startUp.createCategories()
 startUp.createRoles()
 startUp.createAdmin()
+startUp.createOrderStatus()
 
 app.use(cors())
 app.use(morgan("dev"))

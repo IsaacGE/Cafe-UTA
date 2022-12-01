@@ -122,7 +122,7 @@
                       <div class="card-footer">
                         <button type="button" data-idCategory="<%= product.Category._id %>" class="btn btn-related-products"><i class="bi bi-list-ul"></i>&nbsp;Ver más</button>
                         <% if(product.stock > 0 && (userSession) ) { %>
-                          <button type="button" class="btn btn-dark"><i class="bi bi-cart-plus-fill"></i>&nbsp;Añadir</button>
+                          <button type="button" data-idProduct="<%= product.id %>" data-productPrice="<%= product.price %>" class="btn btn-dark btn-add-to-cart"><i class="bi bi-cart-plus-fill"></i>&nbsp;Añadir</button>
                           <% } %>
                       </div>
                     </div>

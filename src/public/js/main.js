@@ -65,7 +65,7 @@ function showToastAlert(message, icon, reloadPage = false) {
   ShowLoaderSpinner()
   const Toast = Swal.mixin({
     toast: true,
-    position: 'top-end',
+    position: 'top-start',
     showConfirmButton: false,
     timer: 3000,
     timerProgressBar: true,
@@ -209,7 +209,7 @@ function FillModalFormCrud(endpoint, modalTitle, buttonText, paramName = '', par
  * @param {*:Any} data              *Datos que se envian por body en el request (solo si es necesario) 
  * @return {:Boolean}               *Regresa true o false, dependiendo del reultado de la peticion
  */
-function RunAjaxRequest(methodReq, endpoint, paramKey = '', paramValue = '', data = {}) {
+function RunAjaxRequest(methodReq, endpoint, paramKey = '', paramValue = '', data = {}, reloadPage = true) {
   if (methodReq == 'get') return false
   if (endpoint.charAt(0) == '/') endpoint.slice(1)
   var completeEndpint = paramKey != '' || paramKey == null ? `${endpoint}?${paramKey}=${paramValue}` : endpoint
@@ -219,7 +219,7 @@ function RunAjaxRequest(methodReq, endpoint, paramKey = '', paramValue = '', dat
     data: data
 })
     .done(response => {
-        showToastAlert(response.msg, 'success', true)
+        showToastAlert(response.msg, 'success', reloadPage)
         return true;
     })
     .fail(response => {
@@ -239,6 +239,3 @@ $('#smallAlert').on('click', '#smallAlertAction', function () {
 })
 
 $(document).ajaxStart(ShowLoaderSpinner()).ajaxStop(HideLoaderSpinner());
-
-
-// Form validation with bootstrap  //
