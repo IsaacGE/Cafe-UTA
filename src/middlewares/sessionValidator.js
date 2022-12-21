@@ -16,7 +16,7 @@ sessionValidation.ValidateSession = async (req, res, next, isCrudAction = false)
 sessionValidation.ValidateSessionForLogin = async (req, res, next) => {
   if (req.session.userSession) {
     const userDB = await User.findById(req.session.userSession.id)
-    if (userDB) res.redirect('/')
+    if (userDB) return res.redirect('/')
   }
   next()
 }
@@ -38,6 +38,17 @@ sessionValidation.EmployeePermisionValidation = async (req, res, next) => {
     return res.status(401).json({
       ok: false,
       msg: `¡No tienes permisos para realizar esta acción!`
+    })
+  }
+}
+
+sessionValidation.ClientPermisionValidation = async (req, res, next, isCtrlr = false) => {
+  if (req.session.userSession) {
+    const userDB = await User.findById(req.session.userSession.id).populate({ path: 'role', model: 'Roles' })
+    if (userDB.role.name == 'Cliente') return next()
+    return !isCtrlr ? res.redirect('/') : res.status(401).json({
+      ok: false,
+      msg: `¡Solo los clientes pueden hacer compras!`
     })
   }
 }

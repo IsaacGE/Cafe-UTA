@@ -30,8 +30,8 @@ viewsController.productsByCategoryView = async (req, res) => {
 viewsController.categoryView = async (req, res) => {
     res.render('categories')
 }
-viewsController.graficasView = (req, res) => {
-    res.render('graficas')
+viewsController.dashboardView = (req, res) => {
+    res.render('dashboard')
 }
 
 viewsController.signInView = (req, res) => {

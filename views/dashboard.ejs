@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/head') %>
+    <link rel="stylesheet" href="assets/css/saleControl.css">
+</head>
+
+<body>
+  <% var today=new Date() %>
+    <%- include('./partials/nav-bar') %>
+
+      <div class="render-content">
+        <div class="container">
+          <h1 class="main-title"><i class="bi bi-pie-chart-fill"></i>&nbsp;Dashboard</h1>
+          <div class="row align-items-center">
+            <div class="col-md-4">
+              <div class="mb-3">
+                <label for="dateRange">Selecciona el rango de fechas a consultar:</label>
+                <input type="text" class="form-control date-range-picker" name="dateRange" id="dateRange"
+                  value="<%= `01-${today.getMonth() + 1}-${today.getFullYear()} - ${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}` %>">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats_box" style="width: 500px; margin-top: 100px; margin-left: 50px;">
+        <canvas id="myChart" height="200"></canvas>
+      </div>
+
+
+      <%- include('./partials/footer') %>
+        <script src="assets/js/crudScripts/dashboard.js" type="text/javascript"></script>
+</body>
+
+</html>

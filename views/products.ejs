@@ -65,9 +65,11 @@
                         <button class="btn button-options-table btn-update-product" data-id-product="<%= product._id %>"
                           title="Actualizar producto" data-bs-toggle="modal" data-bs-target="#largeModal"><i
                             class="bi bi-pencil-square"></i></button>
-                        <button class="btn button-options-table btn-delete-product" data-id-product="<%= product._id %>"
-                          data-name="<%= product.name %>" title="Eliminar producto"><i
-                            class="bi bi-trash-fill"></i></button>
+                            <% if (userSession.role == 'Administrador') { %>
+                              <button class="btn button-options-table btn-delete-product" data-id-product="<%= product._id %>"
+                                data-name="<%= product.name %>" title="Eliminar producto"><i
+                                  class="bi bi-trash-fill"></i></button>
+                              <% } %>  
                       </td>
                     </tr>
                     <% }) %>
@@ -121,7 +123,7 @@
                       </div>
                       <div class="card-footer">
                         <button type="button" data-idCategory="<%= product.Category._id %>" class="btn btn-related-products"><i class="bi bi-list-ul"></i>&nbsp;Ver más</button>
-                        <% if(product.stock > 0 && (userSession) ) { %>
+                        <% if (product.stock > 0 && (userSession && userSession.role == 'Cliente')) { %>
                           <button type="button" data-idProduct="<%= product.id %>" data-productPrice="<%= product.price %>" class="btn btn-dark btn-add-to-cart"><i class="bi bi-cart-plus-fill"></i>&nbsp;Añadir</button>
                           <% } %>
                       </div>

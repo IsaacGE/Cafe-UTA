@@ -1,6 +1,7 @@
 var localUri = `${window.location.origin}`
 var crudAction;
 var imageToUpload; //Varible de imagen para mandar a registrar (URL de imagen)
+var dateRangeValue = '' /* Valor que se toma de los input de tipo dateTimePicker */
 
 /**
  * Funcion para bloquear la interfaz del usuario 
@@ -217,15 +218,44 @@ function RunAjaxRequest(methodReq, endpoint, paramKey = '', paramValue = '', dat
     method: methodReq,
     url: `${localUri}/${completeEndpint}`,
     data: data
-})
+  })
     .done(response => {
-        showToastAlert(response.msg, 'success', reloadPage)
-        return true;
+      showToastAlert(response.msg, 'success', reloadPage)
+      return true;
     })
     .fail(response => {
-        if (response.sFtatus == 500) showCustomSmallAlert(response.responseJSON.msg, '<i class="bi bi-bug-fill"></i> Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
-        else showToastAlert(response.responseJSON.msg, 'error')
-        return false;
+      if (response.sFtatus == 500) showCustomSmallAlert(response.responseJSON.msg, '<i class="bi bi-bug-fill"></i> Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
+      else showToastAlert(response.responseJSON.msg, 'error')
+      return false;
+    })
+}
+
+/**
+ * Metodo para ejecutar peticiones de Ajax GET
+ * peticines hacia controladores para traer contenido
+ * @param {text:String} endpoint    *Endpint al que se estara enviando el request GET
+ * @param {text:String} queryParams  *Lista de paramatros a enviar por query params [{key:value}, {key:value}] 
+ */
+function RunAjaxGetRequest(endpoint, queryParams = []) {
+  if (endpoint.charAt(0) == '/') endpoint.slice(1)
+  var completeEndpint = endpoint
+  if (queryParams.length > 0) {
+    endpoint += '?'
+    queryParams.forEach(param => {
+      completeEndpint += `${Object.keys(param)}=${Object.values(param)}&`
+    })
+    completeEndpint.slice(0, - 1)
+  }
+  $.ajax({
+    method: 'get',
+    url: `${localUri}/${completeEndpint}`
+  })
+    .done(response => {
+      return response;
+    })
+    .fail(response => {
+      if (response.sFtatus == 500) showCustomSmallAlert(response.responseJSON.msg, '<i class="bi bi-bug-fill"></i> Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
+      else showToastAlert(response.responseJSON.msg, 'error')
     })
 }
 
@@ -239,3 +269,48 @@ $('#smallAlert').on('click', '#smallAlertAction', function () {
 })
 
 $(document).ajaxStart(ShowLoaderSpinner()).ajaxStop(HideLoaderSpinner());
+
+
+/**
+ * Seteando libreria DateRangePicker para los input de rango de fechas
+ */
+$(function () {
+  $('input[name="dateRange"]').daterangepicker({
+    minYear: 2000,
+    maxYear: parseInt(moment().format('YYYY'), 10),
+    locale: {
+      format: 'DD/MM/YYYY',
+      separator: " - ",
+      applyLabel: "Aplicar",
+      cancelLabel: "Cancelar",
+      fromLabel: "De",
+      toLabel: "Hasta",
+      customRangeLabel: "Custom",
+      daysOfWeek: [
+        "Dom",
+        "Lun",
+        "Ma",
+        "Mie",
+        "Ju",
+        "Vi",
+        "Sa"
+      ],
+      monthNames: [
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre"
+      ],
+    }
+  }, function (start, end, label) {
+    dateRangeValue = `${start.format('DD/MM/YYYY')}$${end.format('DD/MM/YYYY')}`
+  });
+});

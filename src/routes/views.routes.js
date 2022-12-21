@@ -12,13 +12,13 @@ router.get('/productsByCategory', viewsController.productsByCategoryView)
 
 router.get('/users', [sessionValidation.AdminPermisionValidation], viewsController.usersView)
 
-router.get('/shoppingCart', [sessionValidation.ValidateSession], viewsController.shoppingCartView)
+router.get('/shoppingCart', [sessionValidation.ValidateSession, sessionValidation.ClientPermisionValidation], viewsController.shoppingCartView)
 
 router.get('/signIn', [sessionValidation.ValidateSessionForLogin], viewsController.signInView)
 
 router.get('/categories', viewsController.categoryView)
 
-router.get('/graficas', [sessionValidation.EmployeePermisionValidation], viewsController.graficasView)
+router.get('/dashboard', [sessionValidation.EmployeePermisionValidation], viewsController.dashboardView)
 
 router.get('/createUpdateProductForm', [sessionValidation.EmployeePermisionValidation], viewsController.createUpdateProductFormView)
 

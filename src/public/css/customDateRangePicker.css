@@ -1,0 +1,51 @@
+.date-range-picker {
+  padding: 5px;
+  font-size: 11pt;
+  font-weight: 500;
+  color: #444444;
+}
+
+.daterangepicker .calendar-table table {
+  color: #383838 !important;
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.daterangepicker td.active, .daterangepicker td.active:hover {
+  background-color: #b58430 !important;
+}
+
+.daterangepicker td.in-range {
+  background-color: #ffcb7271 !important;
+}
+
+.daterangepicker td.end-date {
+  background-color: #b58430 !important;
+}
+
+.daterangepicker .drp-selected {
+  display: none !important;
+}
+
+.daterangepicker .calendar-table th.available:hover {
+  background-color: #ffebc7;
+}
+.daterangepicker .calendar-table td:hover {
+  background-color: #b58430 !important;
+  color: #fff !important;
+}
+
+.daterangepicker .drp-buttons .btn {
+  border: none !important;
+}
+
+.daterangepicker .drp-buttons .btn.cancelBtn:hover {
+  background-color: #efefef !important;
+}
+
+.daterangepicker .drp-buttons .btn.applyBtn {
+  background-color: #986000 !important;
+}
+
+.daterangepicker .drp-buttons .btn.applyBtn:hover {
+  background-color: #d18400 !important;
+}

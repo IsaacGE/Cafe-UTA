@@ -52,7 +52,7 @@
                         </div>
                       </div>
                       <div class="card-footer">
-                        <% if(product.stock > 0 && (userSession) ) { %>
+                        <% if (product.stock > 0 && (userSession && userSession.role == 'Cliente')) { %>
                           <button type="button" class="btn btn-dark"><i class="bi bi-cart-plus-fill"></i>&nbsp;Añadir</button>
                           <% } %>
                       </div>

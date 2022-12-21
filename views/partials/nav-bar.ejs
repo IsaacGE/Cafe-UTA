@@ -22,9 +22,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/"><i class="bi bi-house-fill"></i>&nbsp;Menú principal</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/shoppingCart"><i class="bi bi-cart4"></i>&nbsp;Mis compras</a>
-                    </li>
+                    <% if (userSession && userSession.role == 'Cliente') { %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/shoppingCart"><i class="bi bi-cart4"></i>&nbsp;Mis compras</a>
+                        </li>
+                    <% } %>  
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="/products"><i
                                 class="bi bi-basket"></i>&nbsp;Productos</a>
@@ -36,7 +38,7 @@
                     <% } %> 
                     <% if (userSession && (userSession.role == 'Administrador' || userSession.role == 'Empleado')) { %>
                         <li class="nav-item">
-                                <li><a class="dropdown-item" href="/graficas"><i class="bi bi-cash-coin"></i>&nbsp;Control de ventas</a></li>
+                                <li><a class="dropdown-item" href="/dashboard"><i class="bi bi-clipboard-data-fill"></i>&nbsp;Dashboard</a></li>
                         </li>
                     <% } %> 
                     <% if (!userSession) { %>
