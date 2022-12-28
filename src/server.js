@@ -9,7 +9,6 @@ const app = express()
 const path = require('path')
 
 startUp.createCategories()
-startUp.createRoles()
 startUp.createAdmin()
 startUp.createOrderStatus()
 

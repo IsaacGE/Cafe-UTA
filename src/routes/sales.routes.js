@@ -3,10 +3,11 @@ const router = express.Router()
 const sales = require('../controllers/sale.controller')
 const verifyId = require('../middlewares/verifyId')
 const sessionValidation = require('../middlewares/sessionValidator')
+const cartValidator = require('../middlewares/verifyCreateCart')
 
 router.get("/getAll", [sessionValidation.ValidateSession], sales.getAll)
 
-router.post("/createOrUpdate", [sessionValidation.ValidateSession], sales.createOrUpdate)
+router.post("/createOrUpdate", [sessionValidation.ValidateSession, cartValidator.userHasPendingCart], sales.createOrUpdate)
 
 router.get("/getById", [sessionValidation.ValidateSession,verifyId.ckeckID], sales.getById)
 
