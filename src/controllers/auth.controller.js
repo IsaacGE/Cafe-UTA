@@ -57,6 +57,7 @@ authController.signIn = async (req, res, next) => {
         if (await encrypt.comparePassword(pass, userFound.password)) {
             var userRole = await Role.findById(userFound.role)
             const userDataSession = { id: userFound._id, completeName: userFound.completeName, email: userFound.email, role: userRole.name, matricula: userFound.matricula, imageUrl: userFound.imageUrl }
+            console.log(userDataSession);
             req.session.userSession = userDataSession
             return res.status(200).json({
                 ok: true,
