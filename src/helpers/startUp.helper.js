@@ -11,7 +11,7 @@ startUp.createAdmin = async () => {
         const user = await User.findOne({ email: "admin.cafeUTA@utags.com" })
         if (!user) {
             const adminRole = await Role.findOne({name: "Administrador"})
-            if (!adminRole) await this.createRoles() 
+            if (!adminRole) await startUp.createRoles() 
             await User.create({
                 completeName: "Administrator CafeUTA",
                 matricula: '000000',
