@@ -45,7 +45,7 @@ startUp.createCategories = async () => {
 startUp.createRoles = async () => {
     try {
         const rolesOnDb = await Role.find()
-        if (rolesOnDb.length == 0) await Role.create(rolesList)
+        if (rolesOnDb.length == 0) await Role.insertMany(rolesList)
     } catch (error) {
         throw error
     }
@@ -54,7 +54,7 @@ startUp.createRoles = async () => {
 startUp.createOrderStatus = async () => {
     try {
         const orderStatusOnDB = await OrderStatus.find()
-        if (orderStatusOnDB.length == 0) await OrderStatus.create(orderStatusList)
+        if (orderStatusOnDB.length == 0) await OrderStatus.insertMany(orderStatusList)
     } catch (error) {
         throw error
     }

@@ -8,7 +8,7 @@ router.get('/', viewsController.homeView)
 
 router.get('/products', viewsController.productsView)
 
-router.get('/productsByCategory', viewsController.productsByCategoryView)
+router.get('/productsByCategory', [sessionValidation.ValidateSession], viewsController.productsByCategoryView)
 
 router.get('/users', [sessionValidation.AdminPermisionValidation], viewsController.usersView)
 
@@ -16,7 +16,7 @@ router.get('/shoppingCart', [sessionValidation.ValidateSession, sessionValidatio
 
 router.get('/signIn', [sessionValidation.ValidateSessionForLogin], viewsController.signInView)
 
-router.get('/categories', viewsController.categoryView)
+router.get('/categories', [sessionValidation.ValidateSession], viewsController.categoryView)
 
 router.get('/dashboard', [sessionValidation.EmployeePermisionValidation], viewsController.dashboardView)
 

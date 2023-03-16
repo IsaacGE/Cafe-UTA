@@ -15,7 +15,7 @@ router.get("/getByUserId", [sessionValidation.ValidateSession, verifyId.ckeckID]
 
 router.get("/pendingOrder", [sessionValidation.ValidateSession], sales.getPendingOrder)
 
-router.put("/deleteProduct", [verifyId.ckeckID], sales.deleteProduct)
+router.put("/deleteProduct", [sessionValidation.ValidateSession, verifyId.ckeckID], sales.deleteProduct)
 
 router.put('/updateStatus', [sessionValidation.ValidateSession, verifyId.ckeckID], sales.updateStatus)
 

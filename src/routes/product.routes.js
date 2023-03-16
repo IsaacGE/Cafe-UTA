@@ -6,14 +6,14 @@ const sessionValidator = require('../middlewares/sessionValidator')
 
 router.get("/getAll", [sessionValidator.ValidateSession], product.getAll)
 
-router.post("/create", product.create)
+router.post("/create", [sessionValidator.ValidateSession], product.create)
 
-router.get("/getById", [verifyId.ckeckID], product.getById)
+router.get("/getById", [sessionValidator.ValidateSession, verifyId.ckeckID], product.getById)
 
-router.put("/update", [verifyId.ckeckID], product.update)
+router.put("/update", [sessionValidator.ValidateSession, verifyId.ckeckID], product.update)
 
-router.put('/updateStatus', [verifyId.ckeckID], product.updateStatus)
+router.put('/updateStatus', [sessionValidator.ValidateSession, verifyId.ckeckID], product.updateStatus)
 
-router.delete("/delete", [verifyId.ckeckID], product.delete)
+router.delete("/delete", [sessionValidator.ValidateSession, verifyId.ckeckID], product.delete)
 
 module.exports = router

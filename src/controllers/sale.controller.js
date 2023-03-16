@@ -94,6 +94,7 @@ saleController.deleteProduct = async (req, res, next, isCtrlr = false) => {
 saleController.updateStatus = async (req, res, next, isCtrlr = false) => {
     try {
         const orderStatus = await OrderStatus.findOne({ key: req.body.newStatus })
+        console.log(orderStatus)
         await Sale.findByIdAndUpdate(req.query.id, { $set: { saleStatus: orderStatus.id } })
         return res.status(200).json({
             ok: true,
