@@ -70,21 +70,25 @@
     margin-top: 0;
 }
 
-table tbody tr td.EE {
+table tbody tr td.EE,
+.order-details .content .row .EE {
     color: #26c7d6 !important;
     font-weight: 900;
 }
 
-table tbody tr td.E {
+table tbody tr td.E,
+.order-details .content .row .E {
     color: #178b00 !important;
     font-weight: 900;
 }
-table tbody tr td.C {
+table tbody tr td.C,
+.order-details .content .row .C {
     color: #9c0000 !important;
     font-weight: 900;
 }
 
-table tbody tr td.PE {
+table tbody tr td.PE,
+.order-details .content .row .PE {
     color: #007bff !important;
     font-weight: 900;
 }

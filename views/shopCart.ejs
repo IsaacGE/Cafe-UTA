@@ -68,7 +68,7 @@
                       <td><%= shop.createdAt.toLocaleString() %></td>
                       <td class="<%= shop.saleStatus.key %>"><i class="bi bi-circle-fill"></i>&nbsp;<%= shop.saleStatus.value %></td>
                       <td> 
-                        <button class="btn button-options-table btn-update-product" title="Ver detalle de compra" data-bs-toggle="modal" data-bs-target="#smallAlert"><i class="bi bi-eye-fill"></i></button> 
+                        <button data-orderId="<%= shop._id %>" class="btn button-options-table btn-order-details" title="Ver detalle de compra" data-bs-toggle="modal" data-bs-target="#largeModal"><i class="bi bi-eye-fill"></i></button> 
                       </td>
                     </tr>
                   <% }) %> 

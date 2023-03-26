@@ -22,3 +22,10 @@ $('.btn-set-new-status').on('click', function () {
     RunAjaxRequest('put', 'sales/updateStatus', 'id', idCart, { newOrderMsg: msgToShow, newStatus: action == 'buy' ? 'PE' : 'C' }, true)
   })
 })
+
+
+$('#tableShopHistory tbody').on('click', '.btn-order-details', function () {
+  const orderId = $(this).attr('data-orderId')
+  FillModalFormCrud('getOrderDetails', `<i class="bi bi-basket-fill"></i></i>&nbsp;Detalle de pedido: ${orderId}`, '', 'id', orderId)
+
+})

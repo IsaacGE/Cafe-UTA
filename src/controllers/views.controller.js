@@ -55,6 +55,16 @@ viewsController.shoppingCartView = async (req, res) => {
     })
 }
 
+/**
+ * render order details modal
+ */
+viewsController.showOrderDetailsView = async(req, res) => {
+    const result = await Sale.getById(req, res, null, true)
+    res.render('partials/modalsContent/orderDetails', {
+        orderDetails: result
+    })
+}
+
 
 // RENDER FORMS VIEWS //
 viewsController.createUpdateProductFormView = async (req, res) => {

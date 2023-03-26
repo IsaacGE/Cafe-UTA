@@ -182,7 +182,7 @@ $(document).ready(function () {
  * @param {text:String} paramName       [Clave del parametro al cual se hará el request (Solo si es necesario - no se requiere)]
  * @param {*:any} paramValue            [Valor del parametro al cual se hará el request (Solo si es necesario - no se requiere)]
  */
-function FillModalFormCrud(endpoint, modalTitle, buttonText, paramName = '', paramValue = '') {
+function FillModalFormCrud(endpoint, modalTitle, buttonText = '', paramName = '', paramValue = '') {
   var queryParam = '';
   if (paramName.length > 0 && paramValue.length > 0) queryParam = `?${paramName}=${paramValue}`
   $.ajax({
@@ -191,7 +191,7 @@ function FillModalFormCrud(endpoint, modalTitle, buttonText, paramName = '', par
   })
     .done(response => {
       $('#largeModal .modal-body').html(response)
-      addButtonsAndTitleToAlert(modalTitle, '<i class="bi bi-x"></i>&nbsp;Cancelar', buttonText)
+      addButtonsAndTitleToAlert(modalTitle, '<i class="bi bi-x"></i>&nbsp;Cerrar', buttonText)
     })
     .fail(response => {
       if (response.status == 500) showCustomSmallAlert(response.responseJSON.msg, '<i class="bi bi-bug-fill"></i> Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
@@ -208,55 +208,63 @@ function FillModalFormCrud(endpoint, modalTitle, buttonText, paramName = '', par
  * @param {text:String} paramKey    *Nombre de la variable que se estara enviando por parametro en la url (Solo si se requiere)
  * @param {text:String} paramValue  *Valor que se asigna a la variable que se envia por parametro en la url (Solo si se requiere)
  * @param {*:Any} data              *Datos que se envian por body en el request (solo si es necesario) 
- * @return {:Boolean}               *Regresa true o false, dependiendo del reultado de la peticion
+ * @return {Promise:any}               *Regresa un resultado async de la respuesta http
  */
 function RunAjaxRequest(methodReq, endpoint, paramKey = '', paramValue = '', data = {}, reloadPage = true) {
   if (methodReq == 'get') return false
   if (endpoint.charAt(0) == '/') endpoint.slice(1)
   var completeEndpint = paramKey != '' || paramKey == null ? `${endpoint}?${paramKey}=${paramValue}` : endpoint
-  $.ajax({
-    method: methodReq,
-    url: `${localUri}/${completeEndpint}`,
-    data: data
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      method: methodReq,
+      url: `${localUri}/${completeEndpint}`,
+      data: data
+    })
+      .done(response => {
+        showToastAlert(response.msg, 'success', reloadPage)
+        resolve(response)
+      })
+      .fail(response => {
+        if (response.sFtatus == 500) showCustomSmallAlert(response.responseJSON.msg, '<i class="bi bi-bug-fill"></i> Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
+        else showToastAlert(response.responseJSON.msg, 'error')
+        reject(response)
+      })
   })
-    .done(response => {
-      showToastAlert(response.msg, 'success', reloadPage)
-      return true;
-    })
-    .fail(response => {
-      if (response.sFtatus == 500) showCustomSmallAlert(response.responseJSON.msg, '<i class="bi bi-bug-fill"></i> Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
-      else showToastAlert(response.responseJSON.msg, 'error')
-      return false;
-    })
 }
 
 /**
  * Metodo para ejecutar peticiones de Ajax GET
  * peticines hacia controladores para traer contenido
  * @param {text:String} endpoint    *Endpint al que se estara enviando el request GET
- * @param {text:String} queryParams  *Lista de paramatros a enviar por query params [{key:value}, {key:value}] 
+ * @param {text:String} queryParams  *Lista de paramatros a enviar por query params [{key:value}, {key:value}]
+ * @returns {Promise:any} [regresa el resultado async]
  */
 function RunAjaxGetRequest(endpoint, queryParams = []) {
   if (endpoint.charAt(0) == '/') endpoint.slice(1)
-  var completeEndpint = endpoint
   if (queryParams.length > 0) {
     endpoint += '?'
     queryParams.forEach(param => {
-      completeEndpint += `${Object.keys(param)}=${Object.values(param)}&`
+      endpoint += `${Object.keys(param)}=${Object.values(param)}&`
     })
-    completeEndpint.slice(0, - 1)
+    endpoint.slice(0, - 1)
+
+    console.log(endpoint)
   }
-  $.ajax({
-    method: 'get',
-    url: `${localUri}/${completeEndpint}`
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      method: 'get',
+      url: `${localUri}/${endpoint}`
+    })
+      .done(response => {
+        resolve(response)
+      })
+      .fail(response => {
+        console.log(response)
+        if (response.status == 500) showCustomSmallAlert(response.responseJSON.msg, '<i class="bi bi-bug-fill"></i> Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
+        else showToastAlert(response.responseJSON ? response.responseJSON.msg : response.responseText, 'error')
+        reject(response)
+      })
   })
-    .done(response => {
-      return response;
-    })
-    .fail(response => {
-      if (response.sFtatus == 500) showCustomSmallAlert(response.responseJSON.msg, '<i class="bi bi-bug-fill"></i> Error en el servidor', 'arrow-counterclockwise', 'Cerrar')
-      else showToastAlert(response.responseJSON.msg, 'error')
-    })
 }
 
 /**

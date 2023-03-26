@@ -20,6 +20,8 @@ router.get('/categories', [sessionValidation.ValidateSession], viewsController.c
 
 router.get('/dashboard', [sessionValidation.EmployeePermisionValidation], viewsController.dashboardView)
 
+router.get('/getOrderDetails', [sessionValidation.ValidateSession], viewsController.showOrderDetailsView)
+
 router.get('/createUpdateProductForm', [sessionValidation.EmployeePermisionValidation], viewsController.createUpdateProductFormView)
 
 router.get('/createUpdateUserForm', [sessionValidation.AdminPermisionValidation], viewsController.createUpdateUserFormView)

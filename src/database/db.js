@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 require('../config/config')
+const startUp = require('../helpers/startUp.helper')
 
 mongoose.connect(process.env.URLDB, {
     keepAlive: true,
@@ -7,7 +8,10 @@ mongoose.connect(process.env.URLDB, {
     useUnifiedTopology: true
 },
     (err, resp) => {
-        if (err) throw err;
+        if (err) throw `DataBase connection ERROR: ${err}`;
+        startUp.createCategories()
+        startUp.createAdmin()
+        startUp.createOrderStatus()
         console.log('DataBase Connection:', process.env.URLDB);
     });
 

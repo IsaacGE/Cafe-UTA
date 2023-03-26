@@ -6,6 +6,12 @@ const saleController = {}
 saleController.getById = async (req, res, next, isCtrlr = false) => {
     try {
         const result = await Sale.findById(req.query.id)
+            .populate({path: 'productList', model: 'Product'})
+            //.populate({path: 'saleEmployee', model: 'Users'})
+            .populate({path: 'saleStatus', model: 'OrderStatus'})
+            .populate({path: 'buyerUser', model: 'User'})
+
+        console.log(result)
         return isCtrlr ? result : res.status(200).json({ ok: true, result });
     } catch (error) {
         res.status(500).json({ ok: false, msg: `Error Sale.Controller GetByID module ${error.message}` })
